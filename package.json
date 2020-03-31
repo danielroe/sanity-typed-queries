@@ -37,8 +37,8 @@
     "@babel/preset-typescript": "^7.9.0",
     "@release-it/conventional-changelog": "^1.1.0",
     "@types/jest": "^25.1.4",
-    "@typescript-eslint/eslint-plugin": "^2.25.0",
-    "@typescript-eslint/parser": "^2.25.0",
+    "@typescript-eslint/eslint-plugin": "^2.26.0",
+    "@typescript-eslint/parser": "^2.26.0",
     "codecov": "^3.6.5",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.1",
@@ -55,7 +55,7 @@
     "yorkie": "^2.0.0"
   },
   "resolutions": {
-    "minimist": ">=1.2.2"
+    "minimist": ">=1.2.5"
   },
   "tsd": {
     "directory": "test/tsd",
