@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`schema creator generates correct queries 1`] = `"*[_type == 'typeOfDocument'][0]"`;
+
+exports[`schema creator generates correct queries 2`] = `"*[_type == 'typeOfDocument'].description"`;
+
+exports[`schema creator generates correct queries 3`] = `"*[_type == 'typeOfDocument'] { description }"`;
+
+exports[`schema creator generates correct queries 4`] = `"*[_type == 'typeOfDocument'][0..2]"`;
+
+exports[`schema creator generates correct queries 5`] = `"*[_type == 'typeOfDocument'][0...2]"`;
+
+exports[`schema creator generates correct queries 6`] = `"*[_type == 'typeOfDocument'] | order(postcode desc)"`;
+
+exports[`schema creator generates correct queries 7`] = `"*[_type == 'typeOfDocument'] { _type } | order(_type asc)"`;
+
+exports[`schema creator generates correct schema fields for document 1`] = `
+Object {
+  "fields": Array [
+    Object {
+      "name": "name",
+      "title": "Name",
+      "type": "string",
+      "validation": [Function],
+    },
+    Object {
+      "name": "postcode",
+      "title": "Postcode",
+      "type": "string",
+      "validation": [Function],
+    },
+    Object {
+      "name": "cost",
+      "title": "Cost",
+      "type": "number",
+    },
+    Object {
+      "name": "description",
+      "rows": 2,
+      "title": "Description",
+      "type": "text",
+      "validation": [Function],
+    },
+  ],
+  "name": "typeOfDocument",
+  "title": "Type Of Document",
+  "type": "document",
+}
+`;

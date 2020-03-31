@@ -1,0 +1,61 @@
+{
+  "name": "sanity-typed-queries",
+  "version": "0.1.0",
+  "description": "A collection of helper functions to improve the typing of Sanity resources.",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib/**/*",
+    "lib/index.d.ts",
+    "!**/*.map"
+  ],
+  "scripts": {
+    "build": "yarn clean && yarn compile",
+    "clean": "rm -rf lib/*",
+    "compile": "tsc",
+    "lint": "run-s lint:all:*",
+    "lint:all:eslint": "yarn lint:eslint --ext .js,.ts .",
+    "lint:all:prettier": "yarn lint:prettier \"**/*.{js,json,ts}\"",
+    "lint:eslint": "eslint --fix",
+    "lint:prettier": "prettier --write --loglevel warn",
+    "prepare": "yarn build",
+    "prepublishOnly": "yarn lint && yarn test",
+    "release": "release-it",
+    "test": "run-s test:*",
+    "test:types": "tsd",
+    "test:unit": "jest"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-transform-runtime": "^7.9.0",
+    "@babel/preset-env": "^7.9.0",
+    "@babel/preset-typescript": "^7.9.0",
+    "@types/jest": "^25.1.4",
+    "@typescript-eslint/eslint-plugin": "^2.25.0",
+    "@typescript-eslint/parser": "^2.25.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-jest": "^23.8.2",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-promise": "^4.2.1",
+    "jest": "^25.2.4",
+    "lint-staged": "^10.1.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.0.2",
+    "prettier-eslint-cli": "^5.0.0",
+    "release-it": "^13.5.1",
+    "tsd": "0.11.0",
+    "yorkie": "^2.0.0"
+  },
+  "tsd": {
+    "directory": "test/tsd",
+    "compilerOptions": {
+      "rootDir": "."
+    }
+  }
+}
