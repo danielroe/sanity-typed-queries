@@ -53,6 +53,9 @@
     "tsd": "0.11.0",
     "yorkie": "^2.0.0"
   },
+  "resolutions": {
+    "minimist": ">=1.2.2"
+  },
   "tsd": {
     "directory": "test/tsd",
     "compilerOptions": {
