@@ -3,7 +3,7 @@ import { extraFields } from '../extractor'
 
 export const type = Symbol('Return type of a query')
 
-type QueryReturnType<T> = [() => string, T extends Array<any> ? T : T | null]
+type QueryReturnType<T> = [string, T]
 
 type Translator<T extends Record<string, UnnamedField>> = {
   [P in keyof T]: FieldType<T[P]>
@@ -153,7 +153,7 @@ export class QueryBuilder<
 
   use() {
     return [
-      () => this.query,
+      this.query,
       this.selector === '[0]' ? null : [],
     ] as Type extends Array<any>
       ? Project extends true

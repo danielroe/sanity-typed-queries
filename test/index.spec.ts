@@ -29,16 +29,14 @@ describe('schema creator', () => {
   })
 
   test('generates correct queries', () => {
-    expect(gen().builder.first().use()[0]()).toMatchSnapshot()
-    expect(gen().builder.pick('description').use()[0]()).toMatchSnapshot()
-    expect(gen().builder.pick(['description']).use()[0]()).toMatchSnapshot()
-    expect(gen().builder.select(0, 2).use()[0]()).toMatchSnapshot()
-    expect(gen().builder.select(0, 2, true).use()[0]()).toMatchSnapshot()
+    expect(gen().builder.first().use()[0]).toMatchSnapshot()
+    expect(gen().builder.pick('description').use()[0]).toMatchSnapshot()
+    expect(gen().builder.pick(['description']).use()[0]).toMatchSnapshot()
+    expect(gen().builder.select(0, 2).use()[0]).toMatchSnapshot()
+    expect(gen().builder.select(0, 2, true).use()[0]).toMatchSnapshot()
+    expect(gen().builder.orderBy('postcode', 'desc').use()[0]).toMatchSnapshot()
     expect(
-      gen().builder.orderBy('postcode', 'desc').use()[0]()
-    ).toMatchSnapshot()
-    expect(
-      gen().builder.pick(['_type']).orderBy('_type').use()[0]()
+      gen().builder.pick(['_type']).orderBy('_type').use()[0]
     ).toMatchSnapshot()
   })
 })
