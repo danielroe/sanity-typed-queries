@@ -32,6 +32,15 @@
 - 📚 **Documentation:** Sanity documentation appears as you type.
 - 💪 **TypeScript**: Written in TypeScript.
 
+## Progress
+
+- [x] Fully typed schema builder
+- [-] Query builder (working with string, boolean, number), ordering, projections
+  - [ ] Filters
+  - [ ] Arrays
+  - [ ] Resolving image, file and object types
+  - [ ] Custom object types
+
 ## Quick Start
 
 First install `sanity-typed-queries`:
