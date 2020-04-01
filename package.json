@@ -3,6 +3,13 @@
   "version": "0.3.1",
   "description": "A collection of helper functions to improve the typing of Sanity resources.",
   "license": "MIT",
+  "repository": "danielroe/sanity-typed-queries",
+  "contributors": [
+    {
+      "name": "Daniel Roe <daniel@roe.dev>",
+      "url": "https://github.com/danielroe"
+    }
+  ],
   "keywords": [
     "sanity",
     "typescript",
