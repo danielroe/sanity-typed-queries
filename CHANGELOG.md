@@ -1,3 +1,10 @@
+### [0.3.1](https://github.com/danielroe/sanity-typed-queries/compare/0.3.0...0.3.1) (2020-04-01)
+
+
+### Bug Fixes
+
+* target commonjs ([5aba4da](https://github.com/danielroe/sanity-typed-queries/commit/5aba4da302c46433ab4b788cab255f2b547b743c))
+
 ## [0.3.0](https://github.com/danielroe/sanity-typed-queries/compare/0.2.0...0.3.0) (2020-04-01)
 
 
