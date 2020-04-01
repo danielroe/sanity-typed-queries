@@ -60,12 +60,12 @@ export interface BaseField {
   }
 }
 
-export interface ArrayField<T extends UnnamedField> extends BaseField {
+export interface ArrayField extends BaseField {
   type: 'array'
   /**
    * Defines which types are allowed as members of the array.
    */
-  of: Array<{ type: T['type'] } & Partial<T>>
+  of: Array<ValidType>
   options?: {
     /**
      * Controls whether the user is allowed to reorder the items in the array. Defaults to true.
@@ -76,7 +76,7 @@ export interface ArrayField<T extends UnnamedField> extends BaseField {
 
       If set to grid it will display in a grid
      */
-    layout?: StringField extends T ? 'grid' | 'tags' : 'tags'
+    layout?: 'grid' | 'tags'
     /**
      * [ {value: <value>, title: <title>}, { … } ] renders check boxes for titles and populates a string array with selected values
      */
@@ -386,7 +386,7 @@ type Nameless<T> = Omit<T, 'name'>
 type CustomFields = CustomField<'tag' | 'author'>
 
 export type UnnamedField<T = Nameless<CustomFields>> =
-  | Nameless<ArrayField<any>>
+  | Nameless<ArrayField>
   | Nameless<BlockField>
   | Nameless<BooleanField>
   | Nameless<DateField>
@@ -405,36 +405,57 @@ export type UnnamedField<T = Nameless<CustomFields>> =
   | Nameless<URLField>
   | T
 
+type FieldTypes =
+  | 'array'
+  | 'block'
+  | 'boolean'
+  | 'date'
+  | 'datetime'
+  | 'string'
+  | 'text'
+  | 'url'
+  | 'file'
+  | 'geopoint'
+  | 'image'
+  | 'number'
+  | 'reference'
+  | 'slug'
+
+type PureType<T extends FieldTypes> = { type: T }
+type ValidType = PureType<FieldTypes>
+
 export type Field<T = CustomFields> = UnnamedField<T> & { name: string }
 
 export type FieldType<T extends UnnamedField> =
   //
-  T extends Nameless<ArrayField<infer A>>
-    ? Array<FieldType<A>>
-    : T extends Nameless<BlockField>
+  T extends PureType<'array'> & { of: Array<infer B> }
+    ? Array<FieldType<B>>
+    : T extends PureType<'block'>
     ? BlockType[]
-    : T extends Nameless<BooleanField>
+    : T extends PureType<'boolean'>
     ? boolean
     : T extends
-        | Nameless<DateField>
-        | Nameless<DatetimeField>
-        | Nameless<StringField>
-        | Nameless<TextField>
-        | Nameless<URLField>
+        | PureType<'date'>
+        | PureType<'datetime'>
+        | PureType<'string'>
+        | PureType<'text'>
+        | PureType<'url'>
     ? string
-    : T extends Nameless<FileField>
+    : T extends PureType<'file'>
     ? SanityFileType
-    : T extends Nameless<GeopointField>
+    : T extends PureType<'geopoint'>
     ? GeopointType
     : T extends Nameless<ImageField>
     ? SanityImageType & T['fields']
-    : T extends Nameless<NumberField>
+    : T extends PureType<'image'>
+    ? SanityImageType
+    : T extends PureType<'number'>
     ? number
     : T extends Nameless<ObjectField> // TODO
-    ? T['fields'][0]
-    : T extends Nameless<ReferenceField>
+    ? T['fields']
+    : T extends PureType<'reference'>
     ? ReferenceType
-    : T extends Nameless<SlugField>
+    : T extends PureType<'slug'>
     ? SlugType
     : T extends { type: '_type'; name: string }
     ? T['name']

@@ -7,9 +7,10 @@ const { builder } = createSchema('author', {
     type: 'string',
     validation: Rule => Rule.required(),
   },
-  postcode: {
-    type: 'string',
-    validation: Rule => Rule.required(),
+  tags: {
+    type: 'array',
+    // of: [{type: 'number'}]
+    of: [{ type: 'string' }, { type: 'number' }],
   },
   cost: {
     type: 'number',
@@ -30,11 +31,14 @@ expectType<string>(b)
 const c = builder.pick('description').first().use()[1]
 expectType<string>(c)
 
+const type = builder.pick('tags').first().use()[1]
+expectType<Array<string | number>>(type)
+
 const d = builder.use()[1]
 expectType<
   Array<{
     name: string
-    postcode: string
+    tags: Array<string | number>
     cost: number
     description: string
     _createdAt: string

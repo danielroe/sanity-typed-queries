@@ -36,9 +36,9 @@
 
 - [x] Fully typed schema builder
 - [x] Query builder (working with string, boolean, number), ordering, projections
+- [x] Inferred type of arrays
 - [ ] Additional query filters
 - [ ] Querying multiple types of document
-- [ ] Inferred type of arrays
 - [ ] Resolving image, file and object types
 - [ ] Custom mappings (`"prop": my.prop`)
 - [ ] Custom object types
