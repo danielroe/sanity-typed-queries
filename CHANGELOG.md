@@ -1,3 +1,10 @@
+## [0.3.0](https://github.com/danielroe/sanity-typed-queries/compare/0.2.0...0.3.0) (2020-04-01)
+
+
+### Features
+
+* infer correct types of arrays ([fd75b5c](https://github.com/danielroe/sanity-typed-queries/commit/fd75b5c0b109af69d4ffb94dcb799c03c6a99757))
+
 ## 0.2.0 (2020-03-31)
 
 
