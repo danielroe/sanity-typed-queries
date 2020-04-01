@@ -35,11 +35,15 @@
 ## Progress
 
 - [x] Fully typed schema builder
-- [-] Query builder (working with string, boolean, number), ordering, projections
-  - [ ] Filters
-  - [ ] Arrays
-  - [ ] Resolving image, file and object types
-  - [ ] Custom object types
+- [x] Query builder (working with string, boolean, number), ordering, projections
+- [ ] Additional query filters
+- [ ] Querying multiple types of document
+- [ ] Inferred type of arrays
+- [ ] Resolving image, file and object types
+- [ ] Custom mappings (`"prop": my.prop`)
+- [ ] Custom object types
+
+Help and contributions are welcome.
 
 ## Quick Start
 
@@ -53,7 +57,7 @@ yarn add sanity-typed-queries
 npm install sanity-typed-queries --save
 ```
 
-Now you will need to generate your Sanity schema documents using the schema builder.
+Now you will need to generate your Sanity schema documents using the schema builder. You will get documentation as you type, and enforced compliance with Sanity's schema builder, such as being able to see validation rules applicable to the type of field you are creating, and so on.
 
 `schema/author.js`:
 
