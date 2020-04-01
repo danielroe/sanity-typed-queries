@@ -3,7 +3,7 @@
     "strict": true,
     "sourceMap": true,
     "target": "es5",
-    "module": "esnext",
+    "module": "commonjs",
     "lib": ["esnext", "dom"],
     "moduleResolution": "node",
     "rootDir": "src",
