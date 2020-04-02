@@ -17,21 +17,38 @@ export class QueryBuilder<
   Exclude extends string = '',
   SchemaType extends string = string
 > {
-  private projections: Record<string, string> = {}
-  private selector = ''
   private schema: Schema
-  private unproject = false
-  private ordering: [keyof Schema, 'asc' | 'desc'][] = []
   private type: SchemaType
+  private ordering: [keyof Schema, 'asc' | 'desc'][]
+  private projections: Record<string, string>
+  private selector: string
+  private unproject: boolean
 
-  constructor(schema: Schema, type: SchemaType) {
+  constructor(
+    schema: Schema,
+    type: SchemaType,
+    ordering: [keyof Schema, 'asc' | 'desc'][] = [],
+    projections: Record<string, string> = {},
+    selector = '',
+    unproject = false
+  ) {
     this.schema = { ...schema, ...extraFields(type) }
     this.type = type
+    this.projections = projections
+    this.selector = selector
+    this.unproject = unproject
+    this.ordering = ordering
   }
 
   orderBy<Key extends keyof Schema>(key: Key, order: 'asc' | 'desc' = 'asc') {
-    this.ordering.push([key, order])
-    return this
+    return new QueryBuilder(
+      this.schema,
+      this.type,
+      [...this.ordering, [key, order]],
+      this.projections,
+      this.selector,
+      this.unproject
+    )
   }
 
   select(
@@ -48,8 +65,14 @@ export class QueryBuilder<
     >,
     Exclude | 'first' | 'select'
   > {
-    this.selector = `[${from}..${inclusive ? '.' : ''}${to}]`
-    return this as Omit<
+    return new QueryBuilder(
+      this.schema,
+      this.type,
+      this.ordering,
+      this.projections,
+      `[${from}..${inclusive ? '.' : ''}${to}]`,
+      this.unproject
+    ) as Omit<
       QueryBuilder<
         Schema,
         Type,
@@ -84,19 +107,29 @@ export class QueryBuilder<
     QueryBuilder<Pick<Schema, R>, Type, any, Exclude | 'pick', SchemaType>,
     Exclude | 'pick'
   > {
+    let projections = {}
+    let unproject = this.unproject
+
     if (Array.isArray(props)) {
-      this.projections = Object.entries(this.schema).reduce((obj, [key]) => {
+      projections = Object.entries(this.schema).reduce((obj, [key]) => {
         if (props.includes(key as R)) obj[key] = key
         return obj
       }, {} as Record<string, string>)
     } else {
-      this.projections = {
+      projections = {
         [props]: this.schema[props],
       }
-      this.unproject = true
+      unproject = true
     }
 
-    return this as Omit<
+    return new QueryBuilder(
+      this.schema,
+      this.type,
+      this.ordering,
+      projections,
+      this.selector,
+      unproject
+    ) as Omit<
       QueryBuilder<Pick<Schema, R>, Type, any, Exclude | 'pick', SchemaType>,
       Exclude | 'pick'
     >
@@ -112,8 +145,14 @@ export class QueryBuilder<
     >,
     Exclude | 'select' | 'first'
   > {
-    this.selector = '[0]'
-    return this as Omit<
+    return new QueryBuilder(
+      this.schema,
+      this.type,
+      this.ordering,
+      this.projections,
+      '[0]',
+      this.unproject
+    ) as Omit<
       QueryBuilder<
         Schema,
         Single<Schema>,
