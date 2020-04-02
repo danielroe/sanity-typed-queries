@@ -1,8 +1,6 @@
 import { UnnamedField, FieldType } from '../schema/fields'
 import { extraFields } from '../extractor'
 
-export const type = Symbol('Return type of a query')
-
 type QueryReturnType<T> = [string, T]
 
 type Translator<T extends Record<string, UnnamedField>> = {

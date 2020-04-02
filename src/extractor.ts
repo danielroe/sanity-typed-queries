@@ -1,19 +1,10 @@
-import {
-  DocumentField,
-  UnnamedField,
-  BaseField,
-  FieldType,
-} from './schema/fields'
+import { DocumentField, UnnamedField, FieldType } from './schema/fields'
 
 import { splitStringByCase } from './utils'
 import { RuleForRequired } from './schema/validation'
 import { QueryBuilder } from './query/builder'
 
-interface CustomField<T extends string> extends BaseField {
-  type: T
-}
-
-interface SanityDocumentCreator<T = CustomField<'tag' | 'author'>> {
+interface SanityDocumentCreator<T = never> {
   [key: string]: UnnamedField<T>
 }
 

@@ -372,13 +372,9 @@ export interface CustomField<A extends string> extends BaseField {
   validation?: Validator
 }
 
-// export type UnnamedField
-
 type Nameless<T> = Omit<T, 'name'>
 
-type CustomFields = CustomField<'tag' | 'author'>
-
-export type UnnamedField<T = Nameless<CustomFields>> =
+export type UnnamedField<T = Nameless<CustomField<never>>> =
   | Nameless<ArrayField>
   | Nameless<BlockField>
   | Nameless<BooleanField>
@@ -417,7 +413,7 @@ type FieldTypes =
 type PureType<T extends FieldTypes> = { type: T }
 type ValidType = PureType<FieldTypes>
 
-export type Field<T = CustomFields> = UnnamedField<T> & { name: string }
+export type Field<T = CustomField<never>> = UnnamedField<T> & { name: string }
 
 export type FieldType<T extends UnnamedField> =
   //
