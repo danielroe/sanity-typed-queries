@@ -431,7 +431,7 @@ export type FieldType<T extends UnnamedField> =
   T extends PureType<'array'> & { of: Array<infer B> }
     ? Array<FieldType<B>>
     : T extends PureType<'block'>
-    ? BlockType[]
+    ? BlockType
     : T extends PureType<'boolean'>
     ? boolean
     : T extends

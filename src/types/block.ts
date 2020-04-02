@@ -1,10 +1,10 @@
-interface BlockMarkDefs {
+interface MarkDefs {
   _key: string
   _type: string
   [key: string]: string
 }
 
-interface BlockChildren {
+interface Children {
   _key: string
   _type: string
   marks: string[]
@@ -14,9 +14,9 @@ interface BlockChildren {
 export interface BlockType {
   _key: string
   _type: string
-  children: BlockChildren[]
+  children: Children[]
   level?: number
   listItem?: string
-  markDefs: BlockMarkDefs[]
+  markDefs: MarkDefs[]
   style: string
 }
