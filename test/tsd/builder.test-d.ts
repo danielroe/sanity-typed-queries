@@ -9,7 +9,6 @@ const { builder } = createSchema('author', {
   },
   tags: {
     type: 'array',
-    // of: [{type: 'number'}]
     of: [{ type: 'string' }, { type: 'number' }],
   },
   cost: {

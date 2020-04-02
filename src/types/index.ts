@@ -1,18 +1,21 @@
-export { BlockType } from './block'
+export { Block } from './block'
 
-export interface SanityImageType {
+export interface Image {
+  _type: 'image'
   [key: string]: any
   asset: {
     _type: 'reference'
     _ref: string
   }
   crop?: {
+    _type: 'sanity.imageCrop'
     top?: number
     bottom?: number
     left?: number
     right?: number
   }
   hotspot?: {
+    _type: 'sanity.imageHotspot'
     x?: number
     y?: number
     height?: number
@@ -20,7 +23,8 @@ export interface SanityImageType {
   }
 }
 
-export interface SanityFileType {
+export interface File {
+  _type: 'file'
   asset: {
     _type: string
     _ref: string
@@ -28,17 +32,20 @@ export interface SanityFileType {
   [key: string]: any
 }
 
-export interface GeopointType {
+export interface Geopoint {
+  _type: 'geopoint'
   lat: number
   lng: number
   alt: number
 }
 
-export interface SlugType {
+export interface Slug {
+  _type: 'slug'
   current: string
 }
 
-export interface ReferenceType {
+export interface Reference {
+  _type: 'reference'
   _ref: string
   _weak?: boolean
 }

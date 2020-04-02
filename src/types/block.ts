@@ -11,9 +11,9 @@ interface Children {
   text: string
 }
 
-export interface BlockType {
+export interface Block {
+  _type: 'block'
   _key: string
-  _type: string
   children: Children[]
   level?: number
   listItem?: string

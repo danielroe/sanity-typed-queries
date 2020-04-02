@@ -1,11 +1,4 @@
-import {
-  BlockType,
-  SanityFileType,
-  GeopointType,
-  SanityImageType,
-  ReferenceType,
-  SlugType,
-} from '../types'
+import { Block, File, Geopoint, Image, Reference, Slug } from '../types'
 
 import {
   ArrayRule,
@@ -282,7 +275,7 @@ interface ReferenceField extends BaseField {
   /**
    * Required. Must contain an array naming all the types which may be referenced e.g. [{type: 'person'}]. See more examples below.
    */
-  to: Array<{ type: Field['type'] }>
+  to: Array<{ type: string }>
   /**
    * Default false. If set to true the reference will be made weak. This means you can discard the object being referred to without first deleting the reference, thereby leaving a dangling pointer.
    */
@@ -431,7 +424,7 @@ export type FieldType<T extends UnnamedField> =
   T extends PureType<'array'> & { of: Array<infer B> }
     ? Array<FieldType<B>>
     : T extends PureType<'block'>
-    ? BlockType
+    ? Block
     : T extends PureType<'boolean'>
     ? boolean
     : T extends
@@ -442,21 +435,21 @@ export type FieldType<T extends UnnamedField> =
         | PureType<'url'>
     ? string
     : T extends PureType<'file'>
-    ? SanityFileType
+    ? File
     : T extends PureType<'geopoint'>
-    ? GeopointType
+    ? Geopoint
     : T extends Nameless<ImageField>
-    ? SanityImageType & T['fields']
+    ? Image & T['fields']
     : T extends PureType<'image'>
-    ? SanityImageType
+    ? Image
     : T extends PureType<'number'>
     ? number
     : T extends Nameless<ObjectField> // TODO
     ? T['fields']
     : T extends PureType<'reference'>
-    ? ReferenceType
+    ? Reference
     : T extends PureType<'slug'>
-    ? SlugType
+    ? Slug
     : T extends { type: '_type'; name: string }
     ? T['name']
-    : never
+    : Record<string, any>
