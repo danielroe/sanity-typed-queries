@@ -66,6 +66,9 @@ describe('schema creator', () => {
         .pick(['mappedItem'])
         .use()[0]
     ).toMatchSnapshot()
+    expect(
+      builder.map({ mappedItem: 'customMap->resolve.thing' }).use()[0]
+    ).toMatchSnapshot()
   })
 })
 

@@ -109,3 +109,20 @@ const l = mapper
   .first()
   .use()[1]
 expectType<{ subfield: string | undefined }>(l)
+
+const m = mapper
+  .map(r => ({ test: r.num.use(), bagel: r.testObject.use() }))
+  .first()
+  .use()[1]
+
+expectType<{
+  num: number
+  test: number
+  testObject: { subfield: string | undefined }
+  bagel: { subfield: string | undefined }
+  _createdAt: string
+  _updatedAt: string
+  _id: string
+  _rev: string
+  _type: 'author'
+}>(m)

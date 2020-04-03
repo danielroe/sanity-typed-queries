@@ -34,6 +34,7 @@ export class QueryBuilder<
   private mappings: Record<string, string>
   private selector: string
   private unproject: boolean
+  private restricted: boolean
 
   constructor(
     schema: Schema,
@@ -42,7 +43,8 @@ export class QueryBuilder<
     projections: Record<string, string> = {},
     mappings: Record<string, string> = {},
     selector = '',
-    unproject = false
+    unproject = false,
+    restricted = false
   ) {
     this.schema = schema
     this.type = type
@@ -51,6 +53,7 @@ export class QueryBuilder<
     this.selector = selector
     this.unproject = unproject
     this.ordering = ordering
+    this.restricted = restricted
   }
 
   orderBy<Key extends keyof Schema>(key: Key, order: 'asc' | 'desc' = 'asc') {
@@ -61,7 +64,8 @@ export class QueryBuilder<
       this.projections,
       this.mappings,
       this.selector,
-      this.unproject
+      this.unproject,
+      this.restricted
     )
   }
 
@@ -87,7 +91,8 @@ export class QueryBuilder<
       this.projections,
       this.mappings,
       `[${from}..${inclusive ? '.' : ''}${to}]`,
-      this.unproject
+      this.unproject,
+      this.restricted
     ) as Omit<
       QueryBuilder<
         Schema,
@@ -167,7 +172,8 @@ export class QueryBuilder<
       projections,
       this.mappings,
       this.selector,
-      unproject
+      unproject,
+      true
     ) as Omit<
       QueryBuilder<
         Pick<Schema, R & keyof Schema>,
@@ -199,7 +205,8 @@ export class QueryBuilder<
       this.projections,
       this.mappings,
       '[0]',
-      this.unproject
+      this.unproject,
+      this.restricted
     ) as Omit<
       QueryBuilder<
         Schema,
@@ -221,7 +228,7 @@ export class QueryBuilder<
       ConvertToMapping<Mapping>,
       SchemaType,
       Type,
-      any,
+      Project,
       Exclude | 'map'
     >,
     Exclude | 'map'
@@ -246,9 +253,9 @@ export class QueryBuilder<
           },
         })
 
-      mappings = map(createProxy([]))
+      mappings = { ...mappings, ...map(createProxy([])) }
     } else {
-      mappings = map
+      mappings = { ...mappings, ...map }
     }
 
     return new QueryBuilder(
@@ -258,14 +265,15 @@ export class QueryBuilder<
       this.projections,
       mappings,
       this.selector,
-      this.unproject
+      this.unproject,
+      this.restricted
     ) as Omit<
       QueryBuilder<
         Omit<Schema, keyof Mapping>,
         ConvertToMapping<Mapping>,
         SchemaType,
         Type,
-        any,
+        Project,
         Exclude | 'map'
       >,
       Exclude | 'map'
@@ -293,9 +301,10 @@ export class QueryBuilder<
     if (this.unproject && entries.length === 1) return `.${entries[0][1]}`
     if (!entries.length) return ''
 
-    const innerProjection = entries
-      .map(([key, val]) => (key === val ? key : `"${key}": ${val}`))
-      .join(', ')
+    const innerProjection = [
+      ...(this.restricted ? [] : ['...']),
+      ...entries.map(([key, val]) => (key === val ? key : `"${key}": ${val}`)),
+    ].join(', ')
 
     return ` { ${innerProjection} }`
   }
