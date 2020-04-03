@@ -82,7 +82,8 @@ export function defineDocument<
      * Typed query builder for the document created
      */
     builder: new QueryBuilder(
-      schema as Schema & ExtraFields<SchemaName>,
+      ({ ...schema, ...extraFields(documentTitle) } as unknown) as Schema &
+        ExtraFields<SchemaName>,
       documentTitle
     ),
     /**

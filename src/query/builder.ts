@@ -1,5 +1,4 @@
-import { UnnamedField, FieldType } from '../schema/fields'
-import { extraFields } from '../extractor'
+import { UnnamedField, FieldType, type } from '../schema/fields'
 
 type QueryReturnType<T> = [string, T]
 
@@ -10,17 +9,29 @@ type Translator<T extends Record<string, UnnamedField>> = {
 type Single<T> = T
 type Multiple<T> = T[]
 
+type MapResolver<T extends Record<string, any>> = {
+  [P in keyof T]: T[P] extends Record<string, any>
+    ? MapResolver<T[P]>
+    : { use: () => T[P] }
+} & { use: () => T }
+
+type ConvertToMapping<T extends Record<string, any>> = {
+  [P in keyof T]: { [type]: T[P] }
+}
+
 export class QueryBuilder<
   Schema extends Record<string, any>,
+  Mappings extends Record<string, any> = {},
+  SchemaType extends string = string,
   Type = Multiple<any>,
   Project extends boolean = true,
-  Exclude extends string = '',
-  SchemaType extends string = string
+  Exclude extends string = ''
 > {
   private schema: Schema
   private type: SchemaType
   private ordering: [keyof Schema, 'asc' | 'desc'][]
   private projections: Record<string, string>
+  private mappings: Record<string, string>
   private selector: string
   private unproject: boolean
 
@@ -29,12 +40,14 @@ export class QueryBuilder<
     type: SchemaType,
     ordering: [keyof Schema, 'asc' | 'desc'][] = [],
     projections: Record<string, string> = {},
+    mappings: Record<string, string> = {},
     selector = '',
     unproject = false
   ) {
-    this.schema = { ...schema, ...extraFields(type) }
+    this.schema = schema
     this.type = type
     this.projections = projections
+    this.mappings = mappings
     this.selector = selector
     this.unproject = unproject
     this.ordering = ordering
@@ -46,6 +59,7 @@ export class QueryBuilder<
       this.type,
       [...this.ordering, [key, order]],
       this.projections,
+      this.mappings,
       this.selector,
       this.unproject
     )
@@ -58,10 +72,11 @@ export class QueryBuilder<
   ): Omit<
     QueryBuilder<
       Schema,
+      Mappings,
+      SchemaType,
       Type,
       Project,
-      Exclude | 'first' | 'select',
-      SchemaType
+      Exclude | 'first' | 'select'
     >,
     Exclude | 'first' | 'select'
   > {
@@ -70,41 +85,64 @@ export class QueryBuilder<
       this.type,
       this.ordering,
       this.projections,
+      this.mappings,
       `[${from}..${inclusive ? '.' : ''}${to}]`,
       this.unproject
     ) as Omit<
       QueryBuilder<
         Schema,
+        Mappings,
+        SchemaType,
         Type,
         Project,
-        Exclude | 'first' | 'select',
-        SchemaType
+        Exclude | 'first' | 'select'
       >,
       Exclude | 'first' | 'select'
     >
   }
 
   // eslint-disable-next-line no-dupe-class-members
-  pick<R extends keyof Schema>(
+  pick<R extends keyof Schema | keyof Mappings>(
     props: R
   ): Omit<
-    QueryBuilder<Pick<Schema, R>, Type, false, Exclude | 'pick', SchemaType>,
+    QueryBuilder<
+      Pick<Schema, R & keyof Schema>,
+      Pick<Mappings, R & keyof Mappings>,
+      SchemaType,
+      Type,
+      false,
+      Exclude | 'pick'
+    >,
     Exclude | 'pick'
   >
 
   // eslint-disable-next-line no-dupe-class-members
-  pick<R extends keyof Schema>(
+  pick<R extends keyof Schema | keyof Mappings>(
     props: R[]
   ): Omit<
-    QueryBuilder<Pick<Schema, R>, Type, true, Exclude | 'pick', SchemaType>,
+    QueryBuilder<
+      Pick<Schema, R & keyof Schema>,
+      Pick<Mappings, R & keyof Mappings>,
+      SchemaType,
+      Type,
+      true,
+      Exclude | 'pick'
+    >,
     Exclude | 'pick'
   >
 
   // eslint-disable-next-line no-dupe-class-members
-  pick<R extends keyof Schema>(
+  pick<R extends keyof Schema | keyof Mappings>(
     props: R | R[]
   ): Omit<
-    QueryBuilder<Pick<Schema, R>, Type, any, Exclude | 'pick', SchemaType>,
+    QueryBuilder<
+      Pick<Schema, R & keyof Schema>,
+      Pick<Mappings, R & keyof Mappings>,
+      SchemaType,
+      Type,
+      any,
+      Exclude | 'pick'
+    >,
     Exclude | 'pick'
   > {
     let projections = {}
@@ -117,7 +155,7 @@ export class QueryBuilder<
       }, {} as Record<string, string>)
     } else {
       projections = {
-        [props]: this.schema[props],
+        [props]: props,
       }
       unproject = true
     }
@@ -127,10 +165,18 @@ export class QueryBuilder<
       this.type,
       this.ordering,
       projections,
+      this.mappings,
       this.selector,
       unproject
     ) as Omit<
-      QueryBuilder<Pick<Schema, R>, Type, any, Exclude | 'pick', SchemaType>,
+      QueryBuilder<
+        Pick<Schema, R & keyof Schema>,
+        Pick<Mappings, R & keyof Mappings>,
+        SchemaType,
+        Type,
+        any,
+        Exclude | 'pick'
+      >,
       Exclude | 'pick'
     >
   }
@@ -138,10 +184,11 @@ export class QueryBuilder<
   first(): Omit<
     QueryBuilder<
       Schema,
+      Mappings,
+      SchemaType,
       Single<Schema>,
       Project,
-      Exclude | 'select' | 'first',
-      SchemaType
+      Exclude | 'select' | 'first'
     >,
     Exclude | 'select' | 'first'
   > {
@@ -150,17 +197,78 @@ export class QueryBuilder<
       this.type,
       this.ordering,
       this.projections,
+      this.mappings,
       '[0]',
       this.unproject
     ) as Omit<
       QueryBuilder<
         Schema,
+        Mappings,
+        SchemaType,
         Single<Schema>,
         Project,
-        Exclude | 'select' | 'first',
-        SchemaType
+        Exclude | 'select' | 'first'
       >,
       Exclude | 'select' | 'first'
+    >
+  }
+
+  map<Mapping extends Record<string, any>>(
+    map: Mapping | ((resolver: MapResolver<Translator<Schema>>) => Mapping)
+  ): Omit<
+    QueryBuilder<
+      Omit<Schema, keyof Mapping>,
+      ConvertToMapping<Mapping>,
+      SchemaType,
+      Type,
+      any,
+      Exclude | 'map'
+    >,
+    Exclude | 'map'
+  > {
+    let mappings = { ...this.mappings }
+
+    function checkCallable(
+      m: Mapping | ((resolver: MapResolver<Translator<Schema>>) => Mapping)
+    ): m is (resolver: MapResolver<Translator<Schema>>) => Mapping {
+      return typeof m === 'function'
+    }
+
+    if (checkCallable(map)) {
+      const createProxy: (path: string[]) => any = (path: string[]) =>
+        new Proxy(path, {
+          get(target, prop) {
+            if (prop !== 'use' && typeof prop === 'string') {
+              target.push(prop)
+              return createProxy(target)
+            }
+            return () => target.join('.')
+          },
+        })
+
+      mappings = map(createProxy([]))
+    } else {
+      mappings = map
+    }
+
+    return new QueryBuilder(
+      this.schema,
+      this.type,
+      this.ordering,
+      this.projections,
+      mappings,
+      this.selector,
+      this.unproject
+    ) as Omit<
+      QueryBuilder<
+        Omit<Schema, keyof Mapping>,
+        ConvertToMapping<Mapping>,
+        SchemaType,
+        Type,
+        any,
+        Exclude | 'map'
+      >,
+      Exclude | 'map'
     >
   }
 
@@ -177,11 +285,19 @@ export class QueryBuilder<
   }
 
   get projection() {
-    const keys = Object.keys(this.projections)
+    const entries = Object.entries({
+      ...this.projections,
+      ...this.mappings,
+    }).filter(([key]) => typeof key === 'string')
 
-    if (this.unproject && keys.length === 1) return `.${keys[0]}`
-    if (!keys.length) return ''
-    return ` { ${keys.join(', ')} }`
+    if (this.unproject && entries.length === 1) return `.${entries[0][1]}`
+    if (!entries.length) return ''
+
+    const innerProjection = entries
+      .map(([key, val]) => (key === val ? key : `"${key}": ${val}`))
+      .join(', ')
+
+    return ` { ${innerProjection} }`
   }
 
   get query() {
@@ -194,10 +310,17 @@ export class QueryBuilder<
       this.selector === '[0]' ? null : [],
     ] as Type extends Array<any>
       ? Project extends true
-        ? QueryReturnType<Array<Translator<Schema>>>
-        : QueryReturnType<Array<FieldType<Schema[keyof Schema]>>>
+        ? QueryReturnType<Array<Translator<Schema & Mappings>>>
+        : QueryReturnType<
+            Array<
+              | FieldType<Schema[keyof Schema]>
+              | FieldType<Mappings[keyof Mappings]>
+            >
+          >
       : Project extends true
-      ? QueryReturnType<Translator<Schema>>
-      : QueryReturnType<FieldType<Schema[keyof Schema]>>
+      ? QueryReturnType<Translator<Schema & Mappings>>
+      : QueryReturnType<
+          FieldType<Schema[keyof Schema]> | FieldType<Mappings[keyof Mappings]>
+        >
   }
 }

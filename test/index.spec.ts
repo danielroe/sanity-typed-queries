@@ -39,6 +39,34 @@ describe('schema creator', () => {
     expect(builder.orderBy('postcode', 'desc').use()[0]).toMatchSnapshot()
     expect(builder.pick(['_type']).orderBy('_type').use()[0]).toMatchSnapshot()
   })
+
+  test('generates custom mappings correctly', () => {
+    expect(
+      builder
+        .map(r => ({ mappedItem: r._type.use() }))
+        .pick(['mappedItem'])
+        .use()[0]
+    ).toMatchSnapshot()
+    expect(
+      builder
+        .map(r => ({ mappedItem: r._type.use() }))
+        .pick('mappedItem')
+        .use()[0]
+    ).toMatchSnapshot()
+    expect(
+      builder
+        .map(r => ({ mappedItem: r._type.use() }))
+        .pick('mappedItem')
+        .first()
+        .use()[0]
+    ).toMatchSnapshot()
+    expect(
+      builder
+        .map({ mappedItem: 'customMap->resolve.thing' })
+        .pick(['mappedItem'])
+        .use()[0]
+    ).toMatchSnapshot()
+  })
 })
 
 describe('utils', () => {

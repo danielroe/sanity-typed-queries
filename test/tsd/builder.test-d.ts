@@ -66,3 +66,46 @@ const { builder: testObj } = defineDocument('author', {
 })
 const g = testObj.pick('testObject').first().use()[1]
 expectType<{ subfield: string | undefined }>(g)
+
+const mapper = defineDocument('author', {
+  num: {
+    type: 'number',
+    validation: Rule => Rule.required(),
+  },
+  test: {
+    type: 'string',
+  },
+  testObject: {
+    type: 'object',
+    fields: defineFields({ subfield: { type: 'string' } }),
+    validation: Rule => Rule.required(),
+  },
+}).builder
+
+const h = mapper.pick(['test', 'testObject']).use()[1]
+expectType<{ test: string; testObject: { subfield: string | undefined } }[]>(h)
+
+const i = mapper
+  .map(r => ({ test: r.num.use(), bagel: r.testObject.use() }))
+  .pick(['test', 'num'])
+  .use()[1]
+expectType<{ test: number; num: number }[]>(i)
+
+const j = mapper
+  .map(r => ({ test: r.num.use(), bagel: r.testObject.use() }))
+  .pick(['test', 'bagel'])
+  .use()[1]
+expectType<{ test: number; bagel: { subfield: string | undefined } }[]>(j)
+
+const k = mapper
+  .map(r => ({ test: r.num.use(), bagel: r.testObject.use() }))
+  .pick('bagel')
+  .use()[1]
+expectType<{ subfield: string | undefined }[]>(k)
+
+const l = mapper
+  .map(r => ({ test: r.num.use(), bagel: r.testObject.use() }))
+  .pick('bagel')
+  .first()
+  .use()[1]
+expectType<{ subfield: string | undefined }>(l)

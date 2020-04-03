@@ -57,3 +57,11 @@ Array [
   },
 ]
 `;
+
+exports[`schema creator generates custom mappings correctly 1`] = `"*[_type == 'typeOfDocument'] { \\"mappedItem\\": _type }"`;
+
+exports[`schema creator generates custom mappings correctly 2`] = `"*[_type == 'typeOfDocument']._type"`;
+
+exports[`schema creator generates custom mappings correctly 3`] = `"*[_type == 'typeOfDocument'][0]._type"`;
+
+exports[`schema creator generates custom mappings correctly 4`] = `"*[_type == 'typeOfDocument'] { \\"mappedItem\\": customMap->resolve.thing }"`;

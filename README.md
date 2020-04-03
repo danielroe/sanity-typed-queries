@@ -38,10 +38,10 @@
 - [x] Query builder (working with string, boolean, number), ordering, projections
 - [x] Inferred type of arrays
 - [x] Support for object types with subfields
+- [x] Custom mappings (`"prop": my.prop`)
 - [ ] Additional query filters
 - [ ] Querying multiple types of document
 - [ ] Resolving image, file and object types
-- [ ] Custom mappings (`"prop": my.prop`)
 - [ ] Custom object types
 
 Help and contributions are welcome.
