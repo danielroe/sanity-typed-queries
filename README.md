@@ -37,6 +37,7 @@
 - [x] Fully typed schema builder
 - [x] Query builder (working with string, boolean, number), ordering, projections
 - [x] Inferred type of arrays
+- [x] Support for object types with subfields
 - [ ] Additional query filters
 - [ ] Querying multiple types of document
 - [ ] Resolving image, file and object types
@@ -62,9 +63,9 @@ Now you will need to generate your Sanity schema documents using the schema buil
 `schema/author.js`:
 
 ```ts
-import { createSchema } from 'sanity-typed-queries'
+import { defineDocument } from 'sanity-typed-queries'
 
-const { document, builder } = createSchema('author', {
+const { document, builder } = defineDocument('author', {
   name: {
     type: 'string',
     validation: Rule => Rule.required(),
@@ -113,9 +114,9 @@ export default {
 Then you can export a query builder from the same file::
 
 ```ts
-import { createSchema } from 'sanity-typed-queries'
+import { defineDocument } from 'sanity-typed-queries'
 
-const { document, builder } = createSchema('author', {
+const { document, builder } = defineDocument('author', {
   ...
 })
 

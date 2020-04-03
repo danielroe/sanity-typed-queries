@@ -1,1 +1,1 @@
-export { createSchema } from './extractor'
+export { defineDocument } from './extractor'

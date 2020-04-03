@@ -58,7 +58,7 @@ export interface ArrayField extends BaseField {
   /**
    * Defines which types are allowed as members of the array.
    */
-  of: Array<ValidType>
+  of: Array<ValidType & Partial<Field>>
   options?: {
     /**
      * Controls whether the user is allowed to reorder the items in the array. Defaults to true.
@@ -158,7 +158,8 @@ interface DatetimeField extends BaseField {
   validation?: Validator<DatetimeRule>
 }
 
-export interface DocumentField extends BaseField {
+export interface DocumentField<T extends Record<string, any>>
+  extends BaseField {
   type: 'document'
   initialValue?: Record<string, any>
   /**
@@ -168,7 +169,7 @@ export interface DocumentField extends BaseField {
   /**
    * The fields of this object. At least one field is required.
    */
-  fields: Field[]
+  fields: DefinedFields<T> | Field[]
   /**
    * A list of fieldsets that fields may belong to.
    */
@@ -179,12 +180,12 @@ export interface DocumentField extends BaseField {
   preview?: any
 }
 
-interface FileField extends BaseField {
+interface FileField<T extends Record<string, any>> extends BaseField {
   type: 'file'
   /**
    * An array of optional fields to add to the file field. The fields added here follow the same pattern as fields defined on objects. This is useful for allowing users to add custom metadata related to the usage of this file (see example below).
    */
-  fields?: ObjectField['fields']
+  fields?: DefinedFields<T> | Field[]
   options?: {
     /**
      * This will store the original filename in the asset document. Please be aware that the name of uploaded files could reveal potentially sensitive information (e.g. top_secret_planned_featureX.pdf). Default is true.
@@ -203,14 +204,14 @@ interface GeopointField extends BaseField {
   validation?: Validator
 }
 
-interface ImageField extends BaseField {
+interface ImageField<T extends Record<string, any>> extends BaseField {
   type: 'image'
   /**
    * An array of optional fields to add to the image record. The fields added here follow the same pattern as fields defined on objects. This is useful for adding custom properties like caption, attribution, etc. to the image record itself (see example below). In addition to the common field attributes, each field may also have an isHighlighted option which dictates whether it should be prominent in the edit UI or hidden in a dialog modal behind an edit button (see example below).
    */
-  fields?: Array<
-    ObjectField['fields'][0] & { options?: { isHighlighted?: boolean } }
-  >
+  fields?: DefinedFields<T> | Field[]
+  // TODO:
+  // ObjectField<any>['fields'][0] & { options?: { isHighlighted?: boolean } }
   options?: {
     /**
      * This option defines what metadata the server attempts to extract from the image. The extracted data is writtten into the image asset. This field must be an array of strings where accepted values are exif, location, lqip and palette.
@@ -243,12 +244,12 @@ interface NumberField extends BaseField {
   validation?: Validator<NumberRule>
 }
 
-interface ObjectField extends BaseField {
+interface ObjectField<T extends Record<string, any>> extends BaseField {
   type: 'object'
   /**
    * The fields of this object. At least one field is required.
    */
-  fields: Field[]
+  fields: DefinedFields<T> | Field[]
   /**
    * A list of fieldsets that fields may belong to.
    */
@@ -291,7 +292,7 @@ interface ReferenceField extends BaseField {
     filter?:
       | string
       | ((context: {
-          document: DocumentField
+          document: DocumentField<{}>
           parent: Field
           parentPath: string
         }) => { filter: string; params: Record<string, any> })
@@ -312,7 +313,7 @@ interface SlugField extends BaseField {
     source?:
       | string
       | ((
-          doc: DocumentField,
+          doc: DocumentField<{}>,
           options: { parent: Field; parentPath: string }
         ) => string)
     /**
@@ -381,11 +382,11 @@ export type UnnamedField<T = Nameless<CustomField<never>>> =
   | Nameless<DateField>
   | Nameless<DatetimeField>
   // | Nameless<DocumentField>
-  | Nameless<FileField>
+  | Nameless<FileField<any>>
   | Nameless<GeopointField>
-  | Nameless<ImageField>
+  | Nameless<ImageField<any>>
   | Nameless<NumberField>
-  | Nameless<ObjectField>
+  | Nameless<ObjectField<any>>
   | Nameless<ReferenceField>
   | Nameless<SlugField>
   | Nameless<SpanField>
@@ -413,7 +414,11 @@ type FieldTypes =
 type PureType<T extends FieldTypes> = { type: T }
 type ValidType = PureType<FieldTypes>
 
+export const type = Symbol('the type of the property')
+
 export type Field<T = CustomField<never>> = UnnamedField<T> & { name: string }
+
+export type DefinedFields<T> = Array<Field & { [type]: T }>
 
 export type FieldType<T extends UnnamedField> =
   //
@@ -434,18 +439,18 @@ export type FieldType<T extends UnnamedField> =
     ? File
     : T extends PureType<'geopoint'>
     ? Geopoint
-    : T extends Nameless<ImageField>
-    ? Image & T['fields']
+    : T extends Nameless<ImageField<infer A>>
+    ? Image & A
     : T extends PureType<'image'>
     ? Image
     : T extends PureType<'number'>
     ? number
-    : T extends Nameless<ObjectField> // TODO
-    ? T['fields']
-    : T extends PureType<'reference'>
-    ? Reference
+    : T extends Nameless<ObjectField<infer A>> // TODO
+    ? A
+    : T extends PureType<'reference'> & { to: Array<infer B> }
+    ? Reference<FieldType<B>>
     : T extends PureType<'slug'>
     ? Slug
-    : T extends { type: '_type'; name: string }
-    ? T['name']
+    : T extends { [type]: infer B }
+    ? B
     : Record<string, any>

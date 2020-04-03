@@ -1,7 +1,8 @@
-import { createSchema } from '../src'
+import { defineDocument } from '../src'
 import { capitalise, splitStringByCase } from '../src/utils'
+import { defineFields } from '../src/extractor'
 
-const { document, builder } = createSchema('typeOfDocument', {
+const { document, builder } = defineDocument('typeOfDocument', {
   name: {
     type: 'string',
     validation: Rule => Rule.required(),
@@ -23,6 +24,10 @@ const { document, builder } = createSchema('typeOfDocument', {
 describe('schema creator', () => {
   test('generates correct schema fields for document', () => {
     expect(document).toMatchSnapshot()
+  })
+
+  test('generates correct schema fields when fields are defined', () => {
+    expect(defineFields({ field1: { type: 'string' } })).toMatchSnapshot()
   })
 
   test('generates correct queries', () => {

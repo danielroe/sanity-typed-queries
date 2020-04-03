@@ -47,3 +47,13 @@ Object {
   "type": "document",
 }
 `;
+
+exports[`schema creator generates correct schema fields when fields are defined 1`] = `
+Array [
+  Object {
+    "name": "field1",
+    "title": "Field1",
+    "type": "string",
+  },
+]
+`;

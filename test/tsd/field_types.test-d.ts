@@ -1,12 +1,13 @@
 import { expectType, expectError } from 'tsd'
 
-import { createSchema } from '../../src'
+import { defineDocument } from '../../src'
 import { Block, File, Geopoint, Image, Reference, Slug } from '../../src/types'
+import { defineFields } from '../../src/extractor'
 
 /**
  * 'array'
  */
-const array = createSchema('arrayExample', {
+const array = defineDocument('arrayExample', {
   test: { type: 'array', of: [{ type: 'string' }] },
 })
   .builder.pick('test')
@@ -15,15 +16,34 @@ const array = createSchema('arrayExample', {
 expectType<string[]>(array)
 
 expectError(
-  createSchema('failingArrayExample', {
+  defineDocument('failingArrayExample', {
     test: { type: 'array' },
   })
 )
 
+const blockArray = defineDocument('arrayExample', {
+  tagline: {
+    type: 'array',
+    of: [
+      {
+        type: 'block',
+        lists: [],
+        styles: [{ title: 'Normal', value: 'normal' }],
+      },
+    ],
+    validation: Rule => Rule.required(),
+  },
+})
+  .builder.pick('tagline')
+  .first()
+  .use()[1]
+
+expectType<Block[]>(blockArray)
+
 /**
  * 'block'
  */
-const block = createSchema('blockExample', {
+const block = defineDocument('blockExample', {
   test: { type: 'block' },
 })
   .builder.pick('test')
@@ -34,7 +54,7 @@ expectType<Block>(block)
 /**
  * 'boolean'
  */
-const boolean = createSchema('booleanExample', {
+const boolean = defineDocument('booleanExample', {
   test: { type: 'boolean' },
 })
   .builder.pick('test')
@@ -45,7 +65,7 @@ expectType<boolean>(boolean)
 /**
  * 'date'
  */
-const date = createSchema('dateExample', {
+const date = defineDocument('dateExample', {
   test: { type: 'date' },
 })
   .builder.pick('test')
@@ -56,7 +76,7 @@ expectType<string>(date)
 /**
  * 'datetime'
  */
-const datetime = createSchema('datetimeExample', {
+const datetime = defineDocument('datetimeExample', {
   test: { type: 'datetime' },
 })
   .builder.pick('test')
@@ -67,7 +87,7 @@ expectType<string>(datetime)
 /**
  * 'string'
  */
-const string = createSchema('stringExample', {
+const string = defineDocument('stringExample', {
   test: { type: 'string' },
 })
   .builder.pick('test')
@@ -78,7 +98,7 @@ expectType<string>(string)
 /**
  * 'text'
  */
-const text = createSchema('textExample', {
+const text = defineDocument('textExample', {
   test: { type: 'text' },
 })
   .builder.pick('test')
@@ -89,7 +109,7 @@ expectType<string>(text)
 /**
  * 'url'
  */
-const url = createSchema('urlExample', { test: { type: 'url' } })
+const url = defineDocument('urlExample', { test: { type: 'url' } })
   .builder.pick('test')
   .first()
   .use()[1]
@@ -98,7 +118,7 @@ expectType<string>(url)
 /**
  * 'file'
  */
-const file = createSchema('fileExample', {
+const file = defineDocument('fileExample', {
   test: { type: 'file' },
 })
   .builder.pick('test')
@@ -109,7 +129,7 @@ expectType<File>(file)
 /**
  * 'geopoint'
  */
-const geopoint = createSchema('geopointExample', {
+const geopoint = defineDocument('geopointExample', {
   test: { type: 'geopoint' },
 })
   .builder.pick('test')
@@ -120,18 +140,26 @@ expectType<Geopoint>(geopoint)
 /**
  * 'image'
  */
-const image = createSchema('imageExample', {
+const image = defineDocument('imageExample', {
   test: { type: 'image' },
 })
   .builder.pick('test')
   .first()
   .use()[1]
-expectType<Image>(image)
+expectType<Image & Record<string, any>>(image)
+
+const imageWithFields = defineDocument('imageExample', {
+  test: { type: 'image', fields: defineFields({ bob: { type: 'string' } }) },
+})
+  .builder.pick('test')
+  .first()
+  .use()[1]
+expectType<Image & { bob: string | undefined }>(imageWithFields)
 
 /**
  * 'number'
  */
-const number = createSchema('numberExample', {
+const number = defineDocument('numberExample', {
   test: { type: 'number' },
 })
   .builder.pick('test')
@@ -142,16 +170,16 @@ expectType<number>(number)
 /**
  * 'reference'
  */
-const reference = createSchema('referenceExample', {
+const reference = defineDocument('referenceExample', {
   test: { type: 'reference', to: [{ type: 'customType' }] },
 })
   .builder.pick('test')
   .first()
   .use()[1]
-expectType<Reference>(reference)
+expectType<Reference<Record<string, any>>>(reference)
 
 expectError(
-  createSchema('failingRferenceExample', {
+  defineDocument('failingReferenceExample', {
     test: { type: 'reference' },
   })
 )
@@ -159,7 +187,7 @@ expectError(
 /**
  * 'slug'
  */
-const slug = createSchema('slugExample', {
+const slug = defineDocument('slugExample', {
   test: { type: 'slug' },
 })
   .builder.pick('test')

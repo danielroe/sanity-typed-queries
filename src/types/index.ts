@@ -1,12 +1,11 @@
 export { Block } from './block'
 
+export const to = Symbol('type of object referred to by the reference')
+
 export interface Image {
   _type: 'image'
   [key: string]: any
-  asset: {
-    _type: 'reference'
-    _ref: string
-  }
+  asset: Reference
   crop?: {
     _type: 'sanity.imageCrop'
     top?: number
@@ -25,10 +24,7 @@ export interface Image {
 
 export interface File {
   _type: 'file'
-  asset: {
-    _type: string
-    _ref: string
-  }
+  asset: Reference
   [key: string]: any
 }
 
@@ -44,8 +40,9 @@ export interface Slug {
   current: string
 }
 
-export interface Reference {
+export interface Reference<Type = any> {
   _type: 'reference'
   _ref: string
   _weak?: boolean
+  [to]: Type
 }

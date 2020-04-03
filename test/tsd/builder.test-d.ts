@@ -1,8 +1,9 @@
 import { expectType, expectError } from 'tsd'
 
-import { createSchema } from '../../src'
+import { defineDocument } from '../../src'
+import { defineFields } from '../../src/extractor'
 
-const { builder } = createSchema('author', {
+const { builder } = defineDocument('author', {
   name: {
     type: 'string',
     validation: Rule => Rule.required(),
@@ -55,3 +56,13 @@ const f = builder.pick(['_type', 'name']).first().use()[1]
 expectType<{ _type: 'author'; name: string }>(f)
 
 expectError(builder.pick('nothere'))
+
+const { builder: testObj } = defineDocument('author', {
+  testObject: {
+    type: 'object',
+    fields: defineFields({ subfield: { type: 'string' } }),
+    validation: Rule => Rule.required(),
+  },
+})
+const g = testObj.pick('testObject').first().use()[1]
+expectType<{ subfield: string | undefined }>(g)
