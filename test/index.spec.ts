@@ -14,6 +14,9 @@ const { document, builder } = defineDocument('typeOfDocument', {
   cost: {
     type: 'number',
   },
+  picture: {
+    type: 'image',
+  },
   description: {
     type: 'text',
     rows: 2,
@@ -68,6 +71,15 @@ describe('schema creator', () => {
     ).toMatchSnapshot()
     expect(
       builder.map({ mappedItem: 'customMap->resolve.thing' }).use()[0]
+    ).toMatchSnapshot()
+  })
+
+  test('resolves items correctly', () => {
+    expect(
+      builder
+        .map(r => ({ mappedItem: r.picture.asset.resolve('assetId').use() }))
+        .pick(['mappedItem'])
+        .use()[0]
     ).toMatchSnapshot()
   })
 })

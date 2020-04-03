@@ -1,4 +1,4 @@
-import { Geopoint } from '.'
+import { Geopoint, Reference } from '.'
 
 interface Palette {
   background: string
@@ -7,7 +7,27 @@ interface Palette {
   title: string
 }
 
-interface ResolvedImage {
+export interface Image {
+  _type: 'image'
+  [key: string]: any
+  asset: Reference<ImageAsset>
+  crop?: {
+    _type: 'sanity.imageCrop'
+    top?: number
+    bottom?: number
+    left?: number
+    right?: number
+  }
+  hotspot?: {
+    _type: 'sanity.imageHotspot'
+    x?: number
+    y?: number
+    height?: number
+    width?: number
+  }
+}
+
+interface ImageAsset {
   _type: 'sanity.imageAsset'
   assetId: string
   extension: string

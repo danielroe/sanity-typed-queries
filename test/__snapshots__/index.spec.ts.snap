@@ -35,6 +35,11 @@ Object {
       "type": "number",
     },
     Object {
+      "name": "picture",
+      "title": "Picture",
+      "type": "image",
+    },
+    Object {
       "name": "description",
       "rows": 2,
       "title": "Description",
@@ -67,3 +72,5 @@ exports[`schema creator generates custom mappings correctly 3`] = `"*[_type == '
 exports[`schema creator generates custom mappings correctly 4`] = `"*[_type == 'typeOfDocument'] { \\"mappedItem\\": customMap->resolve.thing }"`;
 
 exports[`schema creator generates custom mappings correctly 5`] = `"*[_type == 'typeOfDocument'] { ..., \\"mappedItem\\": customMap->resolve.thing }"`;
+
+exports[`schema creator resolves items correctly 1`] = `"*[_type == 'typeOfDocument'] { \\"mappedItem\\": picture.asset->assetId }"`;

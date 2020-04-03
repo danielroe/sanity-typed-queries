@@ -126,3 +126,16 @@ expectType<{
   _rev: string
   _type: 'author'
 }>(m)
+
+const resolver = defineDocument('author', {
+  image: {
+    type: 'image',
+  },
+}).builder
+
+const resolvedId = resolver
+  .map(r => ({ testImage: r.image.asset.resolve('assetId').use() }))
+  .pick('testImage')
+  .first()
+  .use()[1]
+expectType<string>(resolvedId)

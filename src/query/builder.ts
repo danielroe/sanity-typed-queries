@@ -1,4 +1,5 @@
 import { UnnamedField, FieldType, type } from '../schema/fields'
+import { Reference } from '../types'
 
 type QueryReturnType<T> = [string, T]
 
@@ -9,11 +10,22 @@ type Translator<T extends Record<string, UnnamedField>> = {
 type Single<T> = T
 type Multiple<T> = T[]
 
+type ResolveFieldType<T> = T extends Record<string, any>
+  ? MapResolver<T>
+  : ResolverAction<T>
+
+type ResolverFunction<T> = <P extends keyof T>(
+  prop: P
+) => ResolveFieldType<T[P]>
+
+type ResolverAction<T> = T extends Reference<infer A>
+  ? { use: () => T; resolve: ResolverFunction<A> }
+  : { use: () => T }
+
 type MapResolver<T extends Record<string, any>> = {
-  [P in keyof T]: T[P] extends Record<string, any>
-    ? MapResolver<T[P]>
-    : { use: () => T[P] }
-} & { use: () => T }
+  [P in keyof T]: ResolveFieldType<T[P]>
+} &
+  ResolverAction<T>
 
 type ConvertToMapping<T extends Record<string, any>> = {
   [P in keyof T]: { [type]: T[P] }
@@ -244,12 +256,13 @@ export class QueryBuilder<
     if (checkCallable(map)) {
       const createProxy: (path: string[]) => any = (path: string[]) =>
         new Proxy(path, {
-          get(target, prop) {
-            if (prop !== 'use' && typeof prop === 'string') {
-              target.push(prop)
-              return createProxy(target)
+          get(target, prop: string) {
+            if (prop === 'use')
+              return () => target.join('.').replace('.->', '->')
+            if (prop === 'resolve') {
+              return (attr: string) => createProxy([...target, `->${attr}`])
             }
-            return () => target.join('.')
+            return createProxy([...target, prop])
           },
         })
 

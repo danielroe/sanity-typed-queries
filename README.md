@@ -39,10 +39,10 @@
 - [x] Inferred type of arrays
 - [x] Support for object types with subfields
 - [x] Custom mappings (`"prop": my.prop`)
+- [x] Resolving image and file types
+- [ ] Resolving custom object/document types
 - [ ] Additional query filters
 - [ ] Querying multiple types of document
-- [ ] Resolving image, file and object types
-- [ ] Custom object types
 
 Help and contributions are welcome.
 

@@ -1,30 +1,23 @@
 export { Block } from './block'
+export { Image } from './image'
 
 export const to = Symbol('type of object referred to by the reference')
 
-export interface Image {
-  _type: 'image'
-  [key: string]: any
-  asset: Reference
-  crop?: {
-    _type: 'sanity.imageCrop'
-    top?: number
-    bottom?: number
-    left?: number
-    right?: number
-  }
-  hotspot?: {
-    _type: 'sanity.imageHotspot'
-    x?: number
-    y?: number
-    height?: number
-    width?: number
-  }
+interface FileAsset {
+  url: string
+  path: string
+  size: number
+  assetId: string
+  mimeType: string
+  sha1hash: string
+  extension: string
+  uploadId?: string
+  originalFilename?: string
 }
 
 export interface File {
   _type: 'file'
-  asset: Reference
+  asset: Reference<FileAsset>
   [key: string]: any
 }
 
