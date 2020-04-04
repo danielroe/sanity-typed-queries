@@ -1,3 +1,15 @@
+### [0.4.1](https://github.com/danielroe/sanity-typed-queries/compare/0.4.0...0.4.1) (2020-04-04)
+
+
+### Features
+
+* add support for resolving image and file types ([f0f79b7](https://github.com/danielroe/sanity-typed-queries/commit/f0f79b790a2f0532a0d64d3a9039088d74e2134c))
+
+
+### Bug Fixes
+
+* handle custom mappings without explicit projection ([008bcb2](https://github.com/danielroe/sanity-typed-queries/commit/008bcb2a7871f20c338ed052cb97855c1c75b0bb))
+
 ## [0.4.0](https://github.com/danielroe/sanity-typed-queries/compare/0.3.1...0.4.0) (2020-04-03)
 
 
