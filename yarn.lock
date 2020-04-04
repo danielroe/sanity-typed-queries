@@ -3841,6 +3841,11 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.2, graceful-fs@^4.2.3:
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.3.tgz#4a12ff1b60376ef09862c2093edd908328be8423"
   integrity sha512-a30VEBm4PEdx1dRB7MFK7BejejvCvBronbLjht+sHuGYj8PHs7M/5Z+rt5lw551vZ7yfTCj4Vuyy3mSJytDWRQ==
 
+groq@^1.149.0:
+  version "1.149.0"
+  resolved "https://registry.yarnpkg.com/groq/-/groq-1.149.0.tgz#a9b0ee8302a0a8fadcc021ee584d0b906b025f1e"
+  integrity sha512-Xam21k48sP9z50QVgM+i9tMCGbQ2vjfYvjx/pctpdrq0rYWbRfeBkcYF6Kt0j/SFKT4hoZuwUGUKbZPUVWu2pQ==
+
 growly@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/growly/-/growly-1.3.0.tgz#f10748cbe76af964b7c96c93c6bcc28af120c081"
