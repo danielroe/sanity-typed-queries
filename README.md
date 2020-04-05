@@ -59,6 +59,8 @@ yarn add sanity-typed-queries
 npm install sanity-typed-queries --save
 ```
 
+### Schema definition
+
 Now you will need to generate your Sanity schema documents using the schema builder. You will get documentation as you type, and enforced compliance with Sanity's schema builder, such as being able to see validation rules applicable to the type of field you are creating, and so on.
 
 `schema/author.js`:
@@ -66,7 +68,7 @@ Now you will need to generate your Sanity schema documents using the schema buil
 ```ts
 import { defineDocument } from 'sanity-typed-queries'
 
-const { document, builder } = defineDocument('author', {
+const { document } = defineDocument('author', {
   name: {
     type: 'string',
     validation: Rule => Rule.required(),
@@ -112,7 +114,9 @@ export default {
 }
 ```
 
-Then you can export a query builder from the same file::
+### Query builder
+
+You can also export a query builder from the same file.
 
 ```ts
 import { defineDocument } from 'sanity-typed-queries'
@@ -122,16 +126,16 @@ const { document, builder } = defineDocument('author', {
 })
 
 // Export your query builder for use elsewhere
-export const author = builder
+export { builder }
 export default document
 ```
 
 You can use this builder elsewhere to generate the appropriate types and GROQ queries. For example:
 
 ```ts
-import { author } from './cms/schema/author.js'
+import { builder as authorBuilder } from './cms/schema/author.js'
 
-const [query, type] = author.pick('name').first().use()
+const [query, type] = authorBuilder.pick('name').first().use()
 
 // *[_type == 'author'][0].name
 const queryString = query
@@ -151,6 +155,44 @@ const [query, type] = author.pick('name').first().use()
 const client = sanityClient(config)
 // Promise<string>
 const result = client.fetch<typeof type>(query)
+```
+
+### Custom types
+
+You can export utility objects or documents for reference within other schemas.
+
+`schema/tag.js`:
+
+```ts
+import { defineObject } from 'sanity-typed-queries'
+
+const { tag, object } = defineObject('tag', {
+  ...
+})
+
+export { tag }
+export default object
+```
+
+Then you can pass that when defining documents that reference it.
+
+`schema/author.js`:
+
+```ts
+import { defineObject } from 'sanity-typed-queries'
+import { tag } from './tag'
+
+const { builder, document } = defineDocument(
+  'author',
+  {
+    tag: {
+      type: 'tag',
+    },
+  },
+  [tag]
+)
+
+export default document
 ```
 
 ## Inspirations
