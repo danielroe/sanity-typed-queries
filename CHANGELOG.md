@@ -1,3 +1,15 @@
+### [0.5.1](https://github.com/danielroe/sanity-typed-queries/compare/0.5.0...0.5.1) (2020-04-05)
+
+
+### Features
+
+* support coalesce, count and array projections ([da8718c](https://github.com/danielroe/sanity-typed-queries/commit/da8718c28cdd2034f77a3f2aa70b54e8d6070987))
+
+
+### Bug Fixes
+
+* move groq query selection *after* order ([3f758a0](https://github.com/danielroe/sanity-typed-queries/commit/3f758a0520e3bb09d7db1e4ae0bb4ff38237162d))
+
 ## [0.5.0](https://github.com/danielroe/sanity-typed-queries/compare/0.4.1...0.5.0) (2020-04-05)
 
 
