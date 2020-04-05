@@ -1,3 +1,10 @@
+## [0.5.0](https://github.com/danielroe/sanity-typed-queries/compare/0.4.1...0.5.0) (2020-04-05)
+
+
+### Features
+
+* allow custom object and document types ([e9cfbd0](https://github.com/danielroe/sanity-typed-queries/commit/e9cfbd0268c871aea7ae07129d29e38d51351deb))
+
 ### [0.4.1](https://github.com/danielroe/sanity-typed-queries/compare/0.4.0...0.4.1) (2020-04-04)
 
 
