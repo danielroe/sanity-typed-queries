@@ -26,7 +26,9 @@ const { builder } = defineDocument('typeOfDocument', {
 
 describe('query builder', () => {
   test('can specify the first document', () => {
-    expect(builder.first().use()[0]).toBe(groq`*[_type == 'typeOfDocument'][0]`)
+    expect(builder.first().use()[0]).toBe(
+      groq`*[_type == 'typeOfDocument'] [0]`
+    )
   })
   test('can choose attributes to project', () => {
     expect(builder.pick('description').use()[0]).toBe(
@@ -38,10 +40,10 @@ describe('query builder', () => {
   })
   test('can limit results', () => {
     expect(builder.select(0, 2).use()[0]).toBe(
-      groq`*[_type == 'typeOfDocument'][0..2]`
+      groq`*[_type == 'typeOfDocument'] [0..2]`
     )
     expect(builder.select(0, 2, true).use()[0]).toBe(
-      groq`*[_type == 'typeOfDocument'][0...2]`
+      groq`*[_type == 'typeOfDocument'] [0...2]`
     )
   })
   test('can order results', () => {
@@ -49,12 +51,22 @@ describe('query builder', () => {
       groq`*[_type == 'typeOfDocument'] | order(postcode desc)`
     )
     expect(builder.pick(['_type']).orderBy('_type').use()[0]).toBe(
-      groq`*[_type == 'typeOfDocument'] { _type } | order(_type asc)`
+      groq`*[_type == 'typeOfDocument'] | order(_type asc) { _type }`
     )
     expect(
       builder.orderBy('_type').orderBy('_id').pick(['_type']).use()[0]
     ).toBe(
-      groq`*[_type == 'typeOfDocument'] { _type } | order(_type asc, _id asc)`
+      groq`*[_type == 'typeOfDocument'] | order(_type asc, _id asc) { _type }`
+    )
+    expect(
+      builder
+        .orderBy('_type')
+        .orderBy('_id')
+        .pick(['_type'])
+        .select(0, 10)
+        .use()[0]
+    ).toBe(
+      groq`*[_type == 'typeOfDocument'] | order(_type asc, _id asc) [0..10] { _type }`
     )
   })
 
@@ -88,7 +100,7 @@ describe('query builder', () => {
         .pick('mappedItem')
         .first()
         .use()[0]
-    ).toBe(groq`*[_type == 'typeOfDocument'][0]._type`)
+    ).toBe(groq`*[_type == 'typeOfDocument'] [0]._type`)
   })
   test('can use custom mappings', () => {
     expect(

@@ -91,7 +91,7 @@ export class QueryBuilder<
       this.ordering,
       this.projections,
       this.mappings,
-      `[${from}..${inclusive ? '.' : ''}${to}]`,
+      ` [${from}..${inclusive ? '.' : ''}${to}]`,
       this.project,
       this.restricted
     ) as Omit<
@@ -158,7 +158,7 @@ export class QueryBuilder<
       this.ordering,
       this.projections,
       this.mappings,
-      '[0]',
+      ' [0]',
       this.project,
       this.restricted
     ) as Omit<
@@ -250,13 +250,13 @@ export class QueryBuilder<
   }
 
   get query() {
-    return `*[${this.option}]${this.selector}${this.projection}${this.order}`
+    return `*[${this.option}]${this.order}${this.selector}${this.projection}`
   }
 
   use() {
     return [
       this.query,
-      this.selector === '[0]' ? null : [],
+      this.selector === ' [0]' ? null : [],
     ] as Type extends Array<any>
       ? Project extends true
         ? QueryReturnType<Array<Mappings>>
