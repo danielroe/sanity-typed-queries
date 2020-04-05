@@ -1,6 +1,7 @@
 import groq from 'groq'
 
 import { defineDocument } from '../src'
+import { defineFields } from '../src/extractor'
 
 const { builder } = defineDocument('typeOfDocument', {
   name: {
@@ -16,6 +17,26 @@ const { builder } = defineDocument('typeOfDocument', {
   },
   picture: {
     type: 'image',
+  },
+  tags: {
+    type: 'array',
+    of: [{ type: 'string' }],
+  },
+  objects: {
+    type: 'array',
+    of: [
+      {
+        type: 'object',
+        fields: defineFields({
+          title: {
+            type: 'string',
+          },
+          description: {
+            type: 'test',
+          },
+        }),
+      },
+    ],
   },
   description: {
     type: 'text',
@@ -126,6 +147,54 @@ describe('query builder', () => {
         .use()[0]
     ).toBe(
       groq`*[_type == 'typeOfDocument'] { "mappedItem": picture.asset->assetId }`
+    )
+  })
+
+  test('can resolve items with a further projection', () => {
+    expect(
+      builder
+        .map(r => ({
+          mappedItem: r.picture.asset.resolve(['assetId', 'url']).use(),
+        }))
+        .pick(['mappedItem'])
+        .use()[0]
+    ).toBe(
+      groq`*[_type == 'typeOfDocument'] { "mappedItem": picture.asset->{assetId, url} }`
+    )
+  })
+
+  test('can pick fields within an array', () => {
+    expect(
+      builder
+        .map(r => ({
+          fields: r.objects.pick('title').use(),
+        }))
+        .pick(['fields'])
+        .use()[0]
+    ).toBe(groq`*[_type == 'typeOfDocument'] { "fields": objects[].title }`)
+    expect(
+      builder
+        .map(r => ({
+          fields: r.objects.pick(['title', 'description']).use(),
+        }))
+        .pick(['fields'])
+        .use()[0]
+    ).toBe(
+      groq`*[_type == 'typeOfDocument'] { "fields": objects[]{title, description} }`
+    )
+  })
+
+  test('can count items', () => {
+    expect(builder.map(r => ({ itemCount: r.tags.count() })).use()[0]).toBe(
+      `*[_type == 'typeOfDocument'] { ..., "itemCount": count(tags) }`
+    )
+  })
+
+  test('can use default values', () => {
+    expect(
+      builder.map(r => ({ defaultCost: r.cost.use(21.99) })).use()[0]
+    ).toBe(
+      `*[_type == 'typeOfDocument'] { ..., "defaultCost": coalesce(cost,21.99) }`
     )
   })
 })

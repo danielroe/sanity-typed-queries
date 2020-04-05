@@ -59,7 +59,9 @@ export interface ArrayField<CustomType extends { type: string } = never>
   /**
    * Defines which types are allowed as members of the array.
    */
-  of: Array<(ValidType | CustomType) & Partial<Field>>
+  of: Array<
+    PureType<UnnamedField<CustomType>['type']> & Partial<Field | CustomType>
+  >
   options?: {
     /**
      * Controls whether the user is allowed to reorder the items in the array. Defaults to true.
@@ -278,7 +280,7 @@ interface ReferenceField<CustomType extends { type: string } = never>
   /**
    * Required. Must contain an array naming all the types which may be referenced e.g. [{type: 'person'}]. See more examples below.
    */
-  to: Array<CustomType>
+  to: Array<PureType<CustomType['type']>>
   /**
    * Default false. If set to true the reference will be made weak. This means you can discard the object being referred to without first deleting the reference, thereby leaving a dangling pointer.
    */
@@ -396,24 +398,7 @@ export type UnnamedField<T extends { type: string } = never> =
   | Nameless<URLField>
   | T
 
-type FieldTypes =
-  | 'array'
-  | 'block'
-  | 'boolean'
-  | 'date'
-  | 'datetime'
-  | 'string'
-  | 'text'
-  | 'url'
-  | 'file'
-  | 'geopoint'
-  | 'image'
-  | 'number'
-  | 'reference'
-  | 'slug'
-
-type PureType<T extends FieldTypes> = { type: T }
-type ValidType = PureType<FieldTypes>
+type PureType<T extends string> = { type: T }
 
 export const type = Symbol('the type of the property')
 

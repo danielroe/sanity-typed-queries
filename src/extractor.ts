@@ -117,7 +117,7 @@ export function defineDocument<
      */
     document: {
       name: documentTitle,
-      fields: defineFields(schema),
+      fields: defineFields(schema as any),
       title: splitStringByCase(documentTitle),
       type: 'document' as const,
     },

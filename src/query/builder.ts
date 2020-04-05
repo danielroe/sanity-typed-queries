@@ -10,17 +10,39 @@ type ResolveFieldType<T> = T extends Record<string, any>
   ? MapResolver<T>
   : ResolverAction<T>
 
-type ResolverFunction<T> = <P extends keyof T>(
-  prop: P
-) => ResolveFieldType<T[P]>
+interface ResolverFunction<T> {
+  <P extends keyof T>(props: P[]): ResolverAction<Pick<T, P>>
+}
+interface ResolverFunction<T> {
+  <P extends keyof T>(prop: P): ResolveFieldType<T[P]>
+}
 
-type ResolverAction<T> = T extends Reference<infer A>
-  ? { use: () => T; resolve: ResolverFunction<A> }
-  : { use: () => T }
+type BaseResolverAction<T> = {
+  use: (defaultValue?: T) => T
+}
 
-type MapResolver<T extends Record<string, any>> = {
-  [P in keyof T]: ResolveFieldType<T[P]>
-} &
+type ResolverAction<T> = BaseResolverAction<T> &
+  (T extends Reference<infer A> // | Array<Reference<infer A>>
+    ? { resolve: ResolverFunction<A> }
+    : {}) &
+  (T extends Array<any>
+    ? {
+        count: () => number
+      }
+    : {}) &
+  (T extends Array<Record<string, any>>
+    ? {
+        pick: <K extends keyof T[0]>(
+          props: K[] | K
+        ) => { use: () => Pick<T[0], K> }
+      }
+    : {})
+
+type MapResolver<T extends Record<string, any>> = (T extends Array<any>
+  ? {}
+  : {
+      [P in keyof T]: ResolveFieldType<T[P]>
+    }) &
   ResolverAction<T>
 
 type Combine<

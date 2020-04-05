@@ -140,6 +140,14 @@ const objectBuilder = defineDocument(
       type: 'reference',
       to: [{ type: 'tag' }],
     },
+    more: {
+      type: 'array',
+      of: [{ type: 'string' }],
+    },
+    tagArray: {
+      type: 'array',
+      of: [{ type: 'tag' }],
+    },
   },
   [smile, tag]
 ).builder
@@ -150,4 +158,17 @@ expectType<number>(
     .map(h => ({ bingTitle: h.bing.resolve('title').use() }))
     .first()
     .use()[1].bingTitle
+)
+expectType<number>(
+  objectBuilder
+    .map(h => ({ count: h.more.count() }))
+    .first()
+    .use()[1].count
+)
+
+expectType<'author'>(
+  objectBuilder
+    .map(h => ({ count: h.tagArray.pick(['_type', 'title']) }))
+    .first()
+    .use()[1]._type
 )

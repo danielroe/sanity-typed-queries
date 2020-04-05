@@ -18,13 +18,48 @@ export function inArray<A>(items: A | A[]) {
   return Array.isArray(items) ? items : [items]
 }
 
+export function quoteIfString<A>(potentialString: A) {
+  return typeof potentialString === 'string'
+    ? `"${potentialString}"`
+    : `${potentialString}`
+}
+
 export const createProxy: (path: string[]) => any = (path: string[]) =>
   new Proxy(path, {
     get(target, prop: string) {
-      if (prop === 'use') return () => target.join('.').replace('.->', '->')
-      if (prop === 'resolve') {
-        return (attr: string) => createProxy([...target, `->${attr}`])
+      switch (prop) {
+        case 'use':
+          return (defaultValue?: any) => {
+            const path = target
+              .join('.')
+              .replace(/.->/g, '->')
+              .replace('.[]', '[]')
+            if (defaultValue === undefined) return path
+
+            return `coalesce(${path},${quoteIfString(defaultValue)})`
+          }
+
+        case 'resolve':
+          return (attr: string | string[]) => {
+            const wrappedAttributes = Array.isArray(attr)
+              ? `{${attr.join(', ')}}`
+              : attr
+            return createProxy([...target, `->${wrappedAttributes}`])
+          }
+
+        case 'pick':
+          return (attr: string | string[]) => {
+            const wrappedAttributes = Array.isArray(attr)
+              ? `{${attr.join(', ')}}`
+              : `.${attr}`
+            return createProxy([...target, `[]${wrappedAttributes}`])
+          }
+
+        case 'count':
+          return () => `count(${path})`
+
+        default:
+          return createProxy([...target, prop])
       }
-      return createProxy([...target, prop])
     },
   })

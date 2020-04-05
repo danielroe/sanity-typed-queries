@@ -3,6 +3,7 @@ import {
   capitalise,
   inArray,
   createProxy,
+  quoteIfString,
 } from '../src/utils'
 
 describe('utils', () => {
@@ -25,5 +26,17 @@ describe('utils', () => {
     expect(createProxy([]).a.thing.resolve('another').thing.use()).toBe(
       'a.thing->another.thing'
     )
+
+    expect(
+      createProxy([]).a.thing.resolve('another').thing.use('default')
+    ).toBe('coalesce(a.thing->another.thing,"default")')
+    expect(createProxy([]).a.thing.resolve('another').thing.use(true)).toBe(
+      'coalesce(a.thing->another.thing,true)'
+    )
+  })
+  test('wraps strings correctly', () => {
+    expect(quoteIfString(true)).toEqual('true')
+    expect(quoteIfString(21)).toEqual('21')
+    expect(quoteIfString('true')).toEqual('"true"')
   })
 })
