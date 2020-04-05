@@ -1,8 +1,8 @@
 import { expectType, expectError } from 'tsd'
 
 import { defineDocument } from '../../src'
-import { Block, File, Geopoint, Image, Reference, Slug } from '../../src/types'
-import { defineFields } from '../../src/extractor'
+import { Block, File, Geopoint, Image, Slug, to } from '../../src/types'
+import { defineFields, defineObject } from '../../src/extractor'
 
 /**
  * 'array'
@@ -170,19 +170,34 @@ expectType<number>(number)
 /**
  * 'reference'
  */
-const reference = defineDocument('referenceExample', {
-  test: { type: 'reference', to: [{ type: 'customType' }] },
-})
-  .builder.pick('test')
-  .first()
-  .use()[1]
-expectType<Reference<Record<string, any>>>(reference)
-
 expectError(
   defineDocument('failingReferenceExample', {
     test: { type: 'reference' },
   })
 )
+
+const { anotherDoc } = defineDocument('anotherDoc', {
+  title: {
+    type: 'string',
+  },
+})
+const { anotherObject } = defineObject('anotherObject', {
+  kind: {
+    type: 'number',
+  },
+})
+const reference = defineDocument(
+  'referenceExample',
+  {
+    test: { type: 'reference', to: [{ type: 'anotherDoc' }] },
+  },
+  [anotherDoc, anotherObject]
+)
+  .builder.pick('test')
+  .first()
+  .use()[1]
+
+expectType<'anotherDoc'>(reference[to]._type)
 
 /**
  * 'slug'

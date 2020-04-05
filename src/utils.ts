@@ -13,3 +13,18 @@ export function splitStringByCase(text: string) {
       .replace(/[a-z][A-Z]+/g, h => `${h[0]} ${h.slice(1)}`)
   )
 }
+
+export function inArray<A>(items: A | A[]) {
+  return Array.isArray(items) ? items : [items]
+}
+
+export const createProxy: (path: string[]) => any = (path: string[]) =>
+  new Proxy(path, {
+    get(target, prop: string) {
+      if (prop === 'use') return () => target.join('.').replace('.->', '->')
+      if (prop === 'resolve') {
+        return (attr: string) => createProxy([...target, `->${attr}`])
+      }
+      return createProxy([...target, prop])
+    },
+  })

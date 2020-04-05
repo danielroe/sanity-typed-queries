@@ -1,1 +1,1 @@
-export { defineDocument } from './extractor'
+export { defineDocument, defineObject } from './extractor'

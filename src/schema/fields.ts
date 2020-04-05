@@ -53,12 +53,13 @@ export interface BaseField {
   }
 }
 
-export interface ArrayField extends BaseField {
+export interface ArrayField<CustomType extends { type: string } = never>
+  extends BaseField {
   type: 'array'
   /**
    * Defines which types are allowed as members of the array.
    */
-  of: Array<ValidType & Partial<Field>>
+  of: Array<(ValidType | CustomType) & Partial<Field>>
   options?: {
     /**
      * Controls whether the user is allowed to reorder the items in the array. Defaults to true.
@@ -271,12 +272,13 @@ interface ObjectField<T extends Record<string, any>> extends BaseField {
   validation?: Validator
 }
 
-interface ReferenceField extends BaseField {
+interface ReferenceField<CustomType extends { type: string } = never>
+  extends BaseField {
   type: 'reference'
   /**
    * Required. Must contain an array naming all the types which may be referenced e.g. [{type: 'person'}]. See more examples below.
    */
-  to: Array<{ type: string }>
+  to: Array<CustomType>
   /**
    * Default false. If set to true the reference will be made weak. This means you can discard the object being referred to without first deleting the reference, thereby leaving a dangling pointer.
    */
@@ -369,14 +371,13 @@ export interface URLField extends BaseField {
 
 export interface CustomField<A extends string> extends BaseField {
   type: A
-  [key: string]: any
   validation?: Validator
 }
 
-type Nameless<T> = Omit<T, 'name'>
+export type Nameless<T> = Omit<T, 'name'>
 
-export type UnnamedField<T = Nameless<CustomField<never>>> =
-  | Nameless<ArrayField>
+export type UnnamedField<T extends { type: string } = never> =
+  | Nameless<ArrayField<T>>
   | Nameless<BlockField>
   | Nameless<BooleanField>
   | Nameless<DateField>
@@ -387,7 +388,7 @@ export type UnnamedField<T = Nameless<CustomField<never>>> =
   | Nameless<ImageField<any>>
   | Nameless<NumberField>
   | Nameless<ObjectField<any>>
-  | Nameless<ReferenceField>
+  | Nameless<ReferenceField<T>>
   | Nameless<SlugField>
   | Nameless<SpanField>
   | Nameless<StringField>
@@ -416,14 +417,22 @@ type ValidType = PureType<FieldTypes>
 
 export const type = Symbol('the type of the property')
 
-export type Field<T = CustomField<never>> = UnnamedField<T> & { name: string }
+export type Field = UnnamedField & { name: string }
 
 export type DefinedFields<T> = Array<Field & { [type]: T }>
 
-export type FieldType<T extends UnnamedField> =
+type CustomTypeName<T extends { _type: string }> = { type: T['_type'] }
+
+// type DocumentTypes<T extends { _type: string }> = Extract<T, { _rev: string }>
+// type ObjectTypes<T extends { _type: string }> = Exclude<T, { _rev: string }>
+
+export type FieldType<
+  T extends UnnamedField<any>,
+  CustomObjects extends { _type: string }
+> =
   //
   T extends PureType<'array'> & { of: Array<infer B> }
-    ? Array<FieldType<B>>
+    ? Array<FieldType<B, CustomObjects>>
     : T extends PureType<'block'>
     ? Block
     : T extends PureType<'boolean'>
@@ -445,12 +454,14 @@ export type FieldType<T extends UnnamedField> =
     ? Image
     : T extends PureType<'number'>
     ? number
-    : T extends Nameless<ObjectField<infer A>> // TODO
+    : T extends Nameless<ObjectField<infer A>>
     ? A
     : T extends PureType<'reference'> & { to: Array<infer B> }
-    ? Reference<FieldType<B>>
+    ? Reference<FieldType<B, CustomObjects>>
     : T extends PureType<'slug'>
     ? Slug
     : T extends { [type]: infer B }
     ? B
+    : T extends CustomTypeName<CustomObjects>
+    ? Extract<CustomObjects, { _type: T['type'] }>
     : Record<string, any>

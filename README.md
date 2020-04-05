@@ -40,7 +40,8 @@
 - [x] Support for object types with subfields
 - [x] Custom mappings (`"prop": my.prop`)
 - [x] Resolving image and file types
-- [ ] Resolving custom object/document types
+- [x] Resolving custom object/document types
+- [ ] Distinguish object/document types within valid field types
 - [ ] Additional query filters
 - [ ] Querying multiple types of document
 

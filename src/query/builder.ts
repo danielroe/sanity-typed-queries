@@ -1,11 +1,7 @@
-import { UnnamedField, FieldType, type } from '../schema/fields'
 import { Reference } from '../types'
+import { inArray, createProxy } from '../utils'
 
 type QueryReturnType<T> = [string, T]
-
-type Translator<T extends Record<string, UnnamedField>> = {
-  [P in keyof T]: FieldType<T[P]>
-}
 
 type Single<T> = T
 type Multiple<T> = T[]
@@ -27,35 +23,35 @@ type MapResolver<T extends Record<string, any>> = {
 } &
   ResolverAction<T>
 
-type ConvertToMapping<T extends Record<string, any>> = {
-  [P in keyof T]: { [type]: T[P] }
-}
+type Combine<
+  Original extends Record<string, any>,
+  New extends Record<string, any>
+> = Omit<Original, keyof New> & New
 
 export class QueryBuilder<
   Schema extends Record<string, any>,
-  Mappings extends Record<string, any> = {},
-  SchemaType extends string = string,
+  Mappings extends Record<string, any>,
   Type = Multiple<any>,
   Project extends boolean = true,
   Exclude extends string = ''
 > {
   private schema: Schema
-  private type: SchemaType
+  private type: string
   private ordering: [keyof Schema, 'asc' | 'desc'][]
   private projections: Record<string, string>
   private mappings: Record<string, string>
   private selector: string
-  private unproject: boolean
+  private project: boolean
   private restricted: boolean
 
   constructor(
     schema: Schema,
-    type: SchemaType,
+    type: string,
     ordering: [keyof Schema, 'asc' | 'desc'][] = [],
     projections: Record<string, string> = {},
-    mappings: Record<string, string> = {},
+    mappings: Record<string, string> = schema,
     selector = '',
-    unproject = false,
+    project = true,
     restricted = false
   ) {
     this.schema = schema
@@ -63,7 +59,7 @@ export class QueryBuilder<
     this.projections = projections
     this.mappings = mappings
     this.selector = selector
-    this.unproject = unproject
+    this.project = project
     this.ordering = ordering
     this.restricted = restricted
   }
@@ -76,7 +72,7 @@ export class QueryBuilder<
       this.projections,
       this.mappings,
       this.selector,
-      this.unproject,
+      this.project,
       this.restricted
     )
   }
@@ -86,14 +82,7 @@ export class QueryBuilder<
     to: number,
     inclusive = false
   ): Omit<
-    QueryBuilder<
-      Schema,
-      Mappings,
-      SchemaType,
-      Type,
-      Project,
-      Exclude | 'first' | 'select'
-    >,
+    QueryBuilder<Schema, Mappings, Type, Project, Exclude | 'first' | 'select'>,
     Exclude | 'first' | 'select'
   > {
     return new QueryBuilder(
@@ -103,13 +92,12 @@ export class QueryBuilder<
       this.projections,
       this.mappings,
       `[${from}..${inclusive ? '.' : ''}${to}]`,
-      this.unproject,
+      this.project,
       this.restricted
     ) as Omit<
       QueryBuilder<
         Schema,
         Mappings,
-        SchemaType,
         Type,
         Project,
         Exclude | 'first' | 'select'
@@ -119,63 +107,28 @@ export class QueryBuilder<
   }
 
   // eslint-disable-next-line no-dupe-class-members
-  pick<R extends keyof Schema | keyof Mappings>(
-    props: R
-  ): Omit<
-    QueryBuilder<
-      Pick<Schema, R & keyof Schema>,
-      Pick<Mappings, R & keyof Mappings>,
-      SchemaType,
-      Type,
-      false,
-      Exclude | 'pick'
-    >,
-    Exclude | 'pick'
-  >
-
-  // eslint-disable-next-line no-dupe-class-members
-  pick<R extends keyof Schema | keyof Mappings>(
+  pick<R extends keyof Mappings>(
     props: R[]
   ): Omit<
-    QueryBuilder<
-      Pick<Schema, R & keyof Schema>,
-      Pick<Mappings, R & keyof Mappings>,
-      SchemaType,
-      Type,
-      true,
-      Exclude | 'pick'
-    >,
+    QueryBuilder<Schema, Pick<Mappings, R>, Type, true, Exclude | 'pick'>,
     Exclude | 'pick'
   >
 
   // eslint-disable-next-line no-dupe-class-members
-  pick<R extends keyof Schema | keyof Mappings>(
-    props: R | R[]
+  pick<R extends keyof Mappings>(
+    props: R
   ): Omit<
-    QueryBuilder<
-      Pick<Schema, R & keyof Schema>,
-      Pick<Mappings, R & keyof Mappings>,
-      SchemaType,
-      Type,
-      any,
-      Exclude | 'pick'
-    >,
+    QueryBuilder<Schema, Pick<Mappings, R>, Type, false, Exclude | 'pick'>,
     Exclude | 'pick'
-  > {
-    let projections = {}
-    let unproject = this.unproject
+  >
 
-    if (Array.isArray(props)) {
-      projections = Object.entries(this.schema).reduce((obj, [key]) => {
-        if (props.includes(key as R)) obj[key] = key
-        return obj
-      }, {} as Record<string, string>)
-    } else {
-      projections = {
-        [props]: props,
-      }
-      unproject = true
-    }
+  // eslint-disable-next-line no-dupe-class-members
+  pick(props: any) {
+    const project = Array.isArray(props)
+    const projections = inArray(props).reduce((obj, key) => {
+      obj[key as string] = key as string
+      return obj
+    }, {} as Record<string, string>)
 
     return new QueryBuilder(
       this.schema,
@@ -184,26 +137,15 @@ export class QueryBuilder<
       projections,
       this.mappings,
       this.selector,
-      unproject,
+      project,
       true
-    ) as Omit<
-      QueryBuilder<
-        Pick<Schema, R & keyof Schema>,
-        Pick<Mappings, R & keyof Mappings>,
-        SchemaType,
-        Type,
-        any,
-        Exclude | 'pick'
-      >,
-      Exclude | 'pick'
-    >
+    ) as any
   }
 
   first(): Omit<
     QueryBuilder<
       Schema,
       Mappings,
-      SchemaType,
       Single<Schema>,
       Project,
       Exclude | 'select' | 'first'
@@ -217,13 +159,12 @@ export class QueryBuilder<
       this.projections,
       this.mappings,
       '[0]',
-      this.unproject,
+      this.project,
       this.restricted
     ) as Omit<
       QueryBuilder<
         Schema,
         Mappings,
-        SchemaType,
         Single<Schema>,
         Project,
         Exclude | 'select' | 'first'
@@ -232,43 +173,30 @@ export class QueryBuilder<
     >
   }
 
-  map<Mapping extends Record<string, any>>(
-    map: Mapping | ((resolver: MapResolver<Translator<Schema>>) => Mapping)
+  map<NewMapping extends Record<string, any>>(
+    map: NewMapping | ((resolver: MapResolver<Schema>) => NewMapping)
   ): Omit<
     QueryBuilder<
-      Omit<Schema, keyof Mapping>,
-      ConvertToMapping<Mapping>,
-      SchemaType,
+      Schema,
+      Combine<Mappings, NewMapping>,
       Type,
       Project,
       Exclude | 'map'
     >,
     Exclude | 'map'
   > {
-    let mappings = { ...this.mappings }
+    let mappings: Combine<Mappings, NewMapping>
 
     function checkCallable(
-      m: Mapping | ((resolver: MapResolver<Translator<Schema>>) => Mapping)
-    ): m is (resolver: MapResolver<Translator<Schema>>) => Mapping {
+      m: NewMapping | ((resolver: MapResolver<Schema>) => NewMapping)
+    ): m is (resolver: MapResolver<Schema>) => NewMapping {
       return typeof m === 'function'
     }
 
     if (checkCallable(map)) {
-      const createProxy: (path: string[]) => any = (path: string[]) =>
-        new Proxy(path, {
-          get(target, prop: string) {
-            if (prop === 'use')
-              return () => target.join('.').replace('.->', '->')
-            if (prop === 'resolve') {
-              return (attr: string) => createProxy([...target, `->${attr}`])
-            }
-            return createProxy([...target, prop])
-          },
-        })
-
-      mappings = { ...mappings, ...map(createProxy([])) }
+      mappings = map(createProxy([])) as Combine<Mappings, NewMapping>
     } else {
-      mappings = { ...mappings, ...map }
+      mappings = map as Combine<Mappings, NewMapping>
     }
 
     return new QueryBuilder(
@@ -278,13 +206,12 @@ export class QueryBuilder<
       this.projections,
       mappings,
       this.selector,
-      this.unproject,
+      this.project,
       this.restricted
     ) as Omit<
       QueryBuilder<
-        Omit<Schema, keyof Mapping>,
-        ConvertToMapping<Mapping>,
-        SchemaType,
+        Schema,
+        Combine<Mappings, NewMapping>,
         Type,
         Project,
         Exclude | 'map'
@@ -311,7 +238,7 @@ export class QueryBuilder<
       ...this.mappings,
     }).filter(([key]) => typeof key === 'string')
 
-    if (this.unproject && entries.length === 1) return `.${entries[0][1]}`
+    if (!this.project && entries.length === 1) return `.${entries[0][1]}`
     if (!entries.length) return ''
 
     const innerProjection = [
@@ -332,17 +259,10 @@ export class QueryBuilder<
       this.selector === '[0]' ? null : [],
     ] as Type extends Array<any>
       ? Project extends true
-        ? QueryReturnType<Array<Translator<Schema & Mappings>>>
-        : QueryReturnType<
-            Array<
-              | FieldType<Schema[keyof Schema]>
-              | FieldType<Mappings[keyof Mappings]>
-            >
-          >
+        ? QueryReturnType<Array<Mappings>>
+        : QueryReturnType<Array<Mappings[keyof Mappings]>>
       : Project extends true
-      ? QueryReturnType<Translator<Schema & Mappings>>
-      : QueryReturnType<
-          FieldType<Schema[keyof Schema]> | FieldType<Mappings[keyof Mappings]>
-        >
+      ? QueryReturnType<Mappings>
+      : QueryReturnType<Mappings[keyof Mappings]>
   }
 }

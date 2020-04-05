@@ -1,7 +1,7 @@
 import { expectType, expectError } from 'tsd'
 
 import { defineDocument } from '../../src'
-import { defineFields } from '../../src/extractor'
+import { defineFields, defineObject } from '../../src/extractor'
 
 const { builder } = defineDocument('author', {
   name: {
@@ -35,19 +35,7 @@ const type = builder.pick('tags').first().use()[1]
 expectType<Array<string | number>>(type)
 
 const d = builder.use()[1]
-expectType<
-  Array<{
-    name: string
-    tags: Array<string | number>
-    cost: number
-    description: string
-    _createdAt: string
-    _updatedAt: string
-    _id: string
-    _rev: string
-    _type: 'author'
-  }>
->(d)
+expectType<Array<string | number>>(d[0].tags)
 
 const e = builder.pick('_updatedAt').first().use()[1]
 expectType<string>(e)
@@ -115,17 +103,7 @@ const m = mapper
   .first()
   .use()[1]
 
-expectType<{
-  num: number
-  test: number
-  testObject: { subfield: string | undefined }
-  bagel: { subfield: string | undefined }
-  _createdAt: string
-  _updatedAt: string
-  _id: string
-  _rev: string
-  _type: 'author'
-}>(m)
+expectType<{ subfield: string | undefined }>(m.bagel)
 
 const resolver = defineDocument('author', {
   image: {
@@ -139,3 +117,37 @@ const resolvedId = resolver
   .first()
   .use()[1]
 expectType<string>(resolvedId)
+
+const { tag } = defineObject('tag', {
+  title: {
+    type: 'number',
+  },
+})
+const { smile } = defineObject('smile', {
+  title: {
+    type: 'string',
+  },
+})
+
+const objectBuilder = defineDocument(
+  'author',
+  {
+    num: {
+      type: 'smile',
+      validation: Rule => Rule.required(),
+    },
+    bing: {
+      type: 'reference',
+      to: [{ type: 'tag' }],
+    },
+  },
+  [smile, tag]
+).builder
+
+expectType<string>(objectBuilder.pick('num').first().use()[1].title)
+expectType<number>(
+  objectBuilder
+    .map(h => ({ bingTitle: h.bing.resolve('title').use() }))
+    .first()
+    .use()[1].bingTitle
+)
