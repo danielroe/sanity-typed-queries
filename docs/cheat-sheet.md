@@ -20,7 +20,16 @@ const { builder: movie } = defineDocument('movie, {
   },
   priority: {
     type: 'number'
-  }
+  },
+  castMembers: {
+    type: 'array',
+    of: [
+      {
+        type: 'reference',
+        to: [{ type:'person' }],
+      }
+    ]
+  },
 }, [person])
 
 ```

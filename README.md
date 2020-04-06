@@ -116,6 +116,8 @@ export default {
 
 ### Query builder
 
+> For more documentation, see [this GROQ/query builder cheat sheet](https://github.com/danielroe/sanity-typed-queries/blob/master/docs/cheat-sheet.md).
+
 You can also export a query builder from the same file.
 
 ```ts
