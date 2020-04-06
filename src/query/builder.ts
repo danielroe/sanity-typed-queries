@@ -98,7 +98,7 @@ export class QueryBuilder<
   select(
     from: number,
     to: number,
-    inclusive = false
+    exclusive = false
   ): Omit<
     QueryBuilder<Schema, Mappings, Type, Project, Exclude | 'first' | 'select'>,
     Exclude | 'first' | 'select'
@@ -108,7 +108,7 @@ export class QueryBuilder<
       this.ordering,
       this.projections,
       this.mappings,
-      ` [${from}..${inclusive ? '.' : ''}${to}]`,
+      ` [${from}..${exclusive ? '.' : ''}${to}]`,
       this.project,
       this.restricted
     ) as Omit<
