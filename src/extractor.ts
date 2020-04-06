@@ -107,11 +107,15 @@ export function defineDocument<
     /**
      * Typed query builder for the document created
      */
-    builder: new QueryBuilder({}, documentTitle) as any,
+    builder: new QueryBuilder({
+      _type: documentTitle,
+    }) as any,
     /**
      * Type for use with query builder
      */
-    [documentTitle]: {},
+    [documentTitle]: {
+      _type: documentTitle,
+    },
     /**
      * Defined document that you can export as the schema type to be consumed by the Sanity CMS
      */
@@ -176,7 +180,9 @@ export function defineObject<
     /**
      * Type for use with query builder
      */
-    [objectTitle]: {} as ExtractObjectType<Schema, SchemaName, CustomTypes>,
+    [objectTitle]: {
+      _type: objectTitle,
+    } as ExtractObjectType<Schema, SchemaName, CustomTypes>,
     /**
      * Defined object that you can export as the schema type to be consumed by the Sanity CMS
      */

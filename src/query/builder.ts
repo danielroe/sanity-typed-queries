@@ -58,7 +58,6 @@ export class QueryBuilder<
   Exclude extends string = ''
 > {
   private schema: Schema
-  private type: string
   private ordering: [keyof Schema, 'asc' | 'desc'][]
   private projections: Record<string, string>
   private mappings: Record<string, string>
@@ -68,16 +67,14 @@ export class QueryBuilder<
 
   constructor(
     schema: Schema,
-    type: string,
     ordering: [keyof Schema, 'asc' | 'desc'][] = [],
     projections: Record<string, string> = {},
-    mappings: Record<string, string> = schema,
+    mappings: Record<string, string> = {},
     selector = '',
     project = true,
     restricted = false
   ) {
     this.schema = schema
-    this.type = type
     this.projections = projections
     this.mappings = mappings
     this.selector = selector
@@ -89,7 +86,6 @@ export class QueryBuilder<
   orderBy<Key extends keyof Schema>(key: Key, order: 'asc' | 'desc' = 'asc') {
     return new QueryBuilder(
       this.schema,
-      this.type,
       [...this.ordering, [key, order]],
       this.projections,
       this.mappings,
@@ -109,7 +105,6 @@ export class QueryBuilder<
   > {
     return new QueryBuilder(
       this.schema,
-      this.type,
       this.ordering,
       this.projections,
       this.mappings,
@@ -154,7 +149,6 @@ export class QueryBuilder<
 
     return new QueryBuilder(
       this.schema,
-      this.type,
       this.ordering,
       projections,
       this.mappings,
@@ -176,7 +170,6 @@ export class QueryBuilder<
   > {
     return new QueryBuilder(
       this.schema,
-      this.type,
       this.ordering,
       this.projections,
       this.mappings,
@@ -223,7 +216,6 @@ export class QueryBuilder<
 
     return new QueryBuilder(
       this.schema,
-      this.type,
       this.ordering,
       this.projections,
       mappings,
@@ -243,7 +235,7 @@ export class QueryBuilder<
   }
 
   get option() {
-    return [`_type == '${this.type}'`].join(' && ')
+    return [`_type == '${this.schema._type}'`].join(' && ')
   }
 
   get order() {
