@@ -1,3 +1,15 @@
+## [0.6.0](https://github.com/danielroe/sanity-typed-queries/compare/0.5.1...0.6.0) (2020-04-26)
+
+
+### Features
+
+* correctly resolve references to documents ([9c1a5c0](https://github.com/danielroe/sanity-typed-queries/commit/9c1a5c04a991b64f08d94f0bd538ed688931acb8))
+
+
+### Bug Fixes
+
+* correctly label select parameter as exclusive, not inclusive ([176c82a](https://github.com/danielroe/sanity-typed-queries/commit/176c82aa233596cc7030a080c5ff39431bb57132))
+
 ### [0.5.1](https://github.com/danielroe/sanity-typed-queries/compare/0.5.0...0.5.1) (2020-04-05)
 
 
