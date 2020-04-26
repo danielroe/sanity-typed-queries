@@ -1,6 +1,6 @@
 {
   "name": "sanity-typed-queries",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "A collection of helper functions to improve the typing of Sanity resources.",
   "license": "MIT",
   "repository": "danielroe/sanity-typed-queries",

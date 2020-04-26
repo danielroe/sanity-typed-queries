@@ -1,3 +1,10 @@
+### [0.6.1](https://github.com/danielroe/sanity-typed-queries/compare/0.6.0...0.6.1) (2020-04-26)
+
+
+### Bug Fixes
+
+* add missing parts of schema type ([7a48412](https://github.com/danielroe/sanity-typed-queries/commit/7a4841237e5dd2d99be10d457a0952e59e702928))
+
 ## [0.6.0](https://github.com/danielroe/sanity-typed-queries/compare/0.5.1...0.6.0) (2020-04-26)
 
 
