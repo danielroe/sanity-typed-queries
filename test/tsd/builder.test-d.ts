@@ -118,7 +118,7 @@ const resolvedId = resolver
   .use()[1]
 expectType<string>(resolvedId)
 
-const { tag } = defineObject('tag', {
+const { tag } = defineDocument('tag', {
   title: {
     type: 'number',
   },
@@ -129,7 +129,7 @@ const { smile } = defineObject('smile', {
   },
 })
 
-const objectBuilder = defineDocument(
+const { builder: objectBuilder, author } = defineDocument(
   'author',
   {
     num: {
@@ -146,11 +146,26 @@ const objectBuilder = defineDocument(
     },
     tagArray: {
       type: 'array',
-      of: [{ type: 'tag' }],
+      of: [{ type: 'smile' }],
     },
   },
   [smile, tag]
-).builder
+)
+
+expectError(
+  defineDocument(
+    'test',
+    { false: { type: 'reference', to: [{ type: 'smile' }] } },
+    [tag, smile]
+  )
+)
+
+expectError(
+  defineDocument('test', { false: { type: 'array', of: [{ type: 'tag' }] } }, [
+    tag,
+    smile,
+  ])
+)
 
 expectType<string>(objectBuilder.pick('num').first().use()[1].title)
 expectType<number>(
@@ -171,4 +186,23 @@ expectType<'author'>(
     .map(h => ({ count: h.tagArray.pick(['_type', 'title']) }))
     .first()
     .use()[1]._type
+)
+
+const referenceBuilder = defineDocument(
+  'novel',
+  {
+    authors: {
+      type: 'array',
+      of: [{ type: 'reference', to: [{ type: 'author' }] }],
+    },
+  },
+  [author]
+).builder
+
+expectType<string[][]>(
+  referenceBuilder
+    .map(r => ({ fields: r.authors.resolveIn('more').use() }))
+    .pick('fields')
+    .first()
+    .use()[1]
 )

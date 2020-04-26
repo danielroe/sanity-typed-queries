@@ -53,14 +53,18 @@ export interface BaseField {
   }
 }
 
-export interface ArrayField<CustomType extends { type: string } = never>
-  extends BaseField {
+export interface ArrayField<
+  CustomObjectName extends string = never,
+  CustomDocuments extends { type: string } = never
+> extends BaseField {
   type: 'array'
   /**
    * Defines which types are allowed as members of the array.
    */
   of: Array<
-    PureType<UnnamedField<CustomType>['type']> & Partial<Field | CustomType>
+    | PureType<CustomObjectName>
+    | Omit<ReferenceField<CustomDocuments>, 'name'>
+    | (Pick<Field, 'type'> & Partial<Field>)
   >
   options?: {
     /**
@@ -378,8 +382,11 @@ export interface CustomField<A extends string> extends BaseField {
 
 export type Nameless<T> = Omit<T, 'name'>
 
-export type UnnamedField<T extends { type: string } = never> =
-  | Nameless<ArrayField<T>>
+export type UnnamedField<
+  CustomObjects extends { type: string } = { type: never },
+  CustomDocuments extends { type: string } = { type: never }
+> =
+  | Nameless<ArrayField<CustomObjects['type'], CustomDocuments>>
   | Nameless<BlockField>
   | Nameless<BooleanField>
   | Nameless<DateField>
@@ -390,13 +397,13 @@ export type UnnamedField<T extends { type: string } = never> =
   | Nameless<ImageField<any>>
   | Nameless<NumberField>
   | Nameless<ObjectField<any>>
-  | Nameless<ReferenceField<T>>
+  | Nameless<ReferenceField<CustomDocuments>>
   | Nameless<SlugField>
   | Nameless<SpanField>
   | Nameless<StringField>
   | Nameless<TextField>
   | Nameless<URLField>
-  | T
+  | CustomObjects
 
 type PureType<T extends string> = { type: T }
 

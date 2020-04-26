@@ -10,11 +10,13 @@ type ResolveFieldType<T> = T extends Record<string, any>
   ? MapResolver<T>
   : ResolverAction<T>
 
-interface ResolverFunction<T> {
+interface ResolverFunction<T, Arr = false> {
   <P extends keyof T>(props: P[]): ResolverAction<Pick<T, P>>
 }
-interface ResolverFunction<T> {
-  <P extends keyof T>(prop: P): ResolveFieldType<T[P]>
+interface ResolverFunction<T, Arr = false> {
+  <P extends keyof T>(prop: P): Arr extends true
+    ? ResolveFieldType<Array<T[P]>>
+    : ResolveFieldType<T[P]>
 }
 
 type BaseResolverAction<T> = {
@@ -22,9 +24,7 @@ type BaseResolverAction<T> = {
 }
 
 type ResolverAction<T> = BaseResolverAction<T> &
-  (T extends Reference<infer A> // | Array<Reference<infer A>>
-    ? { resolve: ResolverFunction<A> }
-    : {}) &
+  (T extends Reference<infer A> ? { resolve: ResolverFunction<A> } : {}) &
   (T extends Array<any>
     ? {
         count: () => number
@@ -35,6 +35,11 @@ type ResolverAction<T> = BaseResolverAction<T> &
         pick: <K extends keyof T[0]>(
           props: K[] | K
         ) => { use: () => Pick<T[0], K> }
+      }
+    : {}) &
+  (T extends Array<Reference<infer A>>
+    ? {
+        resolveIn: ResolverFunction<A, true>
       }
     : {})
 

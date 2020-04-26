@@ -32,11 +32,19 @@ export const createProxy: (path: string[]) => any = (path: string[]) =>
           return (defaultValue?: any) => {
             const path = target
               .join('.')
-              .replace(/.->/g, '->')
-              .replace('.[]', '[]')
+              .replace(/\.->/g, '->')
+              .replace(/\.\[\]/g, '[]')
             if (defaultValue === undefined) return path
 
             return `coalesce(${path},${quoteIfString(defaultValue)})`
+          }
+
+        case 'resolveIn':
+          return (attr: string | string[]) => {
+            const wrappedAttributes = Array.isArray(attr)
+              ? `{${attr.join(', ')}}`
+              : attr
+            return createProxy([...target, `[]->${wrappedAttributes}`])
           }
 
         case 'resolve':

@@ -3,47 +3,61 @@ import groq from 'groq'
 import { defineDocument } from '../src'
 import { defineFields } from '../src/extractor'
 
-const { builder } = defineDocument('typeOfDocument', {
+const { author } = defineDocument('author', {
   name: {
     type: 'string',
     validation: Rule => Rule.required(),
   },
-  postcode: {
-    type: 'string',
-    validation: Rule => Rule.required(),
-  },
-  cost: {
-    type: 'number',
-  },
-  picture: {
-    type: 'image',
-  },
-  tags: {
-    type: 'array',
-    of: [{ type: 'string' }],
-  },
-  objects: {
-    type: 'array',
-    of: [
-      {
-        type: 'object',
-        fields: defineFields({
-          title: {
-            type: 'string',
-          },
-          description: {
-            type: 'test',
-          },
-        }),
-      },
-    ],
-  },
-  description: {
-    type: 'text',
-    rows: 2,
-    validation: Rule => Rule.required(),
-  },
 })
+const { builder } = defineDocument(
+  'typeOfDocument',
+  {
+    name: {
+      type: 'string',
+      validation: Rule => Rule.required(),
+    },
+    postcode: {
+      type: 'string',
+      validation: Rule => Rule.required(),
+    },
+    cost: {
+      type: 'number',
+    },
+    picture: {
+      type: 'image',
+    },
+    tags: {
+      type: 'array',
+      of: [{ type: 'string' }],
+    },
+    objects: {
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: defineFields({
+            title: {
+              type: 'string',
+            },
+            description: {
+              type: 'string',
+            },
+          }),
+        },
+      ],
+    },
+    refs: {
+      type: 'array',
+      of: [{ type: 'reference', to: [{ type: 'author' }] }],
+    },
+    description: {
+      type: 'text',
+      rows: 2,
+      validation: Rule => Rule.required(),
+    },
+  },
+  [author]
+)
 
 describe('query builder', () => {
   test('can specify the first document', () => {
@@ -181,6 +195,20 @@ describe('query builder', () => {
         .use()[0]
     ).toBe(
       groq`*[_type == 'typeOfDocument'] { "fields": objects[]{title, description} }`
+    )
+  })
+
+  test('can resolve documents within an array', () => {
+    expect(
+      builder.map(r => ({ fields: r.refs.resolveIn('name').use() })).use()[0]
+    ).toBe(`*[_type == 'typeOfDocument'] { ..., "fields": refs[]->name }`)
+
+    expect(
+      builder
+        .map(r => ({ fields: r.refs.resolveIn(['name', '_type']).use() }))
+        .use()[0]
+    ).toBe(
+      `*[_type == 'typeOfDocument'] { ..., "fields": refs[]->{name, _type} }`
     )
   })
 

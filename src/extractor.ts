@@ -14,8 +14,14 @@ type CustomType<A extends string> = {
   _type: A
 }
 
-interface SchemaCreator<T extends { type: string } = never> {
-  [key: string]: UnnamedField<T>
+type DocumentTypes<T extends { _type: string }> = Extract<T, { _rev: string }>
+type ObjectTypes<T extends { _type: string }> = Exclude<T, { _rev: string }>
+
+interface SchemaCreator<
+  O extends { type: string } = { type: never },
+  D extends { type: string } = { type: never }
+> {
+  [key: string]: UnnamedField<O, D>
 }
 
 type RequiredField<T> = T
@@ -36,18 +42,24 @@ type SchemaTyper<
  * This transforms an object into a typed array that can be consumed for type inference.
  */
 export function defineFields<
-  Schema extends SchemaCreator<Nameless<CustomField<CustomTypes['_type']>>>,
+  Schema extends SchemaCreator<
+    Nameless<CustomField<ObjectTypes<CustomTypes>['_type']>>,
+    Nameless<CustomField<DocumentTypes<CustomTypes>['_type']>>
+  >,
   CustomTypes extends CustomType<string>
 >(fields: Schema) {
   return Object.entries(fields).map(([key, value]) => ({
     title: splitStringByCase(key),
-    ...(value as UnnamedField<never> & { title?: string }),
+    ...(value as UnnamedField & { title?: string }),
     name: key,
   })) as DefinedFields<SchemaTyper<Schema, CustomTypes>>
 }
 
 type ExtractDocumentType<
-  Schema extends SchemaCreator<Nameless<CustomField<CustomTypes['_type']>>>,
+  Schema extends SchemaCreator<
+    Nameless<CustomField<ObjectTypes<CustomTypes>['_type']>>,
+    Nameless<CustomField<DocumentTypes<CustomTypes>['_type']>>
+  >,
   SchemaName extends string,
   CustomTypes extends CustomType<string>
 > = {
@@ -61,7 +73,10 @@ type ExtractDocumentType<
 }
 
 type DocumentDefinition<
-  Schema extends SchemaCreator<Nameless<CustomField<CustomTypes['_type']>>>,
+  Schema extends SchemaCreator<
+    Nameless<CustomField<ObjectTypes<CustomTypes>['_type']>>,
+    Nameless<CustomField<DocumentTypes<CustomTypes>['_type']>>
+  >,
   SchemaName extends string,
   CustomTypes extends CustomType<string>
 > = {
@@ -84,7 +99,10 @@ type DocumentDefinition<
 }
 
 export function defineDocument<
-  Schema extends SchemaCreator<Nameless<CustomField<CustomTypes['_type']>>>,
+  Schema extends SchemaCreator<
+    Nameless<CustomField<ObjectTypes<CustomTypes>['_type']>>,
+    Nameless<CustomField<DocumentTypes<CustomTypes>['_type']>>
+  >,
   SchemaName extends string,
   CustomTypes extends CustomType<string> = { _type: never }
 >(
@@ -129,7 +147,10 @@ export function defineDocument<
 }
 
 type ObjectDefinition<
-  Schema extends SchemaCreator<Nameless<CustomField<CustomTypes['_type']>>>,
+  Schema extends SchemaCreator<
+    Nameless<CustomField<ObjectTypes<CustomTypes>['_type']>>,
+    Nameless<CustomField<DocumentTypes<CustomTypes>['_type']>>
+  >,
   SchemaName extends string,
   CustomTypes extends CustomType<string>
 > = {
@@ -145,7 +166,10 @@ type ObjectDefinition<
 }
 
 type ExtractObjectType<
-  Schema extends SchemaCreator<Nameless<CustomField<CustomTypes['_type']>>>,
+  Schema extends SchemaCreator<
+    Nameless<CustomField<ObjectTypes<CustomTypes>['_type']>>,
+    Nameless<CustomField<DocumentTypes<CustomTypes>['_type']>>
+  >,
   SchemaName extends string,
   CustomTypes extends CustomType<string>
 > = {
@@ -153,7 +177,10 @@ type ExtractObjectType<
 } & { _type: SchemaName }
 
 export function defineObject<
-  Schema extends SchemaCreator<Nameless<CustomField<CustomTypes['_type']>>>,
+  Schema extends SchemaCreator<
+    Nameless<CustomField<ObjectTypes<CustomTypes>['_type']>>,
+    Nameless<CustomField<DocumentTypes<CustomTypes>['_type']>>
+  >,
   SchemaName extends string,
   CustomTypes extends CustomType<string> = { _type: never }
 >(
@@ -163,7 +190,10 @@ export function defineObject<
 ): ObjectDefinition<Schema, SchemaName, CustomTypes>
 
 export function defineObject<
-  Schema extends SchemaCreator<Nameless<CustomField<CustomTypes['_type']>>>,
+  Schema extends SchemaCreator<
+    Nameless<CustomField<ObjectTypes<CustomTypes>['_type']>>,
+    Nameless<CustomField<DocumentTypes<CustomTypes>['_type']>>
+  >,
   SchemaName extends string,
   CustomTypes extends CustomType<string> = { _type: never }
 >(
