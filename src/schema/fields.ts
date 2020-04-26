@@ -9,6 +9,8 @@ import {
   URLRule,
 } from './validation'
 
+type Component = () => any
+
 interface Fieldset {
   name: string
   title?: string
@@ -46,8 +48,8 @@ export interface BaseField {
    */
   description?: string
   // Studio options
-  icon?: any
-  inputComponent?: any
+  icon?: Component
+  inputComponent?: Component
   options?: {
     [key: string]: any
   }
@@ -62,8 +64,8 @@ export interface ArrayField<
    * Defines which types are allowed as members of the array.
    */
   of: Array<
-    | PureType<CustomObjectName>
     | Omit<ReferenceField<CustomDocuments>, 'name'>
+    | (PureType<CustomObjectName> & Partial<BaseField>)
     | (Pick<Field, 'type'> & Partial<Field>)
   >
   options?: {
@@ -89,20 +91,36 @@ export interface ArrayField<
   validation?: Validator<ArrayRule>
 }
 
-interface BlockField extends BaseField {
+interface BlockEditor {
+  icon?: Component
+  render?: Component
+}
+
+interface BlockStyle {
+  title: string
+  value: string
+  blockEditor?: BlockEditor
+}
+
+interface Marks {
+  annotations?: Array<Field & { blockEditor?: BlockEditor }>
+  decorators?: Array<Field & { blockEditor?: BlockEditor }>
+}
+
+export interface BlockField extends BaseField {
   type: 'block'
   /**
    * This defines which styles that applies to blocks. A style is an object with a title (will be displayed in the style dropdown) and a value, e.g.: styles: [{title: 'Quote', value: 'blockquote'}]. If no styles are given, the default styles are H1 up to H6 and blockquote. A style named normal is reserved, always included and represents "unstyled" text. If you don't want any styles, set this to an empty array e.g.: styles: [].
    */
-  styles?: Array<{ title: string; value: string }>
+  styles?: Array<BlockStyle>
   /**
    * What list types that can be applied to blocks. Like styles above, this also is an array of "name", "title" pairs, e.g.: {title: 'Bullet', value: 'bullet'}. Default list types are bullet and number.
    */
-  lists?: Array<{ title: string; value: string }>
+  lists?: Array<BlockStyle>
   /**
    * An object defining which .decorators (array) and .annotations (array) are allowed.
    */
-  marks?: {}
+  marks?: Marks
   /**
    * An array of inline content types that you can place in running text from the Insert menu.
    */
@@ -110,7 +128,7 @@ interface BlockField extends BaseField {
   /**
    * To return icon showed in menus and toolbar
    */
-  icon?: () => any
+  icon?: Component
   validation?: Validator
 }
 
@@ -168,7 +186,7 @@ interface DatetimeField extends BaseField {
 export interface DocumentField<T extends Record<string, any>>
   extends BaseField {
   type: 'document'
-  initialValue?: Record<string, any>
+  initialValue?: Record<string, any> | (() => Record<string, any>)
   /**
    * A declaration of possible ways to order documents of this type.
    */
@@ -414,9 +432,6 @@ export type Field = UnnamedField & { name: string }
 export type DefinedFields<T> = Array<Field & { [type]: T }>
 
 type CustomTypeName<T extends { _type: string }> = { type: T['_type'] }
-
-// type DocumentTypes<T extends { _type: string }> = Extract<T, { _rev: string }>
-// type ObjectTypes<T extends { _type: string }> = Exclude<T, { _rev: string }>
 
 export type FieldType<
   T extends UnnamedField<any>,

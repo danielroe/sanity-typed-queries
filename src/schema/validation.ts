@@ -18,6 +18,10 @@ export interface BaseRule {
    * Ensures that this field exists.
    */
   required: () => this & RuleForRequired
+  /**
+   * Allows you to reference the value of a sibling field.
+   */
+  valueOfField: (field: string) => any
 }
 
 export interface ArrayRule extends BaseRule {

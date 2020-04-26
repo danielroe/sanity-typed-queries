@@ -4,6 +4,7 @@ import {
   DefinedFields,
   Nameless,
   CustomField,
+  DocumentField,
 } from './schema/fields'
 
 import { splitStringByCase } from './utils'
@@ -95,7 +96,7 @@ type DocumentDefinition<
     fields: DefinedFields<SchemaTyper<Schema, CustomTypes>>
     title: string
     type: 'document'
-  }
+  } & DocumentField<DefinedFields<SchemaTyper<Schema, CustomTypes>>>
 }
 
 export function defineDocument<
