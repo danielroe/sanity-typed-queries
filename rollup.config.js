@@ -12,11 +12,6 @@ export default {
       file: pkg.module,
       format: 'es',
     },
-    {
-      file: pkg.browser,
-      format: 'iife',
-      name: 'SanityTypedQueries',
-    },
   ],
   external: [
     ...Object.keys(pkg.dependencies || {}),
