@@ -1,3 +1,10 @@
+### [0.6.3](https://github.com/danielroe/sanity-typed-queries/compare/0.6.2...0.6.3) (2020-05-02)
+
+
+### Bug Fixes
+
+* remove iife build ([1376386](https://github.com/danielroe/sanity-typed-queries/commit/137638670268feafb9310fb9be45b14bacb67740))
+
 ### [0.6.2](https://github.com/danielroe/sanity-typed-queries/compare/0.6.1...0.6.2) (2020-04-29)
 
 ### [0.6.1](https://github.com/danielroe/sanity-typed-queries/compare/0.6.0...0.6.1) (2020-04-26)
