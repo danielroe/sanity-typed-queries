@@ -12,6 +12,11 @@ export default {
       file: pkg.module,
       format: 'es',
     },
+    {
+      file: pkg.browser,
+      format: 'umd',
+      name: 'SanityTypedQueries',
+    },
   ],
   external: [
     ...Object.keys(pkg.dependencies || {}),
