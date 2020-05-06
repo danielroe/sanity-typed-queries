@@ -1,3 +1,11 @@
+### [0.6.5](https://github.com/danielroe/sanity-typed-queries/compare/0.6.4...0.6.5) (2020-05-06)
+
+
+### Bug Fixes
+
+* run babel on umd build ([fd7b271](https://github.com/danielroe/sanity-typed-queries/commit/fd7b271a13eec3ffc635fc596b37074e4acaa258))
+* transpile all builds ([0107bc1](https://github.com/danielroe/sanity-typed-queries/commit/0107bc1289f800ef0f09d261ded2b91c7f2acccb))
+
 ### [0.6.4](https://github.com/danielroe/sanity-typed-queries/compare/0.6.3...0.6.4) (2020-05-05)
 
 ### [0.6.3](https://github.com/danielroe/sanity-typed-queries/compare/0.6.2...0.6.3) (2020-05-02)
