@@ -18,7 +18,7 @@
   ],
   "main": "lib/index.js",
   "module": "lib/index.es.js",
-  "browser": "lib/index.umd.js",
+  "umd:main": "lib/index.umd.js",
   "types": "lib/index.d.ts",
   "files": [
     "lib/**/*",
@@ -52,6 +52,7 @@
     "@babel/preset-env": "^7.9.6",
     "@babel/preset-typescript": "^7.9.0",
     "@release-it/conventional-changelog": "^1.1.4",
+    "@rollup/plugin-babel": "^5.0.0",
     "@types/jest": "^25.2.1",
     "@typescript-eslint/eslint-plugin": "^2.30.0",
     "@typescript-eslint/parser": "^2.30.0",

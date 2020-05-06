@@ -1,21 +1,24 @@
 import typescript from 'rollup-plugin-typescript2'
+import babel from '@rollup/plugin-babel'
 import pkg from './package.json'
 
-export default {
+const builds = {
+  cjs: {
+    output: { file: pkg.main },
+  },
+  es: { output: { file: pkg.module } },
+  umd: {
+    output: { file: pkg['umd:main'], name: 'sanityTypedQueries' },
+    plugins: [babel({ babelHelpers: 'bundled', extensions: ['.js', '.ts'] })],
+  },
+}
+
+export default Object.entries(builds).map(([format, build]) => ({
   input: 'src/index.ts',
   output: [
     {
-      file: pkg.main,
-      format: 'cjs',
-    },
-    {
-      file: pkg.module,
-      format: 'es',
-    },
-    {
-      file: pkg.browser,
-      format: 'umd',
-      name: 'SanityTypedQueries',
+      format,
+      ...build.output,
     },
   ],
   external: [
@@ -26,5 +29,6 @@ export default {
     typescript({
       typescript: require('typescript'),
     }),
+    ...(build.plugins || []),
   ],
-}
+}))
