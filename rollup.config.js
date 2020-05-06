@@ -9,7 +9,6 @@ const builds = {
   es: { output: { file: pkg.module } },
   umd: {
     output: { file: pkg['umd:main'], name: 'sanityTypedQueries' },
-    plugins: [babel({ babelHelpers: 'bundled', extensions: ['.js', '.ts'] })],
   },
 }
 
@@ -29,6 +28,7 @@ export default Object.entries(builds).map(([format, build]) => ({
     typescript({
       typescript: require('typescript'),
     }),
+    babel({ babelHelpers: 'bundled', extensions: ['.js', '.ts'] }),
     ...(build.plugins || []),
   ],
 }))
