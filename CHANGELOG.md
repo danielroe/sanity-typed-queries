@@ -1,3 +1,10 @@
+### [0.6.6](https://github.com/danielroe/sanity-typed-queries/compare/0.6.5...0.6.6) (2020-05-07)
+
+
+### Bug Fixes
+
+* correct type for marks in block field ([1817eee](https://github.com/danielroe/sanity-typed-queries/commit/1817eee30f8f3265228421593fb02b5812238d7f)), closes [#35](https://github.com/danielroe/sanity-typed-queries/issues/35)
+
 ### [0.6.5](https://github.com/danielroe/sanity-typed-queries/compare/0.6.4...0.6.5) (2020-05-06)
 
 
