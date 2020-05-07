@@ -103,8 +103,8 @@ interface BlockStyle {
 }
 
 interface Marks {
-  annotations?: Array<Field & { blockEditor?: BlockEditor }>
-  decorators?: Array<Field & { blockEditor?: BlockEditor }>
+  annotations?: BlockStyle[]
+  decorators?: BlockStyle[]
 }
 
 export interface BlockField extends BaseField {
