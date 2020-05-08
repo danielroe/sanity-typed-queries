@@ -103,7 +103,7 @@ interface BlockStyle {
 }
 
 interface Marks {
-  annotations?: BlockStyle[]
+  annotations?: Array<Field & { blockEditor?: BlockEditor }>
   decorators?: BlockStyle[]
 }
 
