@@ -1,3 +1,10 @@
+### [0.6.7](https://github.com/danielroe/sanity-typed-queries/compare/0.6.6...0.6.7) (2020-05-08)
+
+
+### Bug Fixes
+
+* type for annotations was wrongly changed ([f941e57](https://github.com/danielroe/sanity-typed-queries/commit/f941e57c34d0d93b79901c0b79cb9aded13e0bd0)), closes [#35](https://github.com/danielroe/sanity-typed-queries/issues/35)
+
 ### [0.6.6](https://github.com/danielroe/sanity-typed-queries/compare/0.6.5...0.6.6) (2020-05-07)
 
 
