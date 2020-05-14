@@ -68,7 +68,7 @@
     "npm-run-all": "^4.1.5",
     "prettier": "^2.0.5",
     "prettier-eslint-cli": "^5.0.0",
-    "release-it": "^13.5.8",
+    "release-it": "^13.6.0",
     "rollup": "^2.10.0",
     "rollup-plugin-typescript2": "^0.27.1",
     "tsd": "0.11.0",
