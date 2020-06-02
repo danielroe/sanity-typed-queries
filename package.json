@@ -49,7 +49,7 @@
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.10.1",
     "@babel/plugin-transform-runtime": "^7.10.1",
-    "@babel/preset-env": "^7.10.1",
+    "@babel/preset-env": "^7.10.2",
     "@babel/preset-typescript": "^7.10.1",
     "@release-it/conventional-changelog": "^1.1.4",
     "@rollup/plugin-babel": "^5.0.2",
@@ -68,8 +68,8 @@
     "npm-run-all": "^4.1.5",
     "prettier": "^2.0.5",
     "prettier-eslint-cli": "^5.0.0",
-    "release-it": "^13.6.1",
-    "rollup": "^2.11.2",
+    "release-it": "^13.6.2",
+    "rollup": "^2.12.1",
     "rollup-plugin-typescript2": "^0.27.1",
     "tsd": "0.11.0",
     "yorkie": "^2.0.0"
