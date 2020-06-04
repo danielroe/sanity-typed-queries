@@ -318,7 +318,7 @@ interface ReferenceField<CustomType extends { type: string } = never>
     filter?:
       | string
       | ((context: {
-          document: DocumentField<{}>
+          document: DocumentField<Record<string, unknown>>
           parent: Field
           parentPath: string
         }) => { filter: string; params: Record<string, any> })
@@ -339,7 +339,7 @@ interface SlugField extends BaseField {
     source?:
       | string
       | ((
-          doc: DocumentField<{}>,
+          doc: DocumentField<Record<string, unknown>>,
           options: { parent: Field; parentPath: string }
         ) => string)
     /**

@@ -24,27 +24,29 @@ type BaseResolverAction<T> = {
 }
 
 type ResolverAction<T> = BaseResolverAction<T> &
-  (T extends Reference<infer A> ? { resolve: ResolverFunction<A> } : {}) &
+  (T extends Reference<infer A>
+    ? { resolve: ResolverFunction<A> }
+    : Record<string, unknown>) &
   (T extends Array<any>
     ? {
         count: () => number
       }
-    : {}) &
+    : Record<string, unknown>) &
   (T extends Array<Record<string, any>>
     ? {
         pick: <K extends keyof T[0]>(
           props: K[] | K
         ) => { use: () => Pick<T[0], K> }
       }
-    : {}) &
+    : Record<string, unknown>) &
   (T extends Array<Reference<infer A>>
     ? {
         resolveIn: ResolverFunction<A, true>
       }
-    : {})
+    : Record<string, unknown>)
 
 type MapResolver<T extends Record<string, any>> = (T extends Array<any>
-  ? {}
+  ? Record<string, unknown>
   : {
       [P in keyof T]: ResolveFieldType<T[P]>
     }) &
