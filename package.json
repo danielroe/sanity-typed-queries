@@ -69,7 +69,7 @@
     "prettier": "^2.0.5",
     "prettier-eslint-cli": "^5.0.0",
     "release-it": "^13.6.3",
-    "rollup": "^2.18.0",
+    "rollup": "^2.18.1",
     "rollup-plugin-typescript2": "^0.27.1",
     "tsd": "0.11.0",
     "yorkie": "^2.0.0"
