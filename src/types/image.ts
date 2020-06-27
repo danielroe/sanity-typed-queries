@@ -1,4 +1,4 @@
-import { Geopoint, Reference } from '.'
+import type { Geopoint, Reference } from '.'
 
 interface Palette {
   background: string

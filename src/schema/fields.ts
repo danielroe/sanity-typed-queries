@@ -1,6 +1,6 @@
-import { Block, File, Geopoint, Image, Reference, Slug } from '../types'
+import type { Block, File, Geopoint, Image, Reference, Slug } from '../types'
 
-import {
+import type {
   ArrayRule,
   Validator,
   DatetimeRule,

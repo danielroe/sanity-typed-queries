@@ -1,7 +1,6 @@
 import { expectType, expectError } from 'tsd'
 
-import { defineDocument } from '../../src'
-import { defineFields, defineObject } from '../../src/extractor'
+import { defineDocument, defineFields, defineObject } from '../..'
 
 const { builder } = defineDocument('author', {
   name: {

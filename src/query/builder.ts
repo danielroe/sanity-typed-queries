@@ -1,4 +1,4 @@
-import { Reference } from '../types'
+import type { Reference } from '../types'
 import { inArray, createProxy } from '../utils'
 
 type QueryReturnType<T> = [string, T]

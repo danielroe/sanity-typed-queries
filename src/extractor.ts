@@ -1,4 +1,5 @@
-import {
+import { QueryBuilder } from './query/builder'
+import type {
   UnnamedField,
   FieldType,
   DefinedFields,
@@ -6,10 +7,8 @@ import {
   CustomField,
   DocumentField,
 } from './schema/fields'
-
+import type { RuleForRequired } from './schema/validation'
 import { splitStringByCase } from './utils'
-import { RuleForRequired } from './schema/validation'
-import { QueryBuilder } from './query/builder'
 
 type CustomType<A extends string> = {
   _type: A

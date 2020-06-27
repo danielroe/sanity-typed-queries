@@ -1,8 +1,16 @@
 import { expectType, expectError } from 'tsd'
 
-import { defineDocument } from '../../src'
-import { Block, File, Geopoint, Image, Slug, to } from '../../src/types'
-import { defineFields, defineObject } from '../../src/extractor'
+import {
+  defineDocument,
+  defineFields,
+  defineObject,
+  Block,
+  File,
+  Geopoint,
+  Image,
+  Slug,
+  to,
+} from '../..'
 
 /**
  * 'array'
