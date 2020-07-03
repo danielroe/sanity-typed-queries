@@ -1,3 +1,10 @@
+### [0.6.11](https://github.com/danielroe/sanity-typed-queries/compare/0.6.10...0.6.11) (2020-07-03)
+
+
+### Bug Fixes
+
+* target es2015 to fix `@sanity/cli` builds ([4059596](https://github.com/danielroe/sanity-typed-queries/commit/4059596ecc92cd6593c3395979524e646fb4b0db))
+
 ### [0.6.10](https://github.com/danielroe/sanity-typed-queries/compare/0.6.9...0.6.10) (2020-06-27)
 
 ### [0.6.9](https://github.com/danielroe/sanity-typed-queries/compare/0.6.8...0.6.9) (2020-06-27)
