@@ -51,7 +51,7 @@
     "@siroc/jest-preset": "^0.2.0",
     "@types/jest": "^26.0.10",
     "codecov": "^3.7.2",
-    "esbuild": "0.6.27",
+    "esbuild": "0.6.28",
     "groq": "^1.150.1",
     "jest": "^26.4.2",
     "lint-staged": "^10.2.13",
