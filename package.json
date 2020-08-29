@@ -37,8 +37,7 @@
     "prepare": "yarn build",
     "prepublishOnly": "yarn lint && yarn test",
     "release": "release-it",
-    "test": "yarn test:types && yarn test:unit",
-    "test:types": "tsd",
+    "test": "yarn test:unit",
     "test:unit": "jest"
   },
   "husky": {
@@ -67,6 +66,7 @@
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-jest": "^23.20.0",
     "eslint-plugin-prettier": "^3.1.4",
+    "expect-type": "^0.7.9",
     "groq": "^1.150.1",
     "husky": "^4.2.5",
     "jest": "^26.4.2",
@@ -74,13 +74,6 @@
     "prettier": "^2.1.1",
     "release-it": "^13.7.0",
     "siroc": "^0.3.1",
-    "tsd": "0.13.1",
     "typescript": "^4.0.2"
-  },
-  "tsd": {
-    "directory": "test/tsd",
-    "compilerOptions": {
-      "rootDir": "."
-    }
   }
 }

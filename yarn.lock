@@ -4057,21 +4057,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-formatter-pretty@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "eslint-formatter-pretty@npm:4.0.0"
-  dependencies:
-    ansi-escapes: ^4.2.1
-    chalk: ^4.1.0
-    eslint-rule-docs: ^1.1.5
-    log-symbols: ^4.0.0
-    plur: ^4.0.0
-    string-width: ^4.2.0
-    supports-hyperlinks: ^2.0.0
-  checksum: aec66ccea3669716606b88e890bfca3222a6b516945fdca9373b332874fa9661450e8186c2b1ef1dcdd38eb759e4e6f59bc713501eaffcde083deffac8442e7d
-  languageName: node
-  linkType: hard
-
 "eslint-plugin-jest@npm:^23.18.2, eslint-plugin-jest@npm:^23.20.0":
   version: 23.20.0
   resolution: "eslint-plugin-jest@npm:23.20.0"
@@ -4099,13 +4084,6 @@ __metadata:
   version: 4.2.1
   resolution: "eslint-plugin-promise@npm:4.2.1"
   checksum: 8c233a0b5f5646e08709e999aa75973481ee46c45255ec4b4d1577915f68d79ae52f6f84e361af5b761971294bdb38ec86021515fa4cff178f57c989226dd671
-  languageName: node
-  linkType: hard
-
-"eslint-rule-docs@npm:^1.1.5":
-  version: 1.1.206
-  resolution: "eslint-rule-docs@npm:1.1.206"
-  checksum: a832cf237dd80eff0452691b03333c78f8eee05e8f7edc35d83d65f04839e4576eedb0782afe90267055ee8c4559b64c4c129492d661a8920239e123da20b36d
   languageName: node
   linkType: hard
 
@@ -4313,6 +4291,13 @@ __metadata:
     snapdragon: ^0.8.1
     to-regex: ^3.0.1
   checksum: 9aadab00ff10da89d3bdbcb92fc48f152977e8f986b227955b17601cb7eb65a63c9b35811d78ce8ff534fc20faab759a043f0f1c71b904f5d37a35a074ff6fb0
+  languageName: node
+  linkType: hard
+
+"expect-type@npm:^0.7.9":
+  version: 0.7.9
+  resolution: "expect-type@npm:0.7.9"
+  checksum: c9c64bec4ec51b3e22c897b94b83857695d3a76c12186065fa6774c83904a35a879a4f70e3d86ee7e95d4d206b03796402b041160fc31936895929bb44ba0f61
   languageName: node
   linkType: hard
 
@@ -4932,7 +4917,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"globby@npm:11.0.1, globby@npm:^11.0.1":
+"globby@npm:11.0.1":
   version: 11.0.1
   resolution: "globby@npm:11.0.1"
   dependencies:
@@ -5395,13 +5380,6 @@ __metadata:
   version: 2.1.0
   resolution: "ip-regex@npm:2.1.0"
   checksum: 2fd2190ada81b55a8a6f913bcb5a6fd6ff9da127905b4c01521f09a1d391e86d415dfe8c131ed2989d536949bb2f9654a71b9fa6f7ae2ac3ae6111b2026cc902
-  languageName: node
-  linkType: hard
-
-"irregular-plurals@npm:^3.2.0":
-  version: 3.2.0
-  resolution: "irregular-plurals@npm:3.2.0"
-  checksum: 1abd6d0d27ac0917822e385a54968b320c8e27770e3731f8b758c19069fbe2e245361d76335f90a2b8af04c00556166148d5499c4552a25ea05158f097e606c3
   languageName: node
   linkType: hard
 
@@ -6961,7 +6939,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"meow@npm:^7.0.0, meow@npm:^7.0.1":
+"meow@npm:^7.0.0":
   version: 7.1.0
   resolution: "meow@npm:7.1.0"
   dependencies:
@@ -7924,15 +7902,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"plur@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "plur@npm:4.0.0"
-  dependencies:
-    irregular-plurals: ^3.2.0
-  checksum: 22e3ba41be31e5843decf0b68ce555b7750da3b8ba56e34fbe3abc775fa9428ecf263ef401a5d0962cface0290caf0132ddd87617f02fc41789bbb0fa2a010c1
-  languageName: node
-  linkType: hard
-
 "posix-character-classes@npm:^0.1.0":
   version: 0.1.1
   resolution: "posix-character-classes@npm:0.1.1"
@@ -8152,7 +8121,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"read-pkg-up@npm:^7.0.0, read-pkg-up@npm:^7.0.1":
+"read-pkg-up@npm:^7.0.1":
   version: 7.0.1
   resolution: "read-pkg-up@npm:7.0.1"
   dependencies:
@@ -8774,6 +8743,7 @@ __metadata:
     eslint-config-prettier: ^6.11.0
     eslint-plugin-jest: ^23.20.0
     eslint-plugin-prettier: ^3.1.4
+    expect-type: ^0.7.9
     groq: ^1.150.1
     husky: ^4.2.5
     jest: ^26.4.2
@@ -8781,7 +8751,6 @@ __metadata:
     prettier: ^2.1.1
     release-it: ^13.7.0
     siroc: ^0.3.1
-    tsd: 0.13.1
     typescript: ^4.0.2
   languageName: unknown
   linkType: soft
@@ -9739,22 +9708,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tsd@npm:0.13.1":
-  version: 0.13.1
-  resolution: "tsd@npm:0.13.1"
-  dependencies:
-    eslint-formatter-pretty: ^4.0.0
-    globby: ^11.0.1
-    meow: ^7.0.1
-    path-exists: ^4.0.0
-    read-pkg-up: ^7.0.0
-    update-notifier: ^4.1.0
-  bin:
-    tsd: dist/cli.js
-  checksum: 232d6079112742057e2575018d9f636bc33b8204955dcbdf3d139bad358a4d68f522b7cff2cc89174995fa4d23a62bb8b19091db241de44e15e83cc79256b129
-  languageName: node
-  linkType: hard
-
 "tslib@npm:^1.8.1, tslib@npm:^1.9.0":
   version: 1.13.0
   resolution: "tslib@npm:1.13.0"
@@ -9963,7 +9916,7 @@ typescript@^4.0.2:
   languageName: node
   linkType: hard
 
-"update-notifier@npm:4.1.1, update-notifier@npm:^4.1.0":
+"update-notifier@npm:4.1.1":
   version: 4.1.1
   resolution: "update-notifier@npm:4.1.1"
   dependencies:
