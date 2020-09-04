@@ -4,9 +4,10 @@ module.exports = {
   },
   rules: {
     '@typescript-eslint/ban-ts-comment': 'off',
+    '@typescript-eslint/ban-types': 'off',
+    '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-inferrable-types': 1,
-    '@typescript-eslint/ban-types': 0,
-    '@typescript-eslint/explicit-function-return-type': 0,
+    'no-unused-vars': 'off',
   },
   extends: ['@siroc'],
 }
