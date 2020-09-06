@@ -8436,9 +8436,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"release-it@npm:^14.0.1":
-  version: 14.0.1
-  resolution: "release-it@npm:14.0.1"
+"release-it@npm:^14.0.2":
+  version: 14.0.2
+  resolution: "release-it@npm:14.0.2"
   dependencies:
     "@iarna/toml": 2.2.5
     "@octokit/rest": 18.0.4
@@ -8470,7 +8470,7 @@ __metadata:
     yargs-parser: 19.0.4
   bin:
     release-it: bin/release-it.js
-  checksum: 03916d90f6735ad530f8f2e13c2afeaead8069f4bac658705ba6b0341478bf4fc4a079fc5f0e3a4a2d002b674a29540cad57540f910df8df0ad16f4b3b110772
+  checksum: efed8a719e792b9aa1f1b8de76d046317be0f4effc6486b2288fa5ab3260dfa43a7ce0edb7ce63c4d0bb81e9be198ad2084e3e7420ea6b50a7fb58f5a3a05abb
   languageName: node
   linkType: hard
 
@@ -8852,7 +8852,7 @@ __metadata:
     jest: ^26.4.2
     lint-staged: ^10.3.0
     prettier: ^2.1.1
-    release-it: ^14.0.1
+    release-it: ^14.0.2
     siroc: ^0.3.1
     typescript: ^4.0.2
   languageName: unknown
