@@ -3612,19 +3612,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cosmiconfig@npm:^6.0.0":
-  version: 6.0.0
-  resolution: "cosmiconfig@npm:6.0.0"
-  dependencies:
-    "@types/parse-json": ^4.0.0
-    import-fresh: ^3.1.0
-    parse-json: ^5.0.0
-    path-type: ^4.0.0
-    yaml: ^1.7.2
-  checksum: bbd6bbaefe15938107da21f2b5f2d5ede75c7ed4bca5af904d91987c59b050ac95f5e786d9021e16959e0119b36174b190f6040a1daf6fddc75361ab123c0d45
-  languageName: node
-  linkType: hard
-
 "cross-spawn@npm:^6.0.0":
   version: 6.0.5
   resolution: "cross-spawn@npm:6.0.5"
@@ -4079,12 +4066,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild@npm:0.6.30":
-  version: 0.6.30
-  resolution: "esbuild@npm:0.6.30"
+"esbuild@npm:0.6.32":
+  version: 0.6.32
+  resolution: "esbuild@npm:0.6.32"
   bin:
     esbuild: bin/esbuild
-  checksum: 2f79814dbda08776699233ef9a07fd31b2ec0ada6422c7098fd533ec431d58c81b36f433a78920ab45cf89688896ae0bb489d4ff684d03829794656e6759b219
+  checksum: b1b59c8e06ad334472c0e8726148c33c7d702c2b2c407361baf57250fabf165c6ef4373e7653cda38c0227a211757c1498f2b60c4efea1c29b3efc9691d0b3d2
   languageName: node
   linkType: hard
 
@@ -5304,14 +5291,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"husky@npm:^4.2.5":
-  version: 4.2.5
-  resolution: "husky@npm:4.2.5"
+"husky@npm:^4.3.0":
+  version: 4.3.0
+  resolution: "husky@npm:4.3.0"
   dependencies:
     chalk: ^4.0.0
     ci-info: ^2.0.0
     compare-versions: ^3.6.0
-    cosmiconfig: ^6.0.0
+    cosmiconfig: ^7.0.0
     find-versions: ^3.2.0
     opencollective-postinstall: ^2.0.2
     pkg-dir: ^4.2.0
@@ -5321,7 +5308,7 @@ __metadata:
   bin:
     husky-run: bin/run.js
     husky-upgrade: lib/upgrader/bin.js
-  checksum: 9d03d38c66688ab61166b425aa70229665c93a2a6fbd0d7388923205622fe34c6cc4c251777337b0813a40891750a18d603eff8451a58d06953807535a8908ed
+  checksum: c212d9732de84cbd7c25d907b874f7844503f85e28c0512518cddbac9854c54f1c569e81c5b70387f1e3c27d35c2b43256c811cf06fdad066565c5fc178f33f7
   languageName: node
   linkType: hard
 
@@ -5366,7 +5353,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"import-fresh@npm:^3.0.0, import-fresh@npm:^3.1.0, import-fresh@npm:^3.2.1":
+"import-fresh@npm:^3.0.0, import-fresh@npm:^3.2.1":
   version: 3.2.1
   resolution: "import-fresh@npm:3.2.1"
   dependencies:
@@ -8841,14 +8828,14 @@ __metadata:
     "@typescript-eslint/eslint-plugin": ^4.0.1
     "@typescript-eslint/parser": ^4.0.1
     codecov: ^3.7.2
-    esbuild: 0.6.30
+    esbuild: 0.6.32
     eslint: ^7.8.1
     eslint-config-prettier: ^6.11.0
     eslint-plugin-jest: ^24.0.0
     eslint-plugin-prettier: ^3.1.4
     expect-type: ^0.7.9
     groq: ^1.150.1
-    husky: ^4.2.5
+    husky: ^4.3.0
     jest: ^26.4.2
     lint-staged: ^10.3.0
     prettier: ^2.1.1
@@ -10411,7 +10398,7 @@ typescript@^4.0.2:
   languageName: node
   linkType: hard
 
-"yaml@npm:1.10.0, yaml@npm:^1.10.0, yaml@npm:^1.7.2":
+"yaml@npm:1.10.0, yaml@npm:^1.10.0":
   version: 1.10.0
   resolution: "yaml@npm:1.10.0"
   checksum: d4cc9f9724f8d0aebc2cf52e4e6aa7059f12d50deb54b5225d103462fb2af36e5c0bb419101ca4b1f0cd3b4db9e4139cf2c690e863ac6227648d39d6f4e2522c
