@@ -58,8 +58,8 @@
     "@siroc/eslint-config": "^0.2.0",
     "@siroc/jest-preset": "^0.2.0",
     "@types/jest": "^26.0.13",
-    "@typescript-eslint/eslint-plugin": "^4.1.0",
-    "@typescript-eslint/parser": "^4.1.0",
+    "@typescript-eslint/eslint-plugin": "^4.1.1",
+    "@typescript-eslint/parser": "^4.1.1",
     "codecov": "^3.7.2",
     "esbuild": "0.7.1",
     "eslint": "^7.9.0",
@@ -71,8 +71,8 @@
     "husky": "^4.3.0",
     "jest": "^26.4.2",
     "lint-staged": "^10.3.0",
-    "prettier": "^2.1.1",
-    "release-it": "^14.0.2",
+    "prettier": "^2.1.2",
+    "release-it": "^14.0.3",
     "siroc": "^0.3.1",
     "typescript": "^4.0.2"
   }
