@@ -1,3 +1,10 @@
+## [0.7.0](https://github.com/danielroe/sanity-typed-queries/compare/0.6.11...0.7.0) (2020-09-26)
+
+
+### Features
+
+* add ability for additional custom filters ([fd8fc38](https://github.com/danielroe/sanity-typed-queries/commit/fd8fc387819804e2fce893c7185dd2f412a6dea3)), closes [#93](https://github.com/danielroe/sanity-typed-queries/issues/93)
+
 ### [0.6.11](https://github.com/danielroe/sanity-typed-queries/compare/0.6.10...0.6.11) (2020-07-03)
 
 
