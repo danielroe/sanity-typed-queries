@@ -65,6 +65,16 @@ describe('query builder', () => {
       groq`*[_type == 'typeOfDocument'] [0]`
     )
   })
+  test('can filter results', () => {
+    expect(builder.filter('_id == "testid"').first().use()[0]).toBe(
+      groq`*[_type == 'typeOfDocument' && _id == "testid"] [0]`
+    )
+    expect(
+      builder.filter('_id == "testid" || defined(id)').first().use()[0]
+    ).toBe(
+      groq`*[_type == 'typeOfDocument' && (_id == "testid" || defined(id))] [0]`
+    )
+  })
   test('can choose attributes to project', () => {
     expect(builder.pick('description').use()[0]).toBe(
       groq`*[_type == 'typeOfDocument'].description`

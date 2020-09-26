@@ -71,6 +71,7 @@ export class QueryBuilder<
   private selector: string
   private project: boolean
   private restricted: boolean
+  private filters: string[]
 
   constructor(
     schema: Schema,
@@ -79,7 +80,8 @@ export class QueryBuilder<
     mappings: Record<string, string> = {},
     selector = '',
     project = true,
-    restricted = false
+    restricted = false,
+    filters = [] as string[]
   ) {
     this.schema = schema
     this.projections = projections
@@ -88,6 +90,7 @@ export class QueryBuilder<
     this.project = project
     this.ordering = ordering
     this.restricted = restricted
+    this.filters = filters
   }
 
   orderBy<Key extends keyof Schema>(key: Key, order: 'asc' | 'desc' = 'asc') {
@@ -98,7 +101,8 @@ export class QueryBuilder<
       this.mappings,
       this.selector,
       this.project,
-      this.restricted
+      this.restricted,
+      this.filters
     )
   }
 
@@ -117,7 +121,8 @@ export class QueryBuilder<
       this.mappings,
       ` [${from}..${exclusive ? '.' : ''}${to}]`,
       this.project,
-      this.restricted
+      this.restricted,
+      this.filters
     ) as unknown) as Omit<
       QueryBuilder<
         Schema,
@@ -161,7 +166,8 @@ export class QueryBuilder<
       this.mappings,
       this.selector,
       project,
-      true
+      true,
+      this.filters
     ) as any
   }
 
@@ -182,7 +188,8 @@ export class QueryBuilder<
       this.mappings,
       ' [0]',
       this.project,
-      this.restricted
+      this.restricted,
+      this.filters
     ) as unknown) as Omit<
       QueryBuilder<
         Schema,
@@ -228,7 +235,8 @@ export class QueryBuilder<
       mappings,
       this.selector,
       this.project,
-      this.restricted
+      this.restricted,
+      this.filters
     ) as unknown) as Omit<
       QueryBuilder<
         Schema,
@@ -241,8 +249,26 @@ export class QueryBuilder<
     >
   }
 
+  filter(filter: string) {
+    return new QueryBuilder(
+      this.schema,
+      this.ordering,
+      this.projections,
+      this.mappings,
+      this.selector,
+      this.project,
+      this.restricted,
+      [...this.filters, filter]
+    )
+  }
+
   get option() {
-    return [`_type == '${this.schema._type}'`].join(' && ')
+    return [
+      `_type == '${this.schema._type}'`,
+      ...this.filters.map(filter =>
+        filter.includes('||') ? `(${filter})` : filter
+      ),
+    ].join(' && ')
   }
 
   get order() {
