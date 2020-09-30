@@ -18,7 +18,6 @@
   ],
   "sideEffects": false,
   "main": "lib/index.js",
-  "module": "lib/index.es.js",
   "types": "lib/index.d.ts",
   "files": [
     "lib/**/*",
