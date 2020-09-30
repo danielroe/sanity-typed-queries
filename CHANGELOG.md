@@ -1,3 +1,10 @@
+### [0.7.2](https://github.com/danielroe/sanity-typed-queries/compare/0.7.1...0.7.2) (2020-09-30)
+
+
+### Bug Fixes
+
+* produce `es2015` build correctly ([6211056](https://github.com/danielroe/sanity-typed-queries/commit/621105667c4146334c7f9d2873881d1480af1dff)), closes [#95](https://github.com/danielroe/sanity-typed-queries/issues/95)
+
 ### [0.7.1](https://github.com/danielroe/sanity-typed-queries/compare/0.7.0...0.7.1) (2020-09-30)
 
 
