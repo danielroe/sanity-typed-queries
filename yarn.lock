@@ -1659,9 +1659,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/plugin-commonjs@npm:^15.0.0":
-  version: 15.0.0
-  resolution: "@rollup/plugin-commonjs@npm:15.0.0"
+"@rollup/plugin-commonjs@npm:^15.1.0":
+  version: 15.1.0
+  resolution: "@rollup/plugin-commonjs@npm:15.1.0"
   dependencies:
     "@rollup/pluginutils": ^3.1.0
     commondir: ^1.0.1
@@ -1672,7 +1672,7 @@ __metadata:
     resolve: ^1.17.0
   peerDependencies:
     rollup: ^2.22.0
-  checksum: c48493cabb1ab71a24bf0561f48a6d98843c7a07fef312e73a6c08ad3b19301b4d4a45bd0b6fb0acc856b19695f898b0d0be6cdb157439397d05aeb572d7dbdd
+  checksum: 307bdc17f35807559ca5796137a1a620b6c9311a6f62166d38ce78f793cd10883843c4c13b7c39f547cefcc0d06e442fc8c746e003077b96df76ec0e6b1eaa4f
   languageName: node
   linkType: hard
 
@@ -4066,21 +4066,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild@npm:0.7.8":
+"esbuild@npm:0.7.8, esbuild@npm:^0.7.8":
   version: 0.7.8
   resolution: "esbuild@npm:0.7.8"
   bin:
     esbuild: bin/esbuild
   checksum: 4b80bfda3284f735ef934b3a009f29e7946cbb2e464865b166dc81912cc0bb662ba411e34af885658c5f08c96171daaad3b86e45d1385b975833a14100ec6af0
-  languageName: node
-  linkType: hard
-
-"esbuild@npm:^0.5.9":
-  version: 0.5.26
-  resolution: "esbuild@npm:0.5.26"
-  bin:
-    esbuild: bin/esbuild
-  checksum: cda87ab4244f9880d65734e2592ebe2bece0082292e690ac0183a4b7d7426a3c293d19ade17f334863813b5c541b214ee1efa9e2b608bf4022c92c3513dd62e7
   languageName: node
   linkType: hard
 
@@ -6393,6 +6384,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"joycon@npm:^2.2.5":
+  version: 2.2.5
+  resolution: "joycon@npm:2.2.5"
+  checksum: 7908f551e05aa754d1068053ec1304c12f3abc9c812f7c5a58bef7d35d247c3b1da14e508970bd411191099949756e2190e24c24b3382f818e7cda83e8ea1899
+  languageName: node
+  linkType: hard
+
 "js-tokens@npm:^3.0.0 || ^4.0.0, js-tokens@npm:^4.0.0":
   version: 4.0.0
   resolution: "js-tokens@npm:4.0.0"
@@ -8694,34 +8692,37 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup-plugin-dts@npm:^1.4.12":
-  version: 1.4.12
-  resolution: "rollup-plugin-dts@npm:1.4.12"
+"rollup-plugin-dts@npm:^1.4.13":
+  version: 1.4.13
+  resolution: "rollup-plugin-dts@npm:1.4.13"
   dependencies:
     "@babel/code-frame": ^7.10.4
   peerDependencies:
-    rollup: ^2.26.4
+    rollup: ^2.26.8
     typescript: ^4.0.2
   dependenciesMeta:
     "@babel/code-frame":
       optional: true
-  checksum: a26aa58456d12e1c2d68d51511da9fd387a7135ac5467f25d37028c7ad82745c9b87f2d2679b499589e4149348e3a761dedfd16210db30d10bd23a790e82b8b9
+  checksum: 6ce7619d55d18a0d694c348d00886b5176e866a63a3f601de11ce866593436ad8e5dd66da7ca150ba4f66baedef3f36cf7b5cf0084878c501712f82314d882a1
   languageName: node
   linkType: hard
 
-"rollup-plugin-esbuild@npm:2.2.0":
-  version: 2.2.0
-  resolution: "rollup-plugin-esbuild@npm:2.2.0"
+"rollup-plugin-esbuild@npm:2.5.0":
+  version: 2.5.0
+  resolution: "rollup-plugin-esbuild@npm:2.5.0"
   dependencies:
     "@rollup/pluginutils": ^3.1.0
-    esbuild: ^0.5.9
-  checksum: 0a989ee58b92ca48740a4dd8b2c8bad53ca36be714c13345f28cb7b7d23848594ae90e02fdec6427e2d5055082030387e5e4923eb2015c91fd255d01e29e5464
+    joycon: ^2.2.5
+    strip-json-comments: ^3.1.1
+  peerDependencies:
+    esbuild: ^0.6.0
+  checksum: 3745c54fa78adce51e29e176cf4e8b4e1467c8650ff3e3428ef27ae6bdfc3e42f85ece9f57be37b475c76cb8b1415f9f6c66bb3a30bea20e441596c3c7343b20
   languageName: node
   linkType: hard
 
-"rollup@npm:^2.26.8":
-  version: 2.26.8
-  resolution: "rollup@npm:2.26.8"
+"rollup@npm:^2.28.2":
+  version: 2.28.2
+  resolution: "rollup@npm:2.28.2"
   dependencies:
     fsevents: ~2.1.2
   dependenciesMeta:
@@ -8729,7 +8730,7 @@ __metadata:
       optional: true
   bin:
     rollup: dist/bin/rollup
-  checksum: 4e10108ef64d54326b04123aed3176eb266053d4507787fa50d251a89a21ed40a61c1622086d369bdb271c36a9a3664c361dcc2de986dd6bd2ea6afb0ccd3627
+  checksum: a0cfb9b5f7a3bd6b1528c18de5b86fa9befa78ee5358fe697c058ddd72325ce4d4b72df2391c8b06c538c92827035e26943b09ffa82b99a35bf3034ebd64e4f9
   languageName: node
   linkType: hard
 
@@ -8840,7 +8841,7 @@ __metadata:
     lint-staged: ^10.4.0
     prettier: ^2.1.2
     release-it: ^14.0.3
-    siroc: ^0.3.1
+    siroc: ^0.3.3
     typescript: ^4.0.3
   languageName: unknown
   linkType: soft
@@ -9002,12 +9003,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"siroc@npm:^0.3.1":
-  version: 0.3.1
-  resolution: "siroc@npm:0.3.1"
+"siroc@npm:^0.3.3":
+  version: 0.3.3
+  resolution: "siroc@npm:0.3.3"
   dependencies:
     "@rollup/plugin-alias": ^3.1.1
-    "@rollup/plugin-commonjs": ^15.0.0
+    "@rollup/plugin-commonjs": ^15.1.0
     "@rollup/plugin-json": ^4.1.0
     "@rollup/plugin-node-resolve": ^9.0.0
     "@rollup/plugin-replace": ^2.3.3
@@ -9015,20 +9016,21 @@ __metadata:
     chalk: ^4.1.0
     consola: ^2.15.0
     defu: ^3.1.0
+    esbuild: ^0.7.8
     execa: ^4.0.3
     fs-extra: ^9.0.1
     glob: ^7.1.6
     jiti: ^0.1.11
-    rollup: ^2.26.8
-    rollup-plugin-dts: ^1.4.12
-    rollup-plugin-esbuild: 2.2.0
-    sort-package-json: ^1.44.0
-    typescript: ^4.0.2
+    rollup: ^2.28.2
+    rollup-plugin-dts: ^1.4.13
+    rollup-plugin-esbuild: 2.5.0
+    sort-package-json: ^1.46.0
+    typescript: ^4.0.3
     v8-compile-cache: ^2.1.1
   bin:
     siroc: bin/cli.js
     siroc-runner: bin/runtime.js
-  checksum: 0686469bb93e46e4fe80900f59ebc14665e791358cb2675169e9e59f18c70da4140732c5ab3df3754f3835a7f09c86e390875c3053518bf7211340e99bf4f7b7
+  checksum: 501d763fde332c1aec48ecd6361c34a59f657d7c9158eea6abd5b7866ace42431df6883583e1d60046d71ee383e178084b7992a0dc2a5b76c8839a9e622978b0
   languageName: node
   linkType: hard
 
@@ -9122,9 +9124,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sort-package-json@npm:^1.44.0":
-  version: 1.44.0
-  resolution: "sort-package-json@npm:1.44.0"
+"sort-package-json@npm:^1.46.0":
+  version: 1.46.0
+  resolution: "sort-package-json@npm:1.46.0"
   dependencies:
     detect-indent: ^6.0.0
     detect-newline: 3.1.0
@@ -9134,7 +9136,7 @@ __metadata:
     sort-object-keys: ^1.1.3
   bin:
     sort-package-json: cli.js
-  checksum: 9498b1a1ddffcd477f316de64345d924975d9d7293763d62098701a5c4716e7ac5824295b2d195ce8104fade22bc1bfd0b101dc91d808e032ba0d0b082ecde71
+  checksum: 04fccda2a46cca26717336335ba80c5f546c29d2ba722846184cf2c7b7f57e50a7ee46046370a08d24d3376b183bf44a986c9ea74ebe84329385acd188f3a7aa
   languageName: node
   linkType: hard
 
@@ -9912,7 +9914,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@^4.0.2, typescript@^4.0.3":
+typescript@^4.0.3:
   version: 4.0.3
   resolution: "typescript@npm:4.0.3"
   bin:
@@ -9922,7 +9924,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@^4.0.2#builtin<compat/typescript>, typescript@patch:typescript@^4.0.3#builtin<compat/typescript>":
+"typescript@patch:typescript@^4.0.3#builtin<compat/typescript>":
   version: 4.0.3
   resolution: "typescript@patch:typescript@npm%3A4.0.3#builtin<compat/typescript>::version=4.0.3&hash=5b02a2"
   bin:

@@ -1,14 +1,9 @@
-import { PackageOptions } from 'siroc'
-import esbuild from 'rollup-plugin-esbuild'
+import { defineSirocConfig } from 'siroc'
 
-const options: PackageOptions = {
+export default defineSirocConfig({
   rollup: {
-    plugins: [
-      esbuild({
-        target: 'es2015',
-      }),
-    ],
+    esbuildOptions: {
+      target: 'es2015',
+    },
   },
-}
-
-export default options
+})
