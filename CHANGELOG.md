@@ -1,3 +1,10 @@
+### [0.7.3](https://github.com/danielroe/sanity-typed-queries/compare/0.7.2...0.7.3) (2020-09-30)
+
+
+### Bug Fixes
+
+* use json config ([52be08f](https://github.com/danielroe/sanity-typed-queries/commit/52be08f548d1744b66ba80f9012b0488f866eccb))
+
 ### [0.7.2](https://github.com/danielroe/sanity-typed-queries/compare/0.7.1...0.7.2) (2020-09-30)
 
 
