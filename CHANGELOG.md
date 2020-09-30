@@ -1,3 +1,10 @@
+### [0.7.1](https://github.com/danielroe/sanity-typed-queries/compare/0.7.0...0.7.1) (2020-09-30)
+
+
+### Bug Fixes
+
+* remove es build to fix [#95](https://github.com/danielroe/sanity-typed-queries/issues/95) ([eb0a94e](https://github.com/danielroe/sanity-typed-queries/commit/eb0a94e852cf4f61b76bbb9875a40e6a07f0836c))
+
 ## [0.7.0](https://github.com/danielroe/sanity-typed-queries/compare/0.6.11...0.7.0) (2020-09-26)
 
 
