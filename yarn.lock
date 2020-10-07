@@ -5066,10 +5066,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"groq@npm:^1.150.1":
-  version: 1.150.1
-  resolution: "groq@npm:1.150.1"
-  checksum: 48b8273c9b19aa4788c91431b9ef207212d749d225d516051eab34b8c2d3930a00813eaabb7a07b54cb7377938b7050a10fc09803c3e94bd573226e45f0de9db
+"groq@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "groq@npm:2.0.1"
+  checksum: db050283e4724fa89c5d3981c36b5538afd184e3e85e1c963a74b6a4f8d2e85f92df2b5379bb5da1dfb07e708f0a58d7674c6cd2cf9ed22f6a67e9815aa920b0
   languageName: node
   linkType: hard
 
@@ -8829,7 +8829,7 @@ __metadata:
     eslint-plugin-jest: ^24.1.0
     eslint-plugin-prettier: ^3.1.4
     expect-type: ^0.8.0
-    groq: ^1.150.1
+    groq: ^2.0.1
     husky: ^4.3.0
     jest: ^26.5.2
     lint-staged: ^10.4.0
