@@ -58,8 +58,8 @@
     "@siroc/eslint-config": "^0.2.0",
     "@siroc/jest-preset": "^0.2.0",
     "@types/jest": "^26.0.15",
-    "@typescript-eslint/eslint-plugin": "^4.8.0",
-    "@typescript-eslint/parser": "^4.8.0",
+    "@typescript-eslint/eslint-plugin": "^4.8.1",
+    "@typescript-eslint/parser": "^4.8.1",
     "codecov": "^3.8.1",
     "esbuild": "0.8.9",
     "eslint": "^7.13.0",
@@ -73,7 +73,7 @@
     "lint-staged": "^10.5.1",
     "prettier": "^2.1.2",
     "release-it": "^14.2.1",
-    "siroc": "^0.4.0",
+    "siroc": "^0.4.1",
     "typescript": "^4.0.5"
   }
 }
