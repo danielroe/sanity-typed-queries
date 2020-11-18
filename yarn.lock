@@ -4124,12 +4124,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild@npm:0.8.9":
-  version: 0.8.9
-  resolution: "esbuild@npm:0.8.9"
+"esbuild@npm:0.8.10":
+  version: 0.8.10
+  resolution: "esbuild@npm:0.8.10"
   bin:
     esbuild: bin/esbuild
-  checksum: aa8b5f92b63d2bbe220dc2aad87c6cc609276789d10b012a723977ca5920f9c2641e7de5e558f3483f35f221f816da3d0b6c0d581d517e9ddbe58e638f4d5adf
+  checksum: 364c5772cbb5bb4959a37dfa518b02d13e834c8f4da16c71b617e55d93067c11a5447ac1b8831af597167a27d3423f1a177dbf3be491b168e0777c4abf96cdaa
   languageName: node
   linkType: hard
 
@@ -8923,7 +8923,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": ^4.8.1
     "@typescript-eslint/parser": ^4.8.1
     codecov: ^3.8.1
-    esbuild: 0.8.9
+    esbuild: 0.8.10
     eslint: ^7.13.0
     eslint-config-prettier: ^6.15.0
     eslint-plugin-jest: ^24.1.3
