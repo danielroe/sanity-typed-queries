@@ -210,9 +210,9 @@ describe('field types', () => {
       .first()
       .use()[1]
 
-    expectTypeOf<typeof reference[typeof to]['_type']>().toEqualTypeOf<
-      'anotherDoc'
-    >()
+    expectTypeOf<
+      typeof reference[typeof to]['_type']
+    >().toEqualTypeOf<'anotherDoc'>()
 
     /**
      * 'slug'
