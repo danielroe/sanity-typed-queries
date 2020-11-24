@@ -21,9 +21,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/core@npm:^7.1.0, @babel/core@npm:^7.12.7, @babel/core@npm:^7.7.5":
-  version: 7.12.7
-  resolution: "@babel/core@npm:7.12.7"
+"@babel/core@npm:^7.1.0, @babel/core@npm:^7.12.8, @babel/core@npm:^7.7.5":
+  version: 7.12.8
+  resolution: "@babel/core@npm:7.12.8"
   dependencies:
     "@babel/code-frame": ^7.10.4
     "@babel/generator": ^7.12.5
@@ -31,7 +31,7 @@ __metadata:
     "@babel/helpers": ^7.12.5
     "@babel/parser": ^7.12.7
     "@babel/template": ^7.12.7
-    "@babel/traverse": ^7.12.7
+    "@babel/traverse": ^7.12.8
     "@babel/types": ^7.12.7
     convert-source-map: ^1.7.0
     debug: ^4.1.0
@@ -41,7 +41,7 @@ __metadata:
     resolve: ^1.3.2
     semver: ^5.4.1
     source-map: ^0.5.0
-  checksum: 54bf010e24d6e81667e9d04bf1fdbf99aea1e12d4ee3a27cae39e9fb843043a416f8f411073893866e44b66ab98efbd6df198bfe6a886727c5339309b9cc39be
+  checksum: cf0b6896aa5dd8576a263e07369902d2090ea02bf835f697a4decc2f016a863bb39f7a4cfd7e64d5a3ab16a210e933338d82b3171134e6bed6747019b98d2c39
   languageName: node
   linkType: hard
 
@@ -1185,9 +1185,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/traverse@npm:^7.1.0, @babel/traverse@npm:^7.10.4, @babel/traverse@npm:^7.12.1, @babel/traverse@npm:^7.12.5, @babel/traverse@npm:^7.12.7":
-  version: 7.12.7
-  resolution: "@babel/traverse@npm:7.12.7"
+"@babel/traverse@npm:^7.1.0, @babel/traverse@npm:^7.10.4, @babel/traverse@npm:^7.12.1, @babel/traverse@npm:^7.12.5, @babel/traverse@npm:^7.12.8":
+  version: 7.12.8
+  resolution: "@babel/traverse@npm:7.12.8"
   dependencies:
     "@babel/code-frame": ^7.10.4
     "@babel/generator": ^7.12.5
@@ -1198,7 +1198,7 @@ __metadata:
     debug: ^4.1.0
     globals: ^11.1.0
     lodash: ^4.17.19
-  checksum: b87488f31bfd109ed14904da2fcdb81a12bed71828881c25c0a35f7fc76a42934a3f861df3ce38d8c63bf1fef60eb6bb230db248afdfd073c0200a2df0a07842
+  checksum: 880ac0894fa1b39cdf78f22c163ae55dd5a3e8b57e7bdc14515dd8ff377735f592c9f9b7b22f2198420d406ce8b112ad6c530d5b5d3684b0869285fde7f9c2f8
   languageName: node
   linkType: hard
 
@@ -4070,12 +4070,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild@npm:0.8.13":
-  version: 0.8.13
-  resolution: "esbuild@npm:0.8.13"
+"esbuild@npm:0.8.14":
+  version: 0.8.14
+  resolution: "esbuild@npm:0.8.14"
   bin:
     esbuild: bin/esbuild
-  checksum: 031cc1f694a837a4fa430a42f1725457a87df97f4d2ad61d6c38f33955c8984515386877c0e1d4d0901690ba74f53bd2331189e7daf7a40177bf200b4654d210
+  checksum: 6bc9e7b057581e09b7871c713e3c9975a9d1ef13b9e543f4494fd38fc5a44ccabd3eb078652e6d0b817798aee42392160734aa5ea14efcfc2f27a30a3ed1ed91
   languageName: node
   linkType: hard
 
@@ -6715,9 +6715,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lint-staged@npm:^10.5.1":
-  version: 10.5.1
-  resolution: "lint-staged@npm:10.5.1"
+"lint-staged@npm:^10.5.2":
+  version: 10.5.2
+  resolution: "lint-staged@npm:10.5.2"
   dependencies:
     chalk: ^4.1.0
     cli-truncate: ^2.1.0
@@ -6736,7 +6736,7 @@ __metadata:
     stringify-object: ^3.3.0
   bin:
     lint-staged: bin/lint-staged.js
-  checksum: d22748dde5117c1d63e6829a73cf5755b4b99b5c93adaf53d1842941bf8b415d18577fe58291c4e44d40446e05400fe7cafe88727bcd61ef2837840406b89496
+  checksum: 285a0da521786db1a2a98fe875b8c330e9a607fd2d3ff687b6ce4dfa22b38acfd5ab9aaf556c6a4a34164875062a388647fcca9538a70bd01485a5d804a594f1
   languageName: node
   linkType: hard
 
@@ -8713,9 +8713,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup@npm:^2.33.2":
-  version: 2.33.2
-  resolution: "rollup@npm:2.33.2"
+"rollup@npm:^2.33.3":
+  version: 2.33.3
+  resolution: "rollup@npm:2.33.3"
   dependencies:
     fsevents: ~2.1.2
   dependenciesMeta:
@@ -8723,7 +8723,7 @@ __metadata:
       optional: true
   bin:
     rollup: dist/bin/rollup
-  checksum: 15cfcc81f1a51f66937ca53c8c7425f7300046c46e4d80fb8bbeab6cf51ef992c4559be6cd63c0d018697ddd6edad9ee68b570035f9aa1909e7e9453b7bbacb6
+  checksum: b14dc27a1c766a90d4c6b98c8cbedc79185a26f1ccb0eae23f82e5edbc2ec21951e2244de918aff696f9ee783c6cb8c1c788c60e3890c414794c19f7e3e80599
   languageName: node
   linkType: hard
 
@@ -8810,7 +8810,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "sanity-typed-queries@workspace:."
   dependencies:
-    "@babel/core": ^7.12.7
+    "@babel/core": ^7.12.8
     "@babel/plugin-transform-runtime": ^7.12.1
     "@babel/preset-env": ^7.12.7
     "@babel/preset-typescript": ^7.12.7
@@ -8822,7 +8822,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": ^4.8.2
     "@typescript-eslint/parser": ^4.8.2
     codecov: ^3.8.1
-    esbuild: 0.8.13
+    esbuild: 0.8.14
     eslint: ^7.14.0
     eslint-config-prettier: ^6.15.0
     eslint-plugin-jest: ^24.1.3
@@ -8831,10 +8831,10 @@ __metadata:
     groq: ^2.0.9
     husky: ^4.3.0
     jest: ^26.6.3
-    lint-staged: ^10.5.1
+    lint-staged: ^10.5.2
     prettier: ^2.2.0
     release-it: ^14.2.1
-    siroc: ^0.4.1
+    siroc: ^0.4.3
     typescript: ^4.0.5
   languageName: unknown
   linkType: soft
@@ -8996,9 +8996,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"siroc@npm:^0.4.1":
-  version: 0.4.1
-  resolution: "siroc@npm:0.4.1"
+"siroc@npm:^0.4.3":
+  version: 0.4.3
+  resolution: "siroc@npm:0.4.3"
   dependencies:
     "@rollup/plugin-alias": ^3.1.1
     "@rollup/plugin-commonjs": ^16.0.0
@@ -9014,7 +9014,7 @@ __metadata:
     fs-extra: ^9.0.1
     glob: ^7.1.6
     jiti: ^0.1.12
-    rollup: ^2.33.2
+    rollup: ^2.33.3
     rollup-plugin-dts: ^1.4.14
     rollup-plugin-esbuild: 2.5.2
     sort-package-json: ^1.46.1
@@ -9023,7 +9023,7 @@ __metadata:
   bin:
     siroc: bin/cli.js
     siroc-runner: bin/runtime.js
-  checksum: ea522c53854450c753dd0bf08f05b75c31a2815bbdcde0b99c211fd360780a522a760fbdd35e56c364fc0e854b367af16fb37d02d8041c145afba1bae92a34cf
+  checksum: a69d2259ce5894bdf43eea6cfb7811f99611ba2770ce5dd6dfe4e5da2ec3be65711b32840b88d8c0917cf18e05d8b4481b6d5314d30b9f3bb2b7f4cd2360de84
   languageName: node
   linkType: hard
 
