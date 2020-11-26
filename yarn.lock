@@ -4404,10 +4404,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"expect-type@npm:^0.9.0":
-  version: 0.9.0
-  resolution: "expect-type@npm:0.9.0"
-  checksum: 7d3c98997fd9c990813ad13111fdc80cde64048267ad7ff8c904162f76ee7e33f1dce42c0efbed337558bba647831b62aaf8e6ab3d496c9a5ae04dcdfe4608ff
+"expect-type@npm:^0.9.1":
+  version: 0.9.1
+  resolution: "expect-type@npm:0.9.1"
+  checksum: b1c87f35095bb76aaebf833127140ae6d69f8b4792d5ae53d080c208d3cc52d5a04ce3eeb81c55ce8ef7449e99702037308f1523348a1e03e6c821157bab2fca
   languageName: node
   linkType: hard
 
@@ -8827,7 +8827,7 @@ __metadata:
     eslint-config-prettier: ^6.15.0
     eslint-plugin-jest: ^24.1.3
     eslint-plugin-prettier: ^3.1.4
-    expect-type: ^0.9.0
+    expect-type: ^0.9.1
     groq: ^2.0.9
     husky: ^4.3.0
     jest: ^26.6.3
