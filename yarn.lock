@@ -4058,12 +4058,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild@npm:0.8.17":
-  version: 0.8.17
-  resolution: "esbuild@npm:0.8.17"
+"esbuild@npm:0.8.18":
+  version: 0.8.18
+  resolution: "esbuild@npm:0.8.18"
   bin:
     esbuild: bin/esbuild
-  checksum: b3e26a312a91aadc39b77209d5b99620e8381631ca6e0a8f1c23919464d929f410d41d59b937b3fcc2bd86358feaba5296eefe8d407a4de7b480d91cc9d59257
+  checksum: 6b57e634e60a4bf84e2244a930147d95720b90943b79b21123dee5cc0d3f249de7cb0d0038d5f51732e04c3208e24fd66a699c99bfe395aa896ab64e20cfbe1d
   languageName: node
   linkType: hard
 
@@ -4167,6 +4167,18 @@ __metadata:
     eslint: ">=5.0.0"
     prettier: ">=1.13.0"
   checksum: 4e4df155790a20a7ceef9008bbc22a677a8f7e790e9ef613a049a78dfe0b5dc3726afcd4bfd2a8ce41abc88c9a11db029819a722f70b940da32a03629e7f7832
+  languageName: node
+  linkType: hard
+
+"eslint-plugin-prettier@npm:^3.2.0":
+  version: 3.2.0
+  resolution: "eslint-plugin-prettier@npm:3.2.0"
+  dependencies:
+    prettier-linter-helpers: ^1.0.0
+  peerDependencies:
+    eslint: ">=5.0.0"
+    prettier: ">=1.13.0"
+  checksum: a69ac31b1a39cf54b461b48a05928aa8c7535a87e097e2239a7e9ac22e156c93a6f13447e2ae482b466ae2b89c29c75ecc00137faca6d4ebb1182a81265a4708
   languageName: node
   linkType: hard
 
@@ -4392,10 +4404,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"expect-type@npm:^0.9.2":
-  version: 0.9.2
-  resolution: "expect-type@npm:0.9.2"
-  checksum: 1a6bea19e1c8a486f33675f1fdd315465298a6543d5593a252cb659de1ff0d8328a9c042f198b5770c68e5374e4c0253ae0c53aaa5ecb13667b5051b81926ad3
+"expect-type@npm:^0.10.0":
+  version: 0.10.0
+  resolution: "expect-type@npm:0.10.0"
+  checksum: 2b37c6c6cf2c2ebe9f0be2f28cb39eba4375df580d848012c4424ee95aa9e30c7543911a65328cca937b4f91e33336d5233956f6a8bf0bb639bc31494f36086d
   languageName: node
   linkType: hard
 
@@ -6705,9 +6717,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lint-staged@npm:^10.5.2":
-  version: 10.5.2
-  resolution: "lint-staged@npm:10.5.2"
+"lint-staged@npm:^10.5.3":
+  version: 10.5.3
+  resolution: "lint-staged@npm:10.5.3"
   dependencies:
     chalk: ^4.1.0
     cli-truncate: ^2.1.0
@@ -6726,7 +6738,7 @@ __metadata:
     stringify-object: ^3.3.0
   bin:
     lint-staged: bin/lint-staged.js
-  checksum: 285a0da521786db1a2a98fe875b8c330e9a607fd2d3ff687b6ce4dfa22b38acfd5ab9aaf556c6a4a34164875062a388647fcca9538a70bd01485a5d804a594f1
+  checksum: cd34098f62feac51a8eb6a6abff6a15be292bfcac55d04c3e9f21c3ea8e472b94fac27507e4d087f0c6e159881216cd22bdf02d2b8d21cd8d0ffdf8ed00875b4
   languageName: node
   linkType: hard
 
@@ -8813,16 +8825,16 @@ __metadata:
     "@typescript-eslint/eslint-plugin": ^4.9.0
     "@typescript-eslint/parser": ^4.9.0
     codecov: ^3.8.1
-    esbuild: 0.8.17
+    esbuild: 0.8.18
     eslint: ^7.14.0
     eslint-config-prettier: ^6.15.0
     eslint-plugin-jest: ^24.1.3
-    eslint-plugin-prettier: ^3.1.4
-    expect-type: ^0.9.2
+    eslint-plugin-prettier: ^3.2.0
+    expect-type: ^0.10.0
     groq: ^2.0.9
     husky: ^4.3.0
     jest: ^26.6.3
-    lint-staged: ^10.5.2
+    lint-staged: ^10.5.3
     prettier: ^2.2.1
     release-it: ^14.2.2
     siroc: ^0.5.0
