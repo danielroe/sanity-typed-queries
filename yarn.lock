@@ -4123,7 +4123,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-prettier@npm:^6.11.0, eslint-config-prettier@npm:^6.15.0":
+"eslint-config-prettier@npm:^6.11.0":
   version: 6.15.0
   resolution: "eslint-config-prettier@npm:6.15.0"
   dependencies:
@@ -4133,6 +4133,17 @@ __metadata:
   bin:
     eslint-config-prettier-check: bin/cli.js
   checksum: a790bc61699e43a2edc5453488576cd977fad3b3cf99c129c10760ce6970d422923fddf80b65b2b10a93c00af0180a854e4b7824cc268e5957826cbe5b969e90
+  languageName: node
+  linkType: hard
+
+"eslint-config-prettier@npm:^7.0.0":
+  version: 7.0.0
+  resolution: "eslint-config-prettier@npm:7.0.0"
+  peerDependencies:
+    eslint: ">=7.0.0"
+  bin:
+    eslint-config-prettier: bin/cli.js
+  checksum: b7c543080e32829dba5f3db970c5f3c3b47f1de8df89b4226105afbecae561e026b6fe9f2cb16bf08ab1a6f1f544d9303c9c8c0919cbb51a9d2c8a640779624a
   languageName: node
   linkType: hard
 
@@ -8827,7 +8838,7 @@ __metadata:
     codecov: ^3.8.1
     esbuild: 0.8.18
     eslint: ^7.14.0
-    eslint-config-prettier: ^6.15.0
+    eslint-config-prettier: ^7.0.0
     eslint-plugin-jest: ^24.1.3
     eslint-plugin-prettier: ^3.2.0
     expect-type: ^0.10.0
