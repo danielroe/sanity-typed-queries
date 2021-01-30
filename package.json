@@ -61,7 +61,7 @@
     "@typescript-eslint/eslint-plugin": "^4.14.1",
     "@typescript-eslint/parser": "^4.14.1",
     "codecov": "^3.8.1",
-    "esbuild": "0.8.34",
+    "esbuild": "0.8.37",
     "eslint": "^7.18.0",
     "eslint-config-prettier": "^7.2.0",
     "eslint-plugin-jest": "^24.1.3",
