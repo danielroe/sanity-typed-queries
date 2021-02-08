@@ -259,7 +259,16 @@ export class QueryBuilder<
       this.project,
       this.restricted,
       [...this.filters, filter]
-    )
+    ) as unknown as Omit<
+      QueryBuilder<
+        Schema,
+        Mappings,
+        Type,
+        Project,
+        Exclude | 'filter'
+      >,
+      Exclude | 'filter'
+    >
   }
 
   get option() {
