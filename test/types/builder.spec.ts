@@ -45,7 +45,7 @@ describe('builder types', () => {
     const f = builder.pick(['_type', 'name']).first().use()[1]
     expectTypeOf(f).toEqualTypeOf<{ _type: 'author'; name: string }>()
 
-    const filterType = defineDocument('test', { title: { type: 'string' } }).builder.filter('').use()[1][0];
+    const filterType = defineDocument('test', { title: { type: 'string' } }).builder.filter('').use()[1][0]
     expectTypeOf(filterType).toEqualTypeOf<{ title: string; }>()
 
     // @ts-expect-error
