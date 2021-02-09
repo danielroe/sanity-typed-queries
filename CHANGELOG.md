@@ -1,3 +1,5 @@
+### [0.7.5](https://github.com/danielroe/sanity-typed-queries/compare/0.7.4...0.7.5) (2021-02-09)
+
 ### [0.7.4](https://github.com/danielroe/sanity-typed-queries/compare/0.7.3...0.7.4) (2021-02-09)
 
 
