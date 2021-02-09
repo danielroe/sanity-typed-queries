@@ -249,7 +249,12 @@ export class QueryBuilder<
     >
   }
 
-  filter(filter: string) {
+  filter(filter: string): QueryBuilder<
+    Schema,
+    Mappings,
+    Type,
+    Project
+  > {
     return new QueryBuilder(
       this.schema,
       this.ordering,
@@ -259,16 +264,7 @@ export class QueryBuilder<
       this.project,
       this.restricted,
       [...this.filters, filter]
-    ) as unknown as Omit<
-      QueryBuilder<
-        Schema,
-        Mappings,
-        Type,
-        Project,
-        Exclude | 'filter'
-      >,
-      Exclude | 'filter'
-    >
+    );
   }
 
   get option() {
