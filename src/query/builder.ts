@@ -264,7 +264,7 @@ export class QueryBuilder<
       this.project,
       this.restricted,
       [...this.filters, filter]
-    );
+    )
   }
 
   get option() {
