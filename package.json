@@ -1,6 +1,6 @@
 {
   "name": "sanity-typed-queries",
-  "version": "0.7.3",
+  "version": "0.7.4",
   "description": "A collection of helper functions to improve the typing of Sanity resources.",
   "keywords": [
     "sanity",

@@ -1,3 +1,10 @@
+### [0.7.4](https://github.com/danielroe/sanity-typed-queries/compare/0.7.3...0.7.4) (2021-02-09)
+
+
+### Bug Fixes
+
+* basic filter typing ([#157](https://github.com/danielroe/sanity-typed-queries/issues/157)) ([1fa747b](https://github.com/danielroe/sanity-typed-queries/commit/1fa747baf78ffab62eee8441289aaf0844e3552f))
+
 ### [0.7.3](https://github.com/danielroe/sanity-typed-queries/compare/0.7.2...0.7.3) (2020-09-30)
 
 
