@@ -8832,6 +8832,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": ^4.15.0
     "@typescript-eslint/parser": ^4.15.0
     codecov: ^3.8.1
+    conventional-changelog-conventionalcommits: ^4.5.0
     esbuild: 0.8.43
     eslint: ^7.19.0
     eslint-config-prettier: ^7.2.0
@@ -8844,6 +8845,7 @@ __metadata:
     lint-staged: ^10.5.4
     prettier: ^2.2.1
     release-it: ^14.3.0
+    semver: ^7.3.4
     siroc: ^0.6.3
     typescript: ^4.1.3
   languageName: unknown
@@ -8903,7 +8905,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"semver@npm:7.3.4, semver@npm:^7.2.1, semver@npm:^7.3.2":
+"semver@npm:7.3.4, semver@npm:^7.2.1, semver@npm:^7.3.2, semver@npm:^7.3.4":
   version: 7.3.4
   resolution: "semver@npm:7.3.4"
   dependencies:
