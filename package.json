@@ -29,6 +29,7 @@
     "build": "yarn clean && yarn compile",
     "clean": "rm -rf lib/*",
     "compile": "siroc build",
+    "postinstall": "husky install",
     "lint": "yarn lint:all:eslint && yarn lint:all:prettier",
     "lint:all:eslint": "yarn lint:eslint --ext .js,.ts .",
     "lint:all:prettier": "yarn lint:prettier \"**/*.{js,json,ts}\"",
