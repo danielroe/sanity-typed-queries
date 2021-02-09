@@ -249,12 +249,7 @@ export class QueryBuilder<
     >
   }
 
-  filter(filter: string): QueryBuilder<
-    Schema,
-    Mappings,
-    Type,
-    Project
-  > {
+  filter(filter: string): QueryBuilder<Schema, Mappings, Type, Project> {
     return new QueryBuilder(
       this.schema,
       this.ordering,
