@@ -1678,9 +1678,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/plugin-node-resolve@npm:^11.1.1":
-  version: 11.1.1
-  resolution: "@rollup/plugin-node-resolve@npm:11.1.1"
+"@rollup/plugin-node-resolve@npm:^11.2.0":
+  version: 11.2.0
+  resolution: "@rollup/plugin-node-resolve@npm:11.2.0"
   dependencies:
     "@rollup/pluginutils": ^3.1.0
     "@types/resolve": 1.17.1
@@ -1690,19 +1690,19 @@ __metadata:
     resolve: ^1.19.0
   peerDependencies:
     rollup: ^1.20.0||^2.0.0
-  checksum: 79161dcdf482812c843ace75fd73b9b8497490d1ee03bbd1e52e8a6d0dac4b0f5c1f773cec447157c77a946eccd2256b8d51f95a42e0a6992b6c2739ad03197a
+  checksum: 173bb5822b8a6fd3a2c09303efd437711062885099dd1a4a6e91b449b99fcf5a4dc43e7d3836edeaca85ef7235547a193a3011314298ecbc529e8b123c371718
   languageName: node
   linkType: hard
 
-"@rollup/plugin-replace@npm:^2.3.4":
-  version: 2.3.4
-  resolution: "@rollup/plugin-replace@npm:2.3.4"
+"@rollup/plugin-replace@npm:^2.4.0":
+  version: 2.4.0
+  resolution: "@rollup/plugin-replace@npm:2.4.0"
   dependencies:
     "@rollup/pluginutils": ^3.1.0
     magic-string: ^0.25.7
   peerDependencies:
     rollup: ^1.20.0 || ^2.0.0
-  checksum: 97ae11600a959b7668105d9e28801319f9158b01a1d9dbf4f910136491463d8798c1bb1d62e47bf04d5ff08c9c5b3f333aa39ccad57a4e5531d8edaa38ffd74e
+  checksum: 5151bed6479eeddfb0368f21e4ebc9a872f46e0443f17e32fc9362164ab9a4fd996b0703361190d085b46fc911e5d6ae757866a318e5651583af7019b2ee533e
   languageName: node
   linkType: hard
 
@@ -2907,10 +2907,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cac@npm:^6.7.1":
-  version: 6.7.1
-  resolution: "cac@npm:6.7.1"
-  checksum: f8bc8f0cccb627c40300d3290d106d264e8d391e07beaaa7e1b44b3365d745bc43fca88aab33e18c18153b537c0f7f84e6f4dbfaaeda0a15feeb50213f5e1928
+"cac@npm:^6.7.2":
+  version: 6.7.2
+  resolution: "cac@npm:6.7.2"
+  checksum: e8f060b7e9b70f786486a5a34d698c3388fbf1d6b99037a7a35afaba169f96e6ac461dc73dc26671fa29b79e973a3a5a6a7733ab3cc4d216d3519c9d655fa6c5
   languageName: node
   linkType: hard
 
@@ -4072,12 +4072,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild@npm:0.8.49":
-  version: 0.8.49
-  resolution: "esbuild@npm:0.8.49"
+"esbuild@npm:0.8.50":
+  version: 0.8.50
+  resolution: "esbuild@npm:0.8.50"
   bin:
     esbuild: bin/esbuild
-  checksum: bd7ae436f89e82adc7a9c2843ef8290640ca41f7b75b9e70ff952204f028ef59f49d5fc3df911d00e01b227728452da2425006539e38e631ff613ea3b1371ece
+  checksum: eb3cedf4819dc608912f50287d4386595305f9519c0d49a93f304c308896eddad007b43f3d8340aabdf170510d4fc4c2708ab32af9ea39a59cf34a56e82ee536
   languageName: node
   linkType: hard
 
@@ -5361,12 +5361,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"husky@npm:^5.0.9":
-  version: 5.0.9
-  resolution: "husky@npm:5.0.9"
+"husky@npm:^5.1.0":
+  version: 5.1.0
+  resolution: "husky@npm:5.1.0"
   bin:
     husky: lib/bin.js
-  checksum: 135129469a7225bf34a8542e1575a3fbe32656f813234093f0ff43084c34e4384eb4c496923422d59aea7fb8187d26a2c8c7a43cd33647a5d02eb59c2161877a
+  checksum: 80bfe8cd2b12aa8c0a16d0c4ec9de21a491033c76b0e4ed75d629f22672cb4fe385802c32d1c41f314bcd78b9f6fed55a5b063106d03efec7a8a5896a303538b
   languageName: node
   linkType: hard
 
@@ -8746,9 +8746,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup@npm:^2.38.5":
-  version: 2.38.5
-  resolution: "rollup@npm:2.38.5"
+"rollup@npm:^2.39.0":
+  version: 2.39.0
+  resolution: "rollup@npm:2.39.0"
   dependencies:
     fsevents: ~2.3.1
   dependenciesMeta:
@@ -8756,7 +8756,7 @@ __metadata:
       optional: true
   bin:
     rollup: dist/bin/rollup
-  checksum: b8ccad97a04f95f2459101c9b477e27f857fba5995d936728838da3728c2295aa396198b42fd254888057974589ba70a06e00feff7c1a1db992f0280914d695b
+  checksum: b504b080e41382b1f7ff4327c970446458a10e9e083e080175435a1848df5403c10106440551276bfa2d23e56be2810ba52ec19794c74b50854ca89817e36b61
   languageName: node
   linkType: hard
 
@@ -8856,20 +8856,20 @@ __metadata:
     "@typescript-eslint/parser": ^4.15.1
     codecov: ^3.8.1
     conventional-changelog-conventionalcommits: ^4.5.0
-    esbuild: 0.8.49
+    esbuild: 0.8.50
     eslint: ^7.20.0
     eslint-config-prettier: ^7.2.0
     eslint-plugin-jest: ^24.1.5
     eslint-plugin-prettier: ^3.3.1
     expect-type: ^0.11.0
     groq: ^2.2.6
-    husky: ^5.0.9
+    husky: ^5.1.0
     jest: ^26.6.3
     lint-staged: ^10.5.4
     prettier: ^2.2.1
     release-it: ^14.4.1
     semver: ^7.3.4
-    siroc: ^0.6.6
+    siroc: ^0.6.7
     typescript: ^4.1.5
   languageName: unknown
   linkType: soft
@@ -9026,16 +9026,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"siroc@npm:^0.6.6":
-  version: 0.6.6
-  resolution: "siroc@npm:0.6.6"
+"siroc@npm:^0.6.7":
+  version: 0.6.7
+  resolution: "siroc@npm:0.6.7"
   dependencies:
     "@rollup/plugin-alias": ^3.1.2
     "@rollup/plugin-commonjs": ^17.1.0
     "@rollup/plugin-json": ^4.1.0
-    "@rollup/plugin-node-resolve": ^11.1.1
-    "@rollup/plugin-replace": ^2.3.4
-    cac: ^6.7.1
+    "@rollup/plugin-node-resolve": ^11.2.0
+    "@rollup/plugin-replace": ^2.4.0
+    cac: ^6.7.2
     chalk: ^4.1.0
     consola: ^2.15.3
     defu: ^3.2.2
@@ -9044,17 +9044,17 @@ __metadata:
     fs-extra: ^9.1.0
     glob: ^7.1.6
     jiti: ^1.3.0
-    rollup: ^2.38.5
+    rollup: ^2.39.0
     rollup-plugin-dts: ^2.0.1
     rollup-plugin-esbuild: 2.5.2
-    sort-package-json: ^1.48.1
+    sort-package-json: ^1.49.0
     typescript: ^4.1.5
     upath: ^2.0.1
     v8-compile-cache: ^2.2.0
   bin:
     siroc: bin/cli.js
     siroc-runner: bin/runtime.js
-  checksum: 0a61567007a7ef7b3a41d4979b183a8352246744415ec286e2adb3658ac1fccdb6b5b64c5d8db6bc107dc52ee4c70433028128f295896cc4a0b7c671c101116d
+  checksum: 05d9ae78d86355a65dd8f8955017854e9290d1a055523b3059936971a41cccefac1697ca5c879d42ceb0bc0d81e761a0d5017a1995cae6b923f30c1d5e3d026e
   languageName: node
   linkType: hard
 
@@ -9137,9 +9137,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sort-package-json@npm:^1.48.1":
-  version: 1.48.1
-  resolution: "sort-package-json@npm:1.48.1"
+"sort-package-json@npm:^1.49.0":
+  version: 1.49.0
+  resolution: "sort-package-json@npm:1.49.0"
   dependencies:
     detect-indent: ^6.0.0
     detect-newline: 3.1.0
@@ -9149,7 +9149,7 @@ __metadata:
     sort-object-keys: ^1.1.3
   bin:
     sort-package-json: cli.js
-  checksum: 4537158dea7e640ecd34d3af0fe683c7fed5ef3b5d361b30ba502b1e1a9ac3b84a77517901ce75fd9804da99255f41fc003ef3f473e55d5728e724cf18658f5c
+  checksum: 12b043f75e5d3478f2847bc20f0cc1bfa87ca755a2f365b782e1ab15443bf5cd82627040324c0289fa19e868519dfebea4a64ff80176d373b002a537d98c29db
   languageName: node
   linkType: hard
 
