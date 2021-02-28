@@ -86,6 +86,7 @@ type DocumentDefinition<
   builder: QueryBuilder<
     ExtractDocumentType<Schema, SchemaName, CustomTypes>,
     ExtractDocumentType<Schema, SchemaName, CustomTypes>,
+    Record<string, [string, any]>,
     Array<any>,
     true,
     ''
