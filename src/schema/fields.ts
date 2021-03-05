@@ -439,7 +439,7 @@ export type FieldType<
 > =
   //
   T extends PureType<'array'> & { of: Array<infer B> }
-    ? Array<FieldType<B, CustomObjects>>
+    ? Array<FieldType<B, CustomObjects> & { _key: string }>
     : T extends PureType<'block'>
     ? Block
     : T extends PureType<'boolean'>
