@@ -440,17 +440,17 @@ export type FieldType<
   //
   T extends PureType<'array'> & { of: Array<infer B> }
     ? Array<
-      B extends
-        | PureType<'date'>
-        | PureType<'datetime'>
-        | PureType<'string'>
-        | PureType<'text'>
-        | PureType<'url'>
-        | PureType<'boolean'>
-        | PureType<'number'>
-        ? FieldType<B, CustomObjects>
-        : FieldType<B, CustomObjects> & { _key: string; }
-    >
+        B extends
+          | PureType<'date'>
+          | PureType<'datetime'>
+          | PureType<'string'>
+          | PureType<'text'>
+          | PureType<'url'>
+          | PureType<'boolean'>
+          | PureType<'number'>
+          ? FieldType<B, CustomObjects>
+          : FieldType<B, CustomObjects> & { _key: string }
+      >
     : T extends PureType<'block'>
     ? Block
     : T extends PureType<'boolean'>
