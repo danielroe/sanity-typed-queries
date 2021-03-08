@@ -4141,7 +4141,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild@npm:0.8.56, esbuild@npm:^0.8.52":
+"esbuild@npm:0.8.57":
+  version: 0.8.57
+  resolution: "esbuild@npm:0.8.57"
+  bin:
+    esbuild: bin/esbuild
+  checksum: 0942950a21a30b57a324380cfedcb425cc1245412e720593415afa0d4f1b7c5f931aa6330937dc1353c754d45c1e5ff7dbc52eb514f54d85517114971300b454
+  languageName: node
+  linkType: hard
+
+"esbuild@npm:^0.8.52":
   version: 0.8.56
   resolution: "esbuild@npm:0.8.56"
   bin:
@@ -4232,14 +4241,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-jest@npm:^24.1.7":
-  version: 24.1.7
-  resolution: "eslint-plugin-jest@npm:24.1.7"
+"eslint-plugin-jest@npm:^24.1.8":
+  version: 24.1.9
+  resolution: "eslint-plugin-jest@npm:24.1.9"
   dependencies:
     "@typescript-eslint/experimental-utils": ^4.0.1
   peerDependencies:
     eslint: ">=5"
-  checksum: 5b1d3130609e0e20395bb6b55444ed1ac4797be6366646f57e74ab57d16cc18c586f1f04b4fcaaa98bdbf14ef04e48645a64211ae92086cb64135b12d485c85b
+  checksum: f7aa6cd0d2b201e09d82929ae2ce26acfbffe98087f9c7d09f4444b03b18635a1a924e7485f7ada61c0fdd811cb8e996bc98ad134df2154f6a4018a6f205efc3
   languageName: node
   linkType: hard
 
@@ -8938,10 +8947,10 @@ __metadata:
     "@typescript-eslint/parser": ^4.16.1
     codecov: ^3.8.1
     conventional-changelog-conventionalcommits: ^4.5.0
-    esbuild: 0.8.56
+    esbuild: 0.8.57
     eslint: ^7.21.0
     eslint-config-prettier: ^8.1.0
-    eslint-plugin-jest: ^24.1.7
+    eslint-plugin-jest: ^24.1.8
     eslint-plugin-prettier: ^3.3.1
     expect-type: ^0.11.0
     groq: ^2.2.6
