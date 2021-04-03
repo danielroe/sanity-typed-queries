@@ -4175,12 +4175,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild@npm:0.11.2":
-  version: 0.11.2
-  resolution: "esbuild@npm:0.11.2"
+"esbuild@npm:0.11.4":
+  version: 0.11.4
+  resolution: "esbuild@npm:0.11.4"
   bin:
     esbuild: bin/esbuild
-  checksum: 28e5d7d752b05f4712d3d154e586d8ee621af5507d95743e2728aa4c70a36c9a8abccf302bc58385a2d2344c76296eb6573513fb56e77f7e0c27a2d34eb14ec1
+  checksum: f279d903e6821e398d000cc9fc781b97e2e75e5807b3fc085318f81e5f8cb0b439a37e9604ffc3e3a376159367f230d69d1b7418cc476cd392433add5dbe3e8e
   languageName: node
   linkType: hard
 
@@ -4275,9 +4275,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-jest@npm:^24.3.2":
-  version: 24.3.2
-  resolution: "eslint-plugin-jest@npm:24.3.2"
+"eslint-plugin-jest@npm:^24.3.3":
+  version: 24.3.3
+  resolution: "eslint-plugin-jest@npm:24.3.3"
   dependencies:
     "@typescript-eslint/experimental-utils": ^4.0.1
   peerDependencies:
@@ -4286,7 +4286,7 @@ __metadata:
   peerDependenciesMeta:
     "@typescript-eslint/eslint-plugin":
       optional: true
-  checksum: caf92f0bab6800bbf1fcfa8d75e1b7ad2bfb77914abdf1f0c33ac2b0d3b15c48cbec7b36a828931048f71dc181bbda9ede1d74b9a153f92029de0680644d1d14
+  checksum: 1f016d4f0a79ac09dfbf9cf15bdaed831f71317a5eacc4640f34f39e9789127e9b3e59c449e9e20851be9c439a5e8317a6c9d62ca1e1b51e089c69c738596462
   languageName: node
   linkType: hard
 
@@ -9069,10 +9069,10 @@ __metadata:
     "@typescript-eslint/parser": ^4.20.0
     codecov: ^3.8.1
     conventional-changelog-conventionalcommits: ^4.5.0
-    esbuild: 0.11.2
+    esbuild: 0.11.4
     eslint: ^7.23.0
     eslint-config-prettier: ^8.1.0
-    eslint-plugin-jest: ^24.3.2
+    eslint-plugin-jest: ^24.3.3
     eslint-plugin-prettier: ^3.3.1
     expect-type: ^0.11.0
     groq: ^2.2.6
