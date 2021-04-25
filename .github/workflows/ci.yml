@@ -1,80 +1,27 @@
-name: ci
+name: Build & deploy
 
-on: push
-
+on:
+  push:
+    branches: [next]
+  pull_request:
+    branches: [next]
 jobs:
-  lint:
+  build-and-release:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
-      
-      - uses: actions/setup-node@v2-beta
+      - uses: actions/setup-node@v1
         with:
-          node-version: '14'
-
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
-
-      - uses: actions/cache@v2
-        id: cache
+          node-version: 14.x
+      - run: yarn install
+      - run: yarn build
+      - uses: actions/upload-artifact@v2
         with:
+          name: lib
           path: |
-            ${{ steps.yarn-cache-dir-path.outputs.dir }}
-            .yarn/*
-            !.yarn/releases
-            !.yarn/plugins
-            !.yarn/sdks
-            !.yarn/versions
-            .pnp.js
-          key: yarn-${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('.pnp.js') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn
-
-      - name: Install dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: yarn
-
-      - name: Lint project
-        run: yarn lint
-
-  test:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
-
-      - uses: actions/cache@v2
-        id: cache
+            lib
+      - uses: JS-DevTools/npm-publish@v1
         with:
-          path: |
-            ${{ steps.yarn-cache-dir-path.outputs.dir }}
-            .yarn/*
-            !.yarn/releases
-            !.yarn/plugins
-            !.yarn/sdks
-            !.yarn/versions
-            .pnp.js
-          key: yarn-${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('.pnp.js') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn
-
-      - name: Install dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: yarn
-
-      - name: Build project
-        run: yarn compile
-
-      - name: Test project
-        run: yarn test
-
-      - name: Coverage
-        run: yarn codecov
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          access: 'restricted'
+          registry: https://npm.pkg.github.com
