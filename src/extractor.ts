@@ -80,7 +80,7 @@ type DocumentDefinition<
   SchemaName extends string,
   CustomTypes extends CustomType<string>
 > = {
-  [P in SchemaName]?: ExtractDocumentType<Schema, SchemaName, CustomTypes>
+  [P in SchemaName]: ExtractDocumentType<Schema, SchemaName, CustomTypes>
 } & {
   schema: Schema
   builder: QueryBuilder<
@@ -155,7 +155,7 @@ type ObjectDefinition<
   SchemaName extends string,
   CustomTypes extends CustomType<string>
 > = {
-  [P in SchemaName]?: ExtractObjectType<Schema, SchemaName, CustomTypes>
+  [P in SchemaName]: ExtractObjectType<Schema, SchemaName, CustomTypes>
 } & {
   schema: Schema
   object: {
