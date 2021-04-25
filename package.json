@@ -8,12 +8,16 @@
     "library",
     "groq"
   ],
-  "repository": "danielroe/sanity-typed-queries",
+  "repository": "liammartens/sanity-typed-queries",
   "license": "MIT",
   "contributors": [
     {
       "name": "Daniel Roe <daniel@roe.dev>",
       "url": "https://github.com/danielroe"
+    },
+    {
+      "name": "Liam Martens <hi@liammartens.com>",
+      "url": "https://github.com/liammartens"
     }
   ],
   "sideEffects": false,
