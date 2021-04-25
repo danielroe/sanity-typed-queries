@@ -2,9 +2,9 @@ name: Build & deploy
 
 on:
   push:
-    branches: [next]
+    branches: [main]
   pull_request:
-    branches: [next]
+    branches: [main]
 jobs:
   build-and-release:
     runs-on: ubuntu-latest
