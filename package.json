@@ -1,5 +1,5 @@
 {
-  "name": "@liammartens/sanity-typed-queries",
+  "name": "@freighter-studio/sanity-typed-queries",
   "version": "0.8.2",
   "description": "A collection of helper functions to improve the typing of Sanity resources.",
   "keywords": [

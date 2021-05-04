@@ -22,6 +22,4 @@ jobs:
             lib
       - uses: JS-DevTools/npm-publish@v1
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          access: 'restricted'
-          registry: https://npm.pkg.github.com
+          token: ${{ secrets.NPM_TOKEN }}
