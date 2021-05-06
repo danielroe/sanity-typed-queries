@@ -4265,7 +4265,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild@npm:0.11.18, esbuild@npm:^0.11.5":
+"esbuild@npm:0.11.19":
+  version: 0.11.19
+  resolution: "esbuild@npm:0.11.19"
+  bin:
+    esbuild: bin/esbuild
+  checksum: 0ffd3987aa89eb0a5052915556d6c07f85650d5e86638fee361ba48bd23125ba1fd71dfab61e87f0f9b6d4028f96f3ca45ef24ee92aa466469c2dcd00c983fee
+  languageName: node
+  linkType: hard
+
+"esbuild@npm:^0.11.5":
   version: 0.11.18
   resolution: "esbuild@npm:0.11.18"
   bin:
@@ -9152,7 +9161,7 @@ __metadata:
     "@typescript-eslint/parser": ^4.22.1
     codecov: ^3.8.2
     conventional-changelog-conventionalcommits: ^4.6.0
-    esbuild: 0.11.18
+    esbuild: 0.11.19
     eslint: ^7.25.0
     eslint-config-prettier: ^8.3.0
     eslint-plugin-jest: ^24.3.6
