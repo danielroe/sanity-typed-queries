@@ -1,5 +1,13 @@
 module.exports = {
-  preset: '@siroc/jest-preset',
+  transform: {
+    '\\.(js|ts)$': [
+      'babel-jest',
+      {
+        presets: ['@babel/preset-env', '@babel/preset-typescript'],
+        plugins: ['@babel/plugin-transform-runtime'],
+      },
+    ],
+  },
   verbose: true,
   collectCoverage: true,
   coveragePathIgnorePatterns: ['test', '.babelrc.js', 'lib/'],
