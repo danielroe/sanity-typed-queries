@@ -1739,17 +1739,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@release-it/conventional-changelog@npm:^2.0.1":
-  version: 2.0.1
-  resolution: "@release-it/conventional-changelog@npm:2.0.1"
+"@release-it/conventional-changelog@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@release-it/conventional-changelog@npm:3.0.0"
   dependencies:
     concat-stream: ^2.0.0
     conventional-changelog: ^3.1.24
     conventional-recommended-bump: ^6.1.0
     prepend-file: ^2.0.0
   peerDependencies:
-    release-it: ^14.0.0
-  checksum: 3664240d3fba7d61a282395fb80c77676e054e69fcab133ad7d25eaeca123cddc31a00be9060c75368cbb2d2a16907f38f982abd85642027429dab83b0ffb8ae
+    release-it: ^14.8.0
+  checksum: 010889ac91773523faa06ee6a034b036700cdcff6361c40b2683a70b360314352d8d1d37adadc4e0e0c52c890e0172b862f99d27e61418b9b24174e023f63587
   languageName: node
   linkType: hard
 
@@ -8453,7 +8453,7 @@ __metadata:
     "@babel/preset-typescript": ^7.13.0
     "@babel/runtime": ^7.14.0
     "@jest/test-sequencer": ^27.0.4
-    "@release-it/conventional-changelog": ^2.0.1
+    "@release-it/conventional-changelog": ^3.0.0
     "@siroc/eslint-config": ^0.2.0
     "@types/jest": ^26.0.23
     "@typescript-eslint/eslint-plugin": ^4.26.0
