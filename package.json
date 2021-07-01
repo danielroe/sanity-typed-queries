@@ -66,7 +66,7 @@
     "eslint-plugin-prettier": "^3.4.0",
     "expect-type": "^0.11.0",
     "groq": "^2.2.6",
-    "husky": "^6.0.0",
+    "husky": "^7.0.0",
     "jest": "^27.0.6",
     "jest-environment-node": "^27.0.6",
     "lint-staged": "^11.0.0",
