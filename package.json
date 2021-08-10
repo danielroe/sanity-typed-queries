@@ -54,7 +54,7 @@
     "@jest/test-sequencer": "^27.0.6",
     "@release-it/conventional-changelog": "^3.0.1",
     "@siroc/eslint-config": "^0.2.0",
-    "@types/jest": "^26.0.24",
+    "@types/jest": "^27.0.0",
     "@typescript-eslint/eslint-plugin": "^4.29.0",
     "@typescript-eslint/parser": "^4.29.0",
     "codecov": "^3.8.3",
