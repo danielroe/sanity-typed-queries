@@ -219,7 +219,7 @@ export function defineObject<
      */
     [objectTitle]: {
       _type: objectTitle,
-    } as ExtractObjectType<Schema, SchemaName, CustomTypes, false>,
+    } as ExtractObjectType<Schema, SchemaName, CustomTypes, true>,
     /**
      * Defined object that you can export as the schema type to be consumed by the Sanity CMS
      */

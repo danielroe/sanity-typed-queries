@@ -1,0 +1,4 @@
+{
+  "image": "node:14",
+  "containerUser": "node"
+}
