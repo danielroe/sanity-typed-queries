@@ -52,7 +52,7 @@
     "@babel/preset-typescript": "^7.16.7",
     "@babel/runtime": "^7.16.7",
     "@jest/test-sequencer": "^27.4.6",
-    "@release-it/conventional-changelog": "^3.3.0",
+    "@release-it/conventional-changelog": "^4.1.0",
     "@siroc/eslint-config": "^0.2.0",
     "@types/jest": "^27.4.0",
     "@typescript-eslint/eslint-plugin": "^5.10.0",
