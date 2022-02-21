@@ -1,4 +1,5 @@
 import groq from 'groq'
+import { describe, test, expect } from 'vitest'
 
 import { defineDocument } from '../src'
 import { defineFields } from '../src/extractor'

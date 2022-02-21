@@ -1,3 +1,4 @@
+import { describe, test, expect } from 'vitest'
 import { defineFields, defineDocument, defineObject } from '../src/extractor'
 
 describe('schema creator', () => {
