@@ -114,7 +114,7 @@ export class QueryBuilder<
     QueryBuilder<Schema, Mappings, Type, Project, Exclude | 'first' | 'select'>,
     Exclude | 'first' | 'select'
   > {
-    return (new QueryBuilder(
+    return new QueryBuilder(
       this.schema,
       this.ordering,
       this.projections,
@@ -123,7 +123,7 @@ export class QueryBuilder<
       this.project,
       this.restricted,
       this.filters
-    ) as unknown) as Omit<
+    ) as unknown as Omit<
       QueryBuilder<
         Schema,
         Mappings,
@@ -181,7 +181,7 @@ export class QueryBuilder<
     >,
     Exclude | 'select' | 'first'
   > {
-    return (new QueryBuilder(
+    return new QueryBuilder(
       this.schema,
       this.ordering,
       this.projections,
@@ -190,7 +190,7 @@ export class QueryBuilder<
       this.project,
       this.restricted,
       this.filters
-    ) as unknown) as Omit<
+    ) as unknown as Omit<
       QueryBuilder<
         Schema,
         Mappings,
@@ -228,7 +228,7 @@ export class QueryBuilder<
       mappings = map as Combine<Mappings, NewMapping>
     }
 
-    return (new QueryBuilder(
+    return new QueryBuilder(
       this.schema,
       this.ordering,
       this.projections,
@@ -237,7 +237,7 @@ export class QueryBuilder<
       this.project,
       this.restricted,
       this.filters
-    ) as unknown) as Omit<
+    ) as unknown as Omit<
       QueryBuilder<
         Schema,
         Combine<Mappings, NewMapping>,
