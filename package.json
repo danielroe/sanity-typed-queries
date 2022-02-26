@@ -54,7 +54,7 @@
     "codecov": "^3.8.3",
     "conventional-changelog-conventionalcommits": "^4.6.3",
     "esbuild": "0.14.23",
-    "eslint": "^8.9.0",
+    "eslint": "^8.10.0",
     "eslint-config-prettier": "^8.4.0",
     "eslint-plugin-prettier": "^4.0.0",
     "expect-type": "^0.13.0",
@@ -68,6 +68,6 @@
     "siroc": "^0.16.0",
     "typescript": "^4.5.5",
     "vite": "^2.8.4",
-    "vitest": "^0.5.5"
+    "vitest": "^0.5.7"
   }
 }
