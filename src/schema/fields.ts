@@ -363,13 +363,13 @@ interface SpanField extends BaseField {
   validation?: Validator
 }
 
-interface StringField extends BaseField {
+interface StringField<S extends string = string> extends BaseField {
   type: 'string'
   options?: {
     /**
      * A list of predefined values that the user can choose from. The array can either include string values ['sci-fi', 'western'] or objects [{title: 'Sci-Fi', value: 'sci-fi'}, ...]
      */
-    list?: Array<string | { title: string; value: string }>
+    list?: Array<S | { title: string; value: S }>
     /**
      * Controls how the items defined in the list option are presented. If set to 'radio' the list will render radio buttons. If set to 'dropdown' you'll get a dropdown menu instead. Default is dropdown.
      */
@@ -458,10 +458,11 @@ export type FieldType<
     : T extends
         | PureType<'date'>
         | PureType<'datetime'>
-        | PureType<'string'>
         | PureType<'text'>
         | PureType<'url'>
     ? string
+    : T extends PureType<'string'>
+    ? T extends { options: { list: Array<infer S | { title: string; value: infer S }>} } ? S : string
     : T extends PureType<'file'>
     ? File
     : T extends PureType<'geopoint'>
