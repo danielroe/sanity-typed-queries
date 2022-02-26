@@ -4,10 +4,13 @@
     "sourceMap": true,
     "target": "esnext",
     "module": "esnext",
+    "allowSyntheticDefaultImports": true,
     "lib": ["esnext", "dom"],
     "moduleResolution": "node",
+    "rootDir": ".",
+    "outDir": "lib",
     "declaration": true,
     "skipLibCheck": true
   },
-  "exclude": ["node_modules", "lib"]
+  "include": ["src", "test"]
 }

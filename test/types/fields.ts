@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest'
 import { expectTypeOf } from 'expect-type'
 
 import {
