@@ -124,7 +124,7 @@ describe('field types', () => {
       FOO = 'foo',
       BAR = 'bar',
     }
-    const enumString = defineDocument('stringExample', {
+    const enumString = defineDocument('enumStringExample', {
       test: {
         type: 'string',
         options: { list: [AllowedStringValues.FOO, AllowedStringValues.BAR] },
@@ -133,7 +133,7 @@ describe('field types', () => {
       .builder.pick('test')
       .first()
       .use()[1]
-    expectTypeOf(string).toEqualTypeOf<string>()
+    expectTypeOf(enumString).toEqualTypeOf<AllowedStringValues>()
 
     /**
      * 'text'
