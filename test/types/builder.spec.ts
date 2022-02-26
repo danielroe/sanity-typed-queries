@@ -219,6 +219,24 @@ describe('builder types', () => {
         .use()[1]
     ).toEqualTypeOf<string[][]>()
 
+    const subqueryType = defineDocument('test', { title: { type: 'string' } })
+      .builder.subquery({
+        children: defineDocument('child', {
+          title: { type: 'string' },
+        }).builder.use(),
+      })
+      .use()[1][0]?.children
+    expectTypeOf(subqueryType).toEqualTypeOf<
+      {
+        _createdAt: string
+        _updatedAt: string
+        _id: string
+        _rev: string
+        _type: 'child'
+        title: string
+      }[]
+    >()
+
     expect(true).toBeTruthy()
   })
 })
