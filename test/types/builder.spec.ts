@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest'
 import { expectTypeOf } from 'expect-type'
 import { defineDocument, defineFields, defineObject } from '../../lib'
 
@@ -48,7 +49,7 @@ describe('builder types', () => {
     const filterType = defineDocument('test', { title: { type: 'string' } })
       .builder.filter('')
       .use()[1][0]
-    expectTypeOf(filterType).toEqualTypeOf<{ title: string }>()
+    expectTypeOf(filterType).toMatchTypeOf<{ title: string }>()
 
     // @ts-expect-error
     expectTypeOf(builder.pick('nothere'))
