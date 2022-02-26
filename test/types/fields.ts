@@ -118,6 +118,24 @@ describe('field types', () => {
     expectTypeOf(string).toEqualTypeOf<string>()
 
     /**
+     * enum like string example
+     */
+    enum AllowedStringValues {
+      FOO = 'foo',
+      BAR = 'bar',
+    }
+    const enumString = defineDocument('enumStringExample', {
+      test: {
+        type: 'string',
+        options: { list: [AllowedStringValues.FOO, AllowedStringValues.BAR] },
+      },
+    })
+      .builder.pick('test')
+      .first()
+      .use()[1]
+    expectTypeOf(enumString).toEqualTypeOf<AllowedStringValues>()
+
+    /**
      * 'text'
      */
     const text = defineDocument('textExample', {
