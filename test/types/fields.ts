@@ -26,6 +26,18 @@ describe('field types', () => {
       .use()[1]
     expectTypeOf(array).toEqualTypeOf<string[]>()
 
+    /** Keyed array exmaple */
+    type KeyedArrayValue = (Record<string, any> & {
+      _key: string
+    })[]
+    const keyedArray = defineDocument('arrayExample', {
+      test: { type: 'array', of: [{ type: 'object' }] },
+    })
+      .builder.pick('test')
+      .first()
+      .use()[1]
+    expectTypeOf(keyedArray).toEqualTypeOf<KeyedArrayValue>()
+
     defineDocument('failingArrayExample', {
       // @ts-expect-error
       test: { type: 'array' },
