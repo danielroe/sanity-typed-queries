@@ -60,6 +60,7 @@ type Combine<
 export class QueryBuilder<
   Schema extends Record<string, any>,
   Mappings extends Record<string, any>,
+  Subqueries extends Record<string, QueryReturnType<any>>,
   Type = Multiple<any>,
   Project extends boolean = true,
   Exclude extends string = ''
@@ -68,6 +69,7 @@ export class QueryBuilder<
   private ordering: [keyof Schema, 'asc' | 'desc'][]
   private projections: Record<string, string>
   private mappings: Record<string, string>
+  private subqueries: Record<string, QueryReturnType<any>>
   private selector: string
   private project: boolean
   private restricted: boolean
@@ -78,6 +80,7 @@ export class QueryBuilder<
     ordering: [keyof Schema, 'asc' | 'desc'][] = [],
     projections: Record<string, string> = {},
     mappings: Record<string, string> = {},
+    subqueries: Record<string, QueryReturnType<any>> = {},
     selector = '',
     project = true,
     restricted = false,
@@ -86,6 +89,7 @@ export class QueryBuilder<
     this.schema = schema
     this.projections = projections
     this.mappings = mappings
+    this.subqueries = subqueries
     this.selector = selector
     this.project = project
     this.ordering = ordering
@@ -99,6 +103,7 @@ export class QueryBuilder<
       [...this.ordering, [key, order]],
       this.projections,
       this.mappings,
+      this.subqueries,
       this.selector,
       this.project,
       this.restricted,
@@ -111,7 +116,14 @@ export class QueryBuilder<
     to: number,
     exclusive = false
   ): Omit<
-    QueryBuilder<Schema, Mappings, Type, Project, Exclude | 'first' | 'select'>,
+    QueryBuilder<
+      Schema,
+      Mappings,
+      Subqueries,
+      Type,
+      Project,
+      Exclude | 'first' | 'select'
+    >,
     Exclude | 'first' | 'select'
   > {
     return new QueryBuilder(
@@ -119,6 +131,7 @@ export class QueryBuilder<
       this.ordering,
       this.projections,
       this.mappings,
+      this.subqueries,
       ` [${from}..${exclusive ? '.' : ''}${to}]`,
       this.project,
       this.restricted,
@@ -127,6 +140,7 @@ export class QueryBuilder<
       QueryBuilder<
         Schema,
         Mappings,
+        Subqueries,
         Type,
         Project,
         Exclude | 'first' | 'select'
@@ -139,7 +153,14 @@ export class QueryBuilder<
   pick<R extends keyof Mappings>(
     props: R[]
   ): Omit<
-    QueryBuilder<Schema, Pick<Mappings, R>, Type, true, Exclude | 'pick'>,
+    QueryBuilder<
+      Schema,
+      Pick<Mappings, R>,
+      Subqueries,
+      Type,
+      true,
+      Exclude | 'pick'
+    >,
     Exclude | 'pick'
   >
 
@@ -147,7 +168,14 @@ export class QueryBuilder<
   pick<R extends keyof Mappings>(
     props: R
   ): Omit<
-    QueryBuilder<Schema, Pick<Mappings, R>, Type, false, Exclude | 'pick'>,
+    QueryBuilder<
+      Schema,
+      Pick<Mappings, R>,
+      Subqueries,
+      Type,
+      false,
+      Exclude | 'pick'
+    >,
     Exclude | 'pick'
   >
 
@@ -164,6 +192,7 @@ export class QueryBuilder<
       this.ordering,
       projections,
       this.mappings,
+      this.subqueries,
       this.selector,
       project,
       true,
@@ -175,6 +204,7 @@ export class QueryBuilder<
     QueryBuilder<
       Schema,
       Mappings,
+      Subqueries,
       Single<Schema>,
       Project,
       Exclude | 'select' | 'first'
@@ -186,6 +216,7 @@ export class QueryBuilder<
       this.ordering,
       this.projections,
       this.mappings,
+      this.subqueries,
       ' [0]',
       this.project,
       this.restricted,
@@ -194,6 +225,7 @@ export class QueryBuilder<
       QueryBuilder<
         Schema,
         Mappings,
+        Subqueries,
         Single<Schema>,
         Project,
         Exclude | 'select' | 'first'
@@ -208,6 +240,7 @@ export class QueryBuilder<
     QueryBuilder<
       Schema,
       Combine<Mappings, NewMapping>,
+      Subqueries,
       Type,
       Project,
       Exclude | 'map'
@@ -233,6 +266,7 @@ export class QueryBuilder<
       this.ordering,
       this.projections,
       mappings,
+      this.subqueries,
       this.selector,
       this.project,
       this.restricted,
@@ -241,6 +275,7 @@ export class QueryBuilder<
       QueryBuilder<
         Schema,
         Combine<Mappings, NewMapping>,
+        Subqueries,
         Type,
         Project,
         Exclude | 'map'
@@ -249,12 +284,61 @@ export class QueryBuilder<
     >
   }
 
-  filter(filter: string): QueryBuilder<Schema, Mappings, Type, Project> {
+  subquery<NewMapping extends Record<string, QueryReturnType<any>>>(
+    subqueries: NewMapping
+  ): Omit<
+    QueryBuilder<
+      Schema,
+      Combine<
+        Mappings,
+        {
+          [K in keyof NewMapping]: NewMapping[K][1]
+        }
+      >,
+      Subqueries,
+      Type,
+      Project,
+      Exclude | 'subqueries'
+    >,
+    Exclude | 'subqueries'
+  > {
+    return (new QueryBuilder(
+      this.schema,
+      this.ordering,
+      this.projections,
+      this.mappings,
+      subqueries,
+      this.selector,
+      this.project,
+      this.restricted,
+      this.filters
+    ) as unknown) as Omit<
+      QueryBuilder<
+        Schema,
+        Combine<
+          Mappings,
+          {
+            [K in keyof NewMapping]: NewMapping[K][1]
+          }
+        >,
+        Subqueries,
+        Type,
+        Project,
+        Exclude | 'subqueries'
+      >,
+      Exclude | 'subqueries'
+    >
+  }
+
+  filter(
+    filter: string
+  ): QueryBuilder<Schema, Mappings, Subqueries, Type, Project> {
     return new QueryBuilder(
       this.schema,
       this.ordering,
       this.projections,
       this.mappings,
+      this.subqueries,
       this.selector,
       this.project,
       this.restricted,
@@ -283,6 +367,13 @@ export class QueryBuilder<
     const entries = Object.entries({
       ...this.projections,
       ...this.mappings,
+      ...Object.keys(this.subqueries).reduce<Record<string, string>>(
+        (acc, key) => {
+          acc[key] = this.subqueries[key][0]
+          return acc
+        },
+        {}
+      ),
     }).filter(([key]) => typeof key === 'string')
 
     if (!this.project && entries.length === 1) return `.${entries[0][1]}`
