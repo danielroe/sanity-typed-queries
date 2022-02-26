@@ -61,13 +61,10 @@ type ExtractDocumentType<
     Nameless<CustomField<DocumentTypes<CustomTypes>['_type']>>
   >,
   SchemaName extends string,
-  CustomTypes extends CustomType<string>,
-  Optional extends boolean
-> = (Optional extends true ? {
-  [P in keyof Schema]?: FieldType<Schema[P], CustomTypes>
-} : {
+  CustomTypes extends CustomType<string>
+> = {
   [P in keyof Schema]: FieldType<Schema[P], CustomTypes>
-}) & {
+} & {
   _createdAt: string
   _updatedAt: string
   _id: string
@@ -83,13 +80,12 @@ type DocumentDefinition<
   SchemaName extends string,
   CustomTypes extends CustomType<string>
 > = {
-  [P in SchemaName]: ExtractDocumentType<Schema, SchemaName, CustomTypes, true>
+  [P in SchemaName]: ExtractDocumentType<Schema, SchemaName, CustomTypes>
 } & {
   schema: Schema
   builder: QueryBuilder<
-    ExtractDocumentType<Schema, SchemaName, CustomTypes, false>,
-    ExtractDocumentType<Schema, SchemaName, CustomTypes, false>,
-    Record<string, [string, any]>,
+    ExtractDocumentType<Schema, SchemaName, CustomTypes>,
+    ExtractDocumentType<Schema, SchemaName, CustomTypes>,
     Array<any>,
     true,
     ''
@@ -158,7 +154,7 @@ type ObjectDefinition<
   SchemaName extends string,
   CustomTypes extends CustomType<string>
 > = {
-  [P in SchemaName]: ExtractObjectType<Schema, SchemaName, CustomTypes, true>
+  [P in SchemaName]: ExtractObjectType<Schema, SchemaName, CustomTypes>
 } & {
   schema: Schema
   object: {
@@ -175,13 +171,10 @@ type ExtractObjectType<
     Nameless<CustomField<DocumentTypes<CustomTypes>['_type']>>
   >,
   SchemaName extends string,
-  CustomTypes extends CustomType<string>,
-  Optional extends boolean
-> = (Optional extends true ? {
-  [P in keyof Schema]?: FieldType<Schema[P], CustomTypes>
-} : {
+  CustomTypes extends CustomType<string>
+> = {
   [P in keyof Schema]: FieldType<Schema[P], CustomTypes>
-}) & { _type: SchemaName }
+} & { _type: SchemaName }
 
 export function defineObject<
   Schema extends SchemaCreator<
@@ -219,7 +212,7 @@ export function defineObject<
      */
     [objectTitle]: {
       _type: objectTitle,
-    } as ExtractObjectType<Schema, SchemaName, CustomTypes, true>,
+    } as ExtractObjectType<Schema, SchemaName, CustomTypes>,
     /**
      * Defined object that you can export as the schema type to be consumed by the Sanity CMS
      */

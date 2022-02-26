@@ -1,26 +1,80 @@
-name: Build & deploy
+name: ci
 
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+on: push
+
 jobs:
-  build-and-release:
+  lint:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      
+      - uses: actions/setup-node@v2-beta
         with:
-          node-version: 14.x
-      - run: yarn install
-      - run: yarn compile
-      - uses: actions/upload-artifact@v2
+          node-version: '14'
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
+
+      - uses: actions/cache@v2
+        id: cache
         with:
-          name: lib
           path: |
-            lib
-      - uses: JS-DevTools/npm-publish@v1
+            ${{ steps.yarn-cache-dir-path.outputs.dir }}
+            .yarn/*
+            !.yarn/releases
+            !.yarn/plugins
+            !.yarn/sdks
+            !.yarn/versions
+            .pnp.js
+          key: yarn-${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('.pnp.js') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn
+
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: yarn
+
+      - name: Lint project
+        run: yarn lint
+
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
+
+      - uses: actions/cache@v2
+        id: cache
         with:
-          token: ${{ secrets.NPM_TOKEN }}
-          access: 'public'
+          path: |
+            ${{ steps.yarn-cache-dir-path.outputs.dir }}
+            .yarn/*
+            !.yarn/releases
+            !.yarn/plugins
+            !.yarn/sdks
+            !.yarn/versions
+            .pnp.js
+          key: yarn-${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('.pnp.js') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn
+
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: yarn
+
+      - name: Build project
+        run: yarn compile
+
+      - name: Test project
+        run: yarn test
+
+      - name: Coverage
+        run: yarn codecov
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}

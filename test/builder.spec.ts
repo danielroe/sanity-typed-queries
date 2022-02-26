@@ -235,16 +235,4 @@ describe('query builder', () => {
       `*[_type == 'typeOfDocument'] { ..., "defaultCost": coalesce(cost,21.99) }`
     )
   })
-
-  test('can use subqueries', () => {
-    expect(
-      builder
-        .subquery({
-          children: builder.use(),
-        })
-        .use()[0]
-    ).toBe(
-      `*[_type == 'typeOfDocument'] { ..., "children": *[_type == 'typeOfDocument'] }`
-    )
-  })
 })
