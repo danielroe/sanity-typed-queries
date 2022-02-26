@@ -225,7 +225,7 @@ describe('builder types', () => {
           title: { type: 'string' },
         }).builder.use(),
       })
-      .use()[1][0].children
+      .use()[1][0]?.children
     expectTypeOf(subqueryType).toEqualTypeOf<
       {
         _createdAt: string
