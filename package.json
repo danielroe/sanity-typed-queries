@@ -29,6 +29,7 @@
     "build": "yarn clean && yarn compile",
     "clean": "rm -rf lib/*",
     "compile": "siroc build",
+    "postinstall": "husky install",
     "lint": "yarn lint:all:eslint && yarn lint:all:prettier",
     "lint:all:eslint": "yarn lint:eslint --ext .js,.ts .",
     "lint:all:prettier": "yarn lint:prettier \"**/*.{js,json,ts}\"",
@@ -36,12 +37,11 @@
     "lint:prettier": "prettier --write --loglevel warn",
     "prepare": "husky install && yarn build",
     "prepublishOnly": "yarn lint && yarn test && pinst --disable",
+    "postpublish": "pinst --enable",
     "release": "release-it",
     "test": "yarn test:types && yarn test:unit",
     "test:types": "yarn tsc --noEmit",
-    "test:unit": "vitest",
-    "postinstall": "husky install",
-    "postpublish": "pinst --enable"
+    "test:unit": "vitest"
   },
   "resolutions": {
     "minimist": ">=1.2.5"
