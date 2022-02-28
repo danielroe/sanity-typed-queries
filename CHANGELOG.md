@@ -1,4 +1,17 @@
-### [0.7.5](https://github.com/danielroe/sanity-typed-queries/compare/0.7.4...0.7.5) (2021-02-09)
+undefined
+
+## [0.8.0](https://github.com/danielroe/sanity-typed-queries/compare/0.7.5...0.8.0) (2022-02-28)
+
+
+### Features
+
+* strict string typings ([#227](https://github.com/danielroe/sanity-typed-queries/issues/227)) ([ced678d](https://github.com/danielroe/sanity-typed-queries/commit/ced678d79b9a7c4805481cf3d6faf59bfe5a1ee3))
+* subquery support ([#169](https://github.com/danielroe/sanity-typed-queries/issues/169)) ([d2a7069](https://github.com/danielroe/sanity-typed-queries/commit/d2a70690f0bfd2f9ddbcd203e3c32dd0dc8975c2))
+
+
+### Bug Fixes
+
+* Key missing array ([#170](https://github.com/danielroe/sanity-typed-queries/issues/170)) ([a5a3494](https://github.com/danielroe/sanity-typed-queries/commit/a5a3494f1746368fdec6c5d95c690575b6a41c69))### [0.7.5](https://github.com/danielroe/sanity-typed-queries/compare/0.7.4...0.7.5) (2021-02-09)
 
 ### [0.7.4](https://github.com/danielroe/sanity-typed-queries/compare/0.7.3...0.7.4) (2021-02-09)
 
@@ -181,4 +194,3 @@
 ### Code Refactoring
 
 * adjust return type of use() for flexibility ([d78c742](https://github.com/danielroe/sanity-typed-queries/commit/d78c742ae325a006a6ce100a1da2b1271b0d4912))
-
