@@ -13,7 +13,9 @@ export interface BaseRule {
   /**
    * Creates a custom validation rule.
    */
-  custom: <T = any>(value: T) => true | string
+  custom: <T = any>(
+    validator: (value: T) => true | string | Promise<true | string>
+  ) => this
   /**
    * Ensures that this field exists.
    */
