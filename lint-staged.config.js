@@ -1,8 +1,8 @@
 module.exports = {
-  '*.js': ['yarn lint:eslint', 'yarn lint:prettier'],
-  '*.ts': ['yarn lint:eslint', 'yarn lint:prettier'],
+  '*.js': ['pnpm lint:eslint', 'pnpm lint:prettier'],
+  '*.ts': ['pnpm lint:eslint', 'pnpm lint:prettier'],
   '{!(package)*.json,*.code-snippets,.*rc}': [
-    'yarn lint:prettier --parser json',
+    'pnpm lint:prettier --parser json',
   ],
-  'package.json': ['yarn lint:prettier'],
+  'package.json': ['pnpm lint:prettier'],
 }

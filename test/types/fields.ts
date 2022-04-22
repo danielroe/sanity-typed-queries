@@ -11,7 +11,7 @@ import {
   Image,
   Slug,
   to,
-} from '../../lib'
+} from '../../dist'
 
 describe('field types', () => {
   it('are defined', () => {

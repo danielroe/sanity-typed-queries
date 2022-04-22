@@ -23,6 +23,7 @@ module.exports = {
     '@typescript-eslint/no-inferrable-types': 1,
     '@typescript-eslint/no-explicit-any': 'off',
     'no-unused-vars': 'off',
+    'no-dupe-class-members': 'off',
     'no-redeclare': 'off',
   },
 }

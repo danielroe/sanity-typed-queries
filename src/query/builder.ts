@@ -302,7 +302,7 @@ export class QueryBuilder<
     >,
     Exclude | 'subqueries'
   > {
-    return (new QueryBuilder(
+    return new QueryBuilder(
       this.schema,
       this.ordering,
       this.projections,
@@ -312,7 +312,7 @@ export class QueryBuilder<
       this.project,
       this.restricted,
       this.filters
-    ) as unknown) as Omit<
+    ) as unknown as Omit<
       QueryBuilder<
         Schema,
         Combine<
