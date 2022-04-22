@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { expectTypeOf } from 'expect-type'
-import { defineDocument, defineFields, defineObject } from '../../lib'
+import { defineDocument, defineFields, defineObject } from '../../dist'
 
 describe('builder types', () => {
   it('are defined', () => {
