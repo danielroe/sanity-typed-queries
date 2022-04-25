@@ -1,6 +1,10 @@
 import { describe, it, expect } from 'vitest'
 import { expectTypeOf } from 'expect-type'
-import { defineDocument, defineFields, defineObject } from '../../dist'
+import {
+  defineDocument,
+  defineFields,
+  defineObject,
+} from 'sanity-typed-queries'
 
 describe('builder types', () => {
   it('are defined', () => {

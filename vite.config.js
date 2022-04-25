@@ -2,6 +2,11 @@
 import { defineConfig } from 'vite'
 
 export default defineConfig({
+  resolve: {
+    alias: {
+      'sanity-typed-queries': './src',
+    },
+  },
   test: {
     coverage: {
       include: ['src'],

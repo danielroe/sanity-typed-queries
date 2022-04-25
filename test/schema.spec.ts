@@ -1,5 +1,9 @@
 import { describe, test, expect } from 'vitest'
-import { defineFields, defineDocument, defineObject } from '../src/extractor'
+import {
+  defineFields,
+  defineDocument,
+  defineObject,
+} from 'sanity-typed-queries'
 
 describe('schema creator', () => {
   test('generates correct schema fields for document', () => {

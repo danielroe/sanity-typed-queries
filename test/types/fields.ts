@@ -11,7 +11,7 @@ import {
   Image,
   Slug,
   to,
-} from '../../dist'
+} from 'sanity-typed-queries'
 
 describe('field types', () => {
   it('are defined', () => {

@@ -10,7 +10,10 @@
     "rootDir": ".",
     "outDir": "lib",
     "declaration": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "paths": {
+      "sanity-typed-queries": ["."]
+    }
   },
   "include": ["src", "test"]
 }
