@@ -52,7 +52,7 @@
     "expect-type": "^0.13.0",
     "groq": "^2.29.3",
     "husky": "^7.0.4",
-    "lint-staged": "^12.4.1",
+    "lint-staged": "^13.0.3",
     "pinst": "^3.0.0",
     "prettier": "^2.6.2",
     "release-it": "^15.0.0",
