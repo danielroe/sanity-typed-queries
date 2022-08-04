@@ -359,7 +359,7 @@ export class QueryBuilder<
     if (!this.ordering.length) return ''
 
     return ` | order(${this.ordering
-      .map(([key, order]) => `${key} ${order}`)
+      .map(([key, order]) => `${String(key)} ${order}`)
       .join(', ')})`
   }
 
