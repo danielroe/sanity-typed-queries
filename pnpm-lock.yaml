@@ -20,7 +20,7 @@ specifiers:
   resolve: ^1.22.1
   semver: ^7.3.7
   typescript: ^4.7.4
-  unbuild: ^0.8.2
+  unbuild: ^0.8.4
   vite: ^3.0.5
   vitest: ~0.21.1
 
@@ -44,7 +44,7 @@ devDependencies:
   resolve: 1.22.1
   semver: 7.3.7
   typescript: 4.7.4
-  unbuild: 0.8.3
+  unbuild: 0.8.4
   vite: 3.0.5
   vitest: 0.21.1_c8@7.12.0
 
@@ -5138,8 +5138,8 @@ packages:
       which-boxed-primitive: 1.0.2
     dev: true
 
-  /unbuild/0.8.3:
-    resolution: {integrity: sha512-lJ/ZrSSK4vlwlQ1eL6H95eKBz19ul/ssagrJ37tvMqmsAyukw559OHrXId9TdAy56GAY6Jf3f87fhIM+o3CiLw==}
+  /unbuild/0.8.4:
+    resolution: {integrity: sha512-ujfBcMXjmUcV8o2V4r9X3OqOuZNkL/dWlGzXn50GiiA3e38qSrhFMZv3+AcLFX/9DWsW4+jkrq0e8QwEry5MgA==}
     hasBin: true
     dependencies:
       '@rollup/plugin-alias': 3.1.9_rollup@2.77.2
