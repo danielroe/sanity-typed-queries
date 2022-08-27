@@ -47,7 +47,7 @@
     "c8": "^7.12.0",
     "conventional-changelog-conventionalcommits": "^5.0.0",
     "esbuild": "0.15.5",
-    "eslint": "^8.22.0",
+    "eslint": "^8.23.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "expect-type": "^0.13.0",
@@ -59,7 +59,7 @@
     "release-it": "^15.4.0",
     "resolve": "^1.22.1",
     "semver": "^7.3.7",
-    "typescript": "^4.7.4",
+    "typescript": "^4.8.2",
     "unbuild": "^0.8.9",
     "vite": "^3.0.9",
     "vitest": "~0.22.1"
