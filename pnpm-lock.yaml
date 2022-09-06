@@ -11,7 +11,7 @@ specifiers:
   eslint: ^8.23.0
   eslint-config-prettier: ^8.5.0
   eslint-plugin-prettier: ^4.2.1
-  expect-type: ^0.13.0
+  expect-type: ^0.14.0
   groq: ^2.29.3
   husky: ^8.0.1
   lint-staged: ^13.0.3
@@ -36,7 +36,7 @@ devDependencies:
   eslint: 8.23.0
   eslint-config-prettier: 8.5.0_eslint@8.23.0
   eslint-plugin-prettier: 4.2.1_tgumt6uwl2md3n6uqnggd6wvce
-  expect-type: 0.13.0
+  expect-type: 0.14.0
   groq: 2.29.3
   husky: 8.0.1
   lint-staged: 13.0.3
@@ -2479,8 +2479,8 @@ packages:
       strip-final-newline: 3.0.0
     dev: true
 
-  /expect-type/0.13.0:
-    resolution: {integrity: sha512-CclevazQfrqo8EvbLPmP7osnb1SZXkw47XPPvUUpeMz4HuGzDltE7CaIt3RLyT9UQrwVK/LDn+KVcC0hcgjgDg==}
+  /expect-type/0.14.0:
+    resolution: {integrity: sha512-c1b8FMNk9lUP+ho7z4Fgug6wyqvT/its7EWzZ8kRvJkGlNmvAk5ZKHlan5VVYuozY+3C9iWRYX/cK6DQvduhRQ==}
     dev: true
 
   /external-editor/3.1.0:
