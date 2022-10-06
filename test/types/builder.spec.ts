@@ -66,9 +66,7 @@ describe('builder types', () => {
       },
     })
     const g = testObj.pick('testObject').first().use()[1]
-    expectTypeOf(g).toEqualTypeOf<
-      { subfield: string | undefined } | undefined
-    >()
+    expectTypeOf(g).toEqualTypeOf<{ subfield?: string } | undefined>()
 
     const mapper = defineDocument('author', {
       num: {
@@ -87,7 +85,7 @@ describe('builder types', () => {
 
     const h = mapper.pick(['test', 'testObject']).use()[1]
     expectTypeOf(h).toEqualTypeOf<
-      { test?: string; testObject?: { subfield: string | undefined } }[]
+      { test?: string; testObject?: { subfield?: string } }[]
     >()
 
     const i = mapper
@@ -193,12 +191,16 @@ describe('builder types', () => {
     )
 
     const inter = objectBuilder.pick('num').first().use()[1]
-    expectTypeOf<typeof inter['title']>().toEqualTypeOf<string>()
+    expectTypeOf<NonNullable<typeof inter>['title']>().toEqualTypeOf<
+      string | undefined
+    >()
     const inter2 = objectBuilder
       .map(h => ({ bingTitle: h.bing.resolve('title').use() }))
       .first()
       .use()[1]
-    expectTypeOf<typeof inter2['bingTitle']>().toEqualTypeOf<number>()
+    expectTypeOf<NonNullable<typeof inter2>['bingTitle']>().toEqualTypeOf<
+      number | undefined
+    >()
     const inter3 = objectBuilder
       .map(h => ({ count: h.more.count() }))
       .first()
@@ -228,7 +230,7 @@ describe('builder types', () => {
         .pick('fields')
         .first()
         .use()[1]
-    ).toEqualTypeOf<string[][]>()
+    ).toEqualTypeOf<(string[] | undefined)[] | undefined>()
 
     const subqueryType = defineDocument('test', { title: { type: 'string' } })
       .builder.subquery({
@@ -237,6 +239,7 @@ describe('builder types', () => {
         }).builder.use(),
       })
       .use()[1][0]?.children
+
     expectTypeOf(subqueryType).toEqualTypeOf<
       {
         _createdAt: string
@@ -244,7 +247,7 @@ describe('builder types', () => {
         _id: string
         _rev: string
         _type: 'child'
-        title: string
+        title?: string
       }[]
     >()
 
