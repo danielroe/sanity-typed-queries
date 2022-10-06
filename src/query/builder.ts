@@ -11,7 +11,9 @@ type ResolveFieldType<T> = T extends Record<string, any>
   : ResolverAction<T>
 
 interface ResolverFunction<T, Arr = false> {
-  <P extends keyof T>(props: P[]): ResolverAction<Pick<T, P>>
+  <P extends keyof T>(props: P[]): Arr extends true
+    ? ResolveFieldType<Array<Pick<T, P>>>
+    : ResolverAction<Pick<T, P>>
 }
 interface ResolverFunction<T, Arr = false> {
   <P extends keyof T>(prop: P): Arr extends true

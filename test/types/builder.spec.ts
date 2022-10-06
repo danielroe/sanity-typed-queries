@@ -222,6 +222,18 @@ describe('builder types', () => {
         .first()
         .use()[1]
     ).toEqualTypeOf<string[][]>()
+    expectTypeOf(
+      referenceBuilder
+        .map(r => ({ fields: r.authors.resolveIn(['_id', 'more']).use() }))
+        .pick('fields')
+        .first()
+        .use()[1]
+    ).toEqualTypeOf<
+      {
+        _id: string
+        more: string[]
+      }[]
+    >()
 
     const subqueryType = defineDocument('test', { title: { type: 'string' } })
       .builder.subquery({
