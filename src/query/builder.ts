@@ -1,4 +1,5 @@
 import type { Reference } from '../types'
+import { UndefinedAsOptional } from '../types/util'
 import { inArray, createProxy } from '../utils'
 
 type QueryReturnType<T> = [string, T]
@@ -235,11 +236,11 @@ export class QueryBuilder<
   }
 
   map<NewMapping extends Record<string, any>>(
-    map: NewMapping | ((resolver: MapResolver<Schema>) => NewMapping)
+    map: NewMapping | ((resolver: Required<MapResolver<Schema>>) => NewMapping)
   ): Omit<
     QueryBuilder<
       Schema,
-      Combine<Mappings, NewMapping>,
+      UndefinedAsOptional<Combine<Mappings, NewMapping>>,
       Subqueries,
       Type,
       Project,
@@ -250,8 +251,8 @@ export class QueryBuilder<
     let mappings: Combine<Mappings, NewMapping>
 
     function checkCallable(
-      m: NewMapping | ((resolver: MapResolver<Schema>) => NewMapping)
-    ): m is (resolver: MapResolver<Schema>) => NewMapping {
+      m: NewMapping | ((resolver: Required<MapResolver<Schema>>) => NewMapping)
+    ): m is (resolver: Required<MapResolver<Schema>>) => NewMapping {
       return typeof m === 'function'
     }
 
@@ -274,7 +275,7 @@ export class QueryBuilder<
     ) as unknown as Omit<
       QueryBuilder<
         Schema,
-        Combine<Mappings, NewMapping>,
+        UndefinedAsOptional<Combine<Mappings, NewMapping>>,
         Subqueries,
         Type,
         Project,
