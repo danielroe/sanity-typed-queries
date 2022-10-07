@@ -63,7 +63,7 @@ type ExtractDocumentType<
   SchemaName extends string,
   CustomTypes extends CustomType<string>
 > = {
-  [P in keyof Schema]: FieldType<Schema[P], CustomTypes>
+  [P in keyof Schema]?: FieldType<Schema[P], CustomTypes>
 } & {
   _createdAt: string
   _updatedAt: string
@@ -174,7 +174,7 @@ type ExtractObjectType<
   SchemaName extends string,
   CustomTypes extends CustomType<string>
 > = {
-  [P in keyof Schema]: FieldType<Schema[P], CustomTypes>
+  [P in keyof Schema]?: FieldType<Schema[P], CustomTypes>
 } & { _type: SchemaName }
 
 export function defineObject<

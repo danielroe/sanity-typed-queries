@@ -1,4 +1,5 @@
 import type { Reference } from '../types'
+import { UndefinedAsOptional } from '../types/util'
 import { inArray, createProxy } from '../utils'
 
 type QueryReturnType<T> = [string, T]
@@ -6,9 +7,9 @@ type QueryReturnType<T> = [string, T]
 type Single<T> = T
 type Multiple<T> = T[]
 
-type ResolveFieldType<T> = T extends Record<string, any>
-  ? MapResolver<T>
-  : ResolverAction<T>
+type ResolveFieldType<T> = NonNullable<T> extends Record<string, any>
+  ? MapResolver<NonNullable<T>>
+  : ResolverAction<NonNullable<T>>
 
 interface ResolverFunction<T, Arr = false> {
   <P extends keyof T>(props: P[]): Arr extends true
@@ -22,37 +23,38 @@ interface ResolverFunction<T, Arr = false> {
 }
 
 type BaseResolverAction<T> = {
-  use: (defaultValue?: T) => T
+  use: (defaultValue?: T) => T | undefined
 }
 
 type ResolverAction<T> = BaseResolverAction<T> &
-  (T extends Reference<infer A>
+  (NonNullable<T> extends Reference<infer A>
     ? { resolve: ResolverFunction<A> }
     : Record<string, unknown>) &
-  (T extends Array<any>
+  (NonNullable<T> extends Array<any>
     ? {
         count: () => number
       }
     : Record<string, unknown>) &
-  (T extends Array<Record<string, any>>
+  (NonNullable<T> extends Array<Record<string, any>>
     ? {
-        pick: <K extends keyof T[0]>(
+        pick: <K extends keyof NonNullable<T>[0]>(
           props: K[] | K
-        ) => { use: () => Pick<T[0], K> }
+        ) => { use: () => Pick<NonNullable<T>[0], K> }
       }
     : Record<string, unknown>) &
-  (T extends Array<Reference<infer A>>
+  (NonNullable<T> extends Array<Reference<infer A>>
     ? {
         resolveIn: ResolverFunction<A, true>
       }
     : Record<string, unknown>)
 
-type MapResolver<T extends Record<string, any>> = (T extends Array<any>
-  ? Record<string, unknown>
-  : {
-      [P in keyof T]: ResolveFieldType<T[P]>
-    }) &
-  ResolverAction<T>
+type MapResolver<T extends Record<string, any>> =
+  (NonNullable<T> extends Array<any>
+    ? Record<string, unknown>
+    : {
+        [P in keyof T]: ResolveFieldType<T[P]>
+      }) &
+    ResolverAction<T>
 
 type Combine<
   Original extends Record<string, any>,
@@ -237,11 +239,11 @@ export class QueryBuilder<
   }
 
   map<NewMapping extends Record<string, any>>(
-    map: NewMapping | ((resolver: MapResolver<Schema>) => NewMapping)
+    map: NewMapping | ((resolver: Required<MapResolver<Schema>>) => NewMapping)
   ): Omit<
     QueryBuilder<
       Schema,
-      Combine<Mappings, NewMapping>,
+      UndefinedAsOptional<Combine<Mappings, NewMapping>>,
       Subqueries,
       Type,
       Project,
@@ -252,8 +254,8 @@ export class QueryBuilder<
     let mappings: Combine<Mappings, NewMapping>
 
     function checkCallable(
-      m: NewMapping | ((resolver: MapResolver<Schema>) => NewMapping)
-    ): m is (resolver: MapResolver<Schema>) => NewMapping {
+      m: NewMapping | ((resolver: Required<MapResolver<Schema>>) => NewMapping)
+    ): m is (resolver: Required<MapResolver<Schema>>) => NewMapping {
       return typeof m === 'function'
     }
 
@@ -276,7 +278,7 @@ export class QueryBuilder<
     ) as unknown as Omit<
       QueryBuilder<
         Schema,
-        Combine<Mappings, NewMapping>,
+        UndefinedAsOptional<Combine<Mappings, NewMapping>>,
         Subqueries,
         Type,
         Project,

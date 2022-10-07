@@ -24,7 +24,7 @@ describe('field types', () => {
       .builder.pick('test')
       .first()
       .use()[1]
-    expectTypeOf(array).toEqualTypeOf<string[]>()
+    expectTypeOf(array).toEqualTypeOf<string[] | undefined>()
 
     /** Keyed array exmaple */
     type KeyedArrayValue = (Record<string, any> & {
@@ -36,7 +36,7 @@ describe('field types', () => {
       .builder.pick('test')
       .first()
       .use()[1]
-    expectTypeOf(keyedArray).toEqualTypeOf<KeyedArrayValue>()
+    expectTypeOf(keyedArray).toEqualTypeOf<KeyedArrayValue | undefined>()
 
     defineDocument('failingArrayExample', {
       // @ts-expect-error
@@ -60,7 +60,7 @@ describe('field types', () => {
       .first()
       .use()[1]
 
-    expectTypeOf(blockArray).toEqualTypeOf<Block[]>()
+    expectTypeOf(blockArray).toEqualTypeOf<Block[] | undefined>()
 
     /**
      * 'block'
@@ -71,7 +71,7 @@ describe('field types', () => {
       .builder.pick('test')
       .first()
       .use()[1]
-    expectTypeOf(block).toEqualTypeOf<Block>()
+    expectTypeOf(block).toEqualTypeOf<Block | undefined>()
 
     /**
      * 'boolean'
@@ -82,7 +82,7 @@ describe('field types', () => {
       .builder.pick('test')
       .first()
       .use()[1]
-    expectTypeOf(boolean).toEqualTypeOf<boolean>()
+    expectTypeOf(boolean).toEqualTypeOf<boolean | undefined>()
 
     /**
      * 'date'
@@ -93,7 +93,7 @@ describe('field types', () => {
       .builder.pick('test')
       .first()
       .use()[1]
-    expectTypeOf(date).toEqualTypeOf<string>()
+    expectTypeOf(date).toEqualTypeOf<string | undefined>()
 
     /**
      * 'datetime'
@@ -104,7 +104,7 @@ describe('field types', () => {
       .builder.pick('test')
       .first()
       .use()[1]
-    expectTypeOf(datetime).toEqualTypeOf<string>()
+    expectTypeOf(datetime).toEqualTypeOf<string | undefined>()
 
     /**
      * 'string'
@@ -115,7 +115,7 @@ describe('field types', () => {
       .builder.pick('test')
       .first()
       .use()[1]
-    expectTypeOf(string).toEqualTypeOf<string>()
+    expectTypeOf(string).toEqualTypeOf<string | undefined>()
 
     /**
      * enum like string example
@@ -133,7 +133,7 @@ describe('field types', () => {
       .builder.pick('test')
       .first()
       .use()[1]
-    expectTypeOf(enumString).toEqualTypeOf<AllowedStringValues>()
+    expectTypeOf(enumString).toEqualTypeOf<AllowedStringValues | undefined>()
 
     /**
      * 'text'
@@ -144,7 +144,7 @@ describe('field types', () => {
       .builder.pick('test')
       .first()
       .use()[1]
-    expectTypeOf(text).toEqualTypeOf<string>()
+    expectTypeOf(text).toEqualTypeOf<string | undefined>()
 
     /**
      * 'url'
@@ -153,7 +153,7 @@ describe('field types', () => {
       .builder.pick('test')
       .first()
       .use()[1]
-    expectTypeOf(url).toEqualTypeOf<string>()
+    expectTypeOf(url).toEqualTypeOf<string | undefined>()
 
     /**
      * 'file'
@@ -164,7 +164,7 @@ describe('field types', () => {
       .builder.pick('test')
       .first()
       .use()[1]
-    expectTypeOf(file).toEqualTypeOf<File>()
+    expectTypeOf(file).toEqualTypeOf<File | undefined>()
 
     /**
      * 'geopoint'
@@ -175,7 +175,7 @@ describe('field types', () => {
       .builder.pick('test')
       .first()
       .use()[1]
-    expectTypeOf(geopoint).toEqualTypeOf<Geopoint>()
+    expectTypeOf(geopoint).toEqualTypeOf<Geopoint | undefined>()
 
     /**
      * 'image'
@@ -186,7 +186,9 @@ describe('field types', () => {
       .builder.pick('test')
       .first()
       .use()[1]
-    expectTypeOf(image).toEqualTypeOf<Image & Record<string, any>>()
+    expectTypeOf(image).toEqualTypeOf<
+      (Image & Record<string, any>) | undefined
+    >()
 
     const imageWithFields = defineDocument('imageExample', {
       test: {
@@ -198,7 +200,7 @@ describe('field types', () => {
       .first()
       .use()[1]
     expectTypeOf(imageWithFields).toEqualTypeOf<
-      Image & { bob: string | undefined }
+      (Image & { bob: string | undefined }) | undefined
     >()
 
     /**
@@ -210,7 +212,7 @@ describe('field types', () => {
       .builder.pick('test')
       .first()
       .use()[1]
-    expectTypeOf(number).toEqualTypeOf<number>()
+    expectTypeOf(number).toEqualTypeOf<number | undefined>()
 
     /**
      * 'reference'
@@ -242,7 +244,7 @@ describe('field types', () => {
       .use()[1]
 
     expectTypeOf<
-      typeof reference[typeof to]['_type']
+      NonNullable<typeof reference>[typeof to]['_type']
     >().toEqualTypeOf<'anotherDoc'>()
 
     /**
@@ -254,7 +256,7 @@ describe('field types', () => {
       .builder.pick('test')
       .first()
       .use()[1]
-    expectTypeOf(slug).toEqualTypeOf<Slug>()
+    expectTypeOf(slug).toEqualTypeOf<Slug | undefined>()
 
     expect(true).toBeTruthy()
   })

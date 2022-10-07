@@ -28,32 +28,32 @@ describe('builder types', () => {
     })
 
     const a = builder.pick('description').use()[1]
-    expectTypeOf(a).toEqualTypeOf<string[]>()
+    expectTypeOf(a).toEqualTypeOf<(string | undefined)[]>()
 
     const b = builder.first().pick('description').use()[1]
-    expectTypeOf(b).toEqualTypeOf<string>()
+    expectTypeOf(b).toEqualTypeOf<string | undefined>()
 
     const c = builder.pick('description').first().use()[1]
-    expectTypeOf(c).toEqualTypeOf<string>()
+    expectTypeOf(c).toEqualTypeOf<string | undefined>()
 
     const type = builder.pick('tags').first().use()[1]
-    expectTypeOf(type).toEqualTypeOf<Array<string | number>>()
+    expectTypeOf(type).toEqualTypeOf<Array<string | number> | undefined>()
 
     const d = builder.use()[1]
     expectTypeOf<typeof d[number]['tags']>().toEqualTypeOf<
-      Array<string | number>
+      Array<string | number> | undefined
     >()
 
     const e = builder.pick('_updatedAt').first().use()[1]
     expectTypeOf(e).toEqualTypeOf<string>()
 
     const f = builder.pick(['_type', 'name']).first().use()[1]
-    expectTypeOf(f).toEqualTypeOf<{ _type: 'author'; name: string }>()
+    expectTypeOf(f).toEqualTypeOf<{ _type: 'author'; name?: string }>()
 
     const filterType = defineDocument('test', { title: { type: 'string' } })
       .builder.filter('')
       .use()[1][0]
-    expectTypeOf(filterType).toMatchTypeOf<{ title: string }>()
+    expectTypeOf(filterType).toMatchTypeOf<{ title?: string }>()
 
     // @ts-expect-error
     expectTypeOf(builder.pick('nothere'))
@@ -66,7 +66,7 @@ describe('builder types', () => {
       },
     })
     const g = testObj.pick('testObject').first().use()[1]
-    expectTypeOf(g).toEqualTypeOf<{ subfield: string | undefined }>()
+    expectTypeOf(g).toEqualTypeOf<{ subfield?: string } | undefined>()
 
     const mapper = defineDocument('author', {
       num: {
@@ -85,44 +85,49 @@ describe('builder types', () => {
 
     const h = mapper.pick(['test', 'testObject']).use()[1]
     expectTypeOf(h).toEqualTypeOf<
-      { test: string; testObject: { subfield: string | undefined } }[]
+      { test?: string; testObject?: { subfield?: string } }[]
     >()
 
     const i = mapper
       .map(r => ({ test: r.num.use(), bagel: r.testObject.use() }))
       .pick(['test', 'num'])
       .use()[1]
-    expectTypeOf(i).toEqualTypeOf<{ test: number; num: number }[]>()
+    expectTypeOf(i).toEqualTypeOf<{ test?: number; num?: number }[]>()
 
     const j = mapper
       .map(r => ({ test: r.num.use(), bagel: r.testObject.use() }))
       .pick(['test', 'bagel'])
       .use()[1]
     expectTypeOf(j).toEqualTypeOf<
-      { test: number; bagel: { subfield: string | undefined } }[]
+      { test?: number; bagel?: { subfield?: string } }[]
     >()
 
     const k = mapper
       .map(r => ({ test: r.num.use(), bagel: r.testObject.use() }))
       .pick('bagel')
       .use()[1]
-    expectTypeOf(k).toEqualTypeOf<{ subfield: string | undefined }[]>()
+    expectTypeOf(k).toEqualTypeOf<({ subfield?: string } | undefined)[]>()
 
     const l = mapper
       .map(r => ({ test: r.num.use(), bagel: r.testObject.use() }))
       .pick('bagel')
       .first()
       .use()[1]
-    expectTypeOf(l).toEqualTypeOf<{ subfield: string | undefined }>()
+    expectTypeOf(l).toEqualTypeOf<
+      { subfield?: string | undefined } | undefined
+    >()
 
     const m = mapper
       .map(r => ({ test: r.num.use(), bagel: r.testObject.use() }))
       .first()
       .use()[1]
 
-    expectTypeOf<typeof m['bagel']>().toEqualTypeOf<{
-      subfield: string | undefined
-    }>()
+    expectTypeOf<typeof m['bagel']>().toEqualTypeOf<
+      | {
+          subfield?: string | undefined
+        }
+      | undefined
+    >()
 
     const resolver = defineDocument('author', {
       image: {
@@ -135,7 +140,7 @@ describe('builder types', () => {
       .pick('testImage')
       .first()
       .use()[1]
-    expectTypeOf(resolvedId).toEqualTypeOf<string>()
+    expectTypeOf(resolvedId).toEqualTypeOf<string | undefined>()
 
     const { tag } = defineDocument('tag', {
       title: {
@@ -186,12 +191,16 @@ describe('builder types', () => {
     )
 
     const inter = objectBuilder.pick('num').first().use()[1]
-    expectTypeOf<typeof inter['title']>().toEqualTypeOf<string>()
+    expectTypeOf<NonNullable<typeof inter>['title']>().toEqualTypeOf<
+      string | undefined
+    >()
     const inter2 = objectBuilder
       .map(h => ({ bingTitle: h.bing.resolve('title').use() }))
       .first()
       .use()[1]
-    expectTypeOf<typeof inter2['bingTitle']>().toEqualTypeOf<number>()
+    expectTypeOf<NonNullable<typeof inter2>['bingTitle']>().toEqualTypeOf<
+      number | undefined
+    >()
     const inter3 = objectBuilder
       .map(h => ({ count: h.more.count() }))
       .first()
@@ -221,19 +230,14 @@ describe('builder types', () => {
         .pick('fields')
         .first()
         .use()[1]
-    ).toEqualTypeOf<string[][]>()
+    ).toEqualTypeOf<(string[] | undefined)[] | undefined>()
     expectTypeOf(
       referenceBuilder
         .map(r => ({ fields: r.authors.resolveIn(['_id', 'more']).use() }))
         .pick('fields')
         .first()
         .use()[1]
-    ).toEqualTypeOf<
-      {
-        _id: string
-        more: string[]
-      }[]
-    >()
+    ).toEqualTypeOf<Array<{ _id: string; more?: string[] }> | undefined>()
 
     const subqueryType = defineDocument('test', { title: { type: 'string' } })
       .builder.subquery({
@@ -242,6 +246,7 @@ describe('builder types', () => {
         }).builder.use(),
       })
       .use()[1][0]?.children
+
     expectTypeOf(subqueryType).toEqualTypeOf<
       {
         _createdAt: string
@@ -249,7 +254,7 @@ describe('builder types', () => {
         _id: string
         _rev: string
         _type: 'child'
-        title: string
+        title?: string
       }[]
     >()
 
