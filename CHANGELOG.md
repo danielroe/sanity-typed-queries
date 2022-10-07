@@ -1,3 +1,18 @@
+
+
+## [0.9.0](https://github.com/danielroe/sanity-typed-queries/compare/0.8.1...0.9.0) (2022-10-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* mark return type for custom fields as optional (#294)
+
+### Bug Fixes
+
+* mark return type for custom fields as optional ([#294](https://github.com/danielroe/sanity-typed-queries/issues/294)) ([3f34410](https://github.com/danielroe/sanity-typed-queries/commit/3f344107a1bb61c05cefc9392ce5a9ca0d7a4c14))
+* **types:** resolve arrays correctly with multi-property resolver ([#295](https://github.com/danielroe/sanity-typed-queries/issues/295)) ([a422167](https://github.com/danielroe/sanity-typed-queries/commit/a4221674b999dd072d77a0ecab555f1b8db592b4))
+* updated custom validator typing ([#231](https://github.com/danielroe/sanity-typed-queries/issues/231)) ([9774605](https://github.com/danielroe/sanity-typed-queries/commit/977460568256557e94a189e53bf0f766748f127f))
+
 undefined
 
 ### [0.8.1](https://github.com/danielroe/sanity-typed-queries/compare/0.8.0...0.8.1) (2022-02-28)
