@@ -1,6 +1,6 @@
 undefined
 
-### [0.8.1](https://github.com/danielroe/sanity-typed-queries/compare/0.8.0...0.8.1) (2022-02-28)undefined
+### [0.8.1](https://github.com/danielroe/sanity-typed-queries/compare/0.8.0...0.8.1) (2022-02-28)
 
 ## [0.8.0](https://github.com/danielroe/sanity-typed-queries/compare/0.7.5...0.8.0) (2022-02-28)
 

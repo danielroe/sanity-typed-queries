@@ -1,4 +1,5 @@
 import type { Block, File, Geopoint, Image, Reference, Slug } from '../types'
+import type { UndefinedAsOptional } from '../types/util'
 
 import type {
   ArrayRule,
@@ -478,7 +479,7 @@ export type FieldType<
     : T extends PureType<'number'>
     ? number
     : T extends Nameless<ObjectField<infer A>>
-    ? A
+    ? UndefinedAsOptional<A>
     : T extends PureType<'reference'> & { to: Array<infer B> }
     ? Reference<FieldType<B, CustomObjects>>
     : T extends PureType<'slug'>
