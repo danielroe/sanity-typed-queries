@@ -1,5 +1,7 @@
 
 
+## [0.9.1](https://github.com/danielroe/sanity-typed-queries/compare/0.9.0...0.9.1) (2022-10-10)
+
 ## [0.9.0](https://github.com/danielroe/sanity-typed-queries/compare/0.8.1...0.9.0) (2022-10-07)
 
 
