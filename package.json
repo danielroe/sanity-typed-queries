@@ -34,16 +34,17 @@
     "postinstall": "husky install",
     "lint": "pnpm lint:all:eslint && pnpm lint:all:prettier",
     "lint:all:eslint": "pnpm lint:eslint --ext .js,.ts .",
-    "lint:all:prettier": "pnpm lint:prettier \"**/*.{js,json,ts}\"",
+    "lint:all:prettier": "pnpm lint:prettier \"{src,test,docs}/*.{js,json,ts}\"",
     "lint:eslint": "eslint --fix",
     "lint:prettier": "prettier --write --loglevel warn",
-    "prepare": "husky install && pnpm build --stub",
-    "prepublishOnly": "pnpm lint && pnpm test && pnpm build && pinst --disable",
+    "dev:prepare": "pnpm build --stub",
+    "prepare": "husky install && pnpm build",
+    "prepublishOnly": "pnpm lint && pnpm test && pinst --disable",
     "postpublish": "pinst --enable",
     "release": "release-it",
     "test": "pnpm test:types && pnpm test:unit",
     "test:types": "tsc --noEmit",
-    "test:unit": "vitest"
+    "test:unit": "vitest run"
   },
   "devDependencies": {
     "@release-it/conventional-changelog": "^5.1.0",
