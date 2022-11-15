@@ -48,18 +48,18 @@
   },
   "devDependencies": {
     "@release-it/conventional-changelog": "^5.1.1",
-    "@typescript-eslint/eslint-plugin": "^5.42.0",
-    "@typescript-eslint/parser": "^5.42.0",
-    "@vitest/coverage-c8": "^0.24.5",
+    "@typescript-eslint/eslint-plugin": "^5.43.0",
+    "@typescript-eslint/parser": "^5.43.0",
+    "@vitest/coverage-c8": "^0.25.2",
     "c8": "^7.12.0",
     "conventional-changelog-conventionalcommits": "^5.0.0",
-    "esbuild": "0.15.12",
-    "eslint": "^8.26.0",
+    "esbuild": "0.15.14",
+    "eslint": "^8.27.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "expect-type": "^0.15.0",
     "groq": "^2.33.2",
-    "husky": "^8.0.1",
+    "husky": "^8.0.2",
     "lint-staged": "^13.0.3",
     "pinst": "^3.0.0",
     "prettier": "^2.7.1",
@@ -68,8 +68,8 @@
     "semver": "^7.3.8",
     "typescript": "^4.8.4",
     "unbuild": "^0.9.4",
-    "vite": "^3.2.2",
-    "vitest": "~0.24.5"
+    "vite": "^3.2.4",
+    "vitest": "~0.25.2"
   },
-  "packageManager": "pnpm@7.14.2"
+  "packageManager": "pnpm@7.16.0"
 }
