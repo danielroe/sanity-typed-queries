@@ -67,7 +67,7 @@
     "resolve": "^1.22.1",
     "semver": "^7.3.8",
     "typescript": "^4.8.4",
-    "unbuild": "^0.9.4",
+    "unbuild": "^1.0.1",
     "vite": "^3.2.4",
     "vitest": "~0.25.2"
   },
