@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@release-it/conventional-changelog': ^5.1.1
+  '@release-it/conventional-changelog': 5.1.1
   '@typescript-eslint/eslint-plugin': ^5.45.0
   '@typescript-eslint/parser': ^5.45.0
   '@vitest/coverage-c8': ^0.25.3
@@ -17,7 +17,7 @@ specifiers:
   lint-staged: ^13.1.0
   pinst: ^3.0.0
   prettier: ^2.8.0
-  release-it: ^15.5.1
+  release-it: 15.5.1
   resolve: ^1.22.1
   semver: ^7.3.8
   typescript: ^4.9.3
@@ -5332,7 +5332,7 @@ packages:
     dev: true
 
   /xregexp/2.0.0:
-    resolution: {integrity: sha1-UqY+VsoLhKfzpfPWGHLxJq16WUM=}
+    resolution: {integrity: sha512-xl/50/Cf32VsGq/1R8jJE5ajH1yMCQkpmoS10QbFZWl2Oor4H0Me64Pu2yxvsRWK3m6soJbmGfzSR7BYmDcWAA==}
     dev: true
 
   /xtend/4.0.2:
