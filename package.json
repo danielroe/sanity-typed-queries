@@ -50,7 +50,7 @@
     "@release-it/conventional-changelog": "5.1.1",
     "@typescript-eslint/eslint-plugin": "5.46.0",
     "@typescript-eslint/parser": "5.46.0",
-    "@vitest/coverage-c8": "0.25.6",
+    "@vitest/coverage-c8": "0.25.7",
     "c8": "7.12.0",
     "conventional-changelog-conventionalcommits": "5.0.0",
     "esbuild": "0.15.18",
@@ -69,7 +69,7 @@
     "typescript": "4.9.4",
     "unbuild": "1.0.2",
     "vite": "3.2.5",
-    "vitest": "0.25.6"
+    "vitest": "0.25.7"
   },
   "packageManager": "pnpm@7.18.1"
 }
