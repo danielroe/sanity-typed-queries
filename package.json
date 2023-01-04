@@ -59,7 +59,7 @@
     "eslint-plugin-prettier": "4.2.1",
     "expect-type": "0.15.0",
     "groq": "2.33.2",
-    "husky": "8.0.2",
+    "husky": "8.0.3",
     "lint-staged": "13.1.0",
     "pinst": "3.0.0",
     "prettier": "2.8.1",
