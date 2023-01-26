@@ -71,5 +71,5 @@
     "vite": "4.0.4",
     "vitest": "0.28.1"
   },
-  "packageManager": "pnpm@7.25.1"
+  "packageManager": "pnpm@7.26.0"
 }
