@@ -48,8 +48,8 @@
   },
   "devDependencies": {
     "@release-it/conventional-changelog": "5.1.1",
-    "@typescript-eslint/eslint-plugin": "5.49.0",
-    "@typescript-eslint/parser": "5.49.0",
+    "@typescript-eslint/eslint-plugin": "5.50.0",
+    "@typescript-eslint/parser": "5.50.0",
     "@vitest/coverage-c8": "0.28.3",
     "c8": "7.12.0",
     "conventional-changelog-conventionalcommits": "5.0.0",
