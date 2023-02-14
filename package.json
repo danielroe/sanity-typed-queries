@@ -58,7 +58,7 @@
     "eslint-config-prettier": "8.6.0",
     "eslint-plugin-prettier": "4.2.1",
     "expect-type": "0.15.0",
-    "groq": "3.2.6",
+    "groq": "3.3.1",
     "husky": "8.0.3",
     "lint-staged": "13.1.2",
     "pinst": "3.0.0",
