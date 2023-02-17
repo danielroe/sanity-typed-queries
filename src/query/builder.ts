@@ -385,7 +385,9 @@ export class QueryBuilder<
 
     const innerProjection = [
       ...(this.restricted ? [] : ['...']),
-      ...entries.map(([key, val]) => (key === val ? key : `"${key}": ${val}`)),
+      ...entries
+        .sort((a, b) => a[0].localeCompare(b[0]))
+        .map(([key, val]) => (key === val ? key : `"${key}": ${val}`)),
     ].join(', ')
 
     return ` { ${innerProjection} }`
