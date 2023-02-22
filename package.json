@@ -47,8 +47,8 @@
     "test:unit": "vitest run"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "5.52.0",
-    "@typescript-eslint/parser": "5.52.0",
+    "@typescript-eslint/eslint-plugin": "5.53.0",
+    "@typescript-eslint/parser": "5.53.0",
     "@vitest/coverage-c8": "0.28.5",
     "bumpp": "8.2.1",
     "c8": "7.13.0",
