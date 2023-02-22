@@ -21,7 +21,7 @@ specifiers:
   semver: 7.3.8
   typescript: 4.9.5
   unbuild: 1.1.2
-  vite: 4.1.1
+  vite: 4.1.4
   vitest: 0.28.5
 
 devDependencies:
@@ -45,7 +45,7 @@ devDependencies:
   semver: 7.3.8
   typescript: 4.9.5
   unbuild: 1.1.2
-  vite: 4.1.1
+  vite: 4.1.4
   vitest: 0.28.5
 
 packages:
@@ -2668,14 +2668,6 @@ packages:
       '@babel/code-frame': 7.18.6
     dev: true
 
-  /rollup/3.10.0:
-    resolution: {integrity: sha512-JmRYz44NjC1MjVF2VKxc0M1a97vn+cDxeqWmnwyAF4FvpjK8YFdHpaqvQB+3IxCvX05vJxKZkoMDU8TShhmJVA==}
-    engines: {node: '>=14.18.0', npm: '>=8.0.0'}
-    hasBin: true
-    optionalDependencies:
-      fsevents: 2.3.2
-    dev: true
-
   /rollup/3.17.1:
     resolution: {integrity: sha512-8RnSms6rNqHmZK+wiqgnPCqen+rRnUHXkciGDirh7B00g1rX1vpKbPDhuxCvAG2bburoI+W4Q9/PlUB/zYkiYA==}
     engines: {node: '>=14.18.0', npm: '>=8.0.0'}
@@ -3051,7 +3043,7 @@ packages:
       picocolors: 1.0.0
       source-map: 0.6.1
       source-map-support: 0.5.21
-      vite: 4.1.1_@types+node@18.11.10
+      vite: 4.1.4_@types+node@18.11.10
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -3062,8 +3054,8 @@ packages:
       - terser
     dev: true
 
-  /vite/4.1.1:
-    resolution: {integrity: sha512-LM9WWea8vsxhr782r9ntg+bhSFS06FJgCvvB0+8hf8UWtvaiDagKYWXndjfX6kGl74keHJUcpzrQliDXZlF5yg==}
+  /vite/4.1.4:
+    resolution: {integrity: sha512-3knk/HsbSTKEin43zHu7jTwYWv81f8kgAL99G5NWBcA1LKvtvcVAC4JjBH1arBunO9kQka+1oGbrMKOjk4ZrBg==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
@@ -3090,13 +3082,13 @@ packages:
       esbuild: 0.16.17
       postcss: 8.4.21
       resolve: 1.22.1
-      rollup: 3.10.0
+      rollup: 3.17.1
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
 
-  /vite/4.1.1_@types+node@18.11.10:
-    resolution: {integrity: sha512-LM9WWea8vsxhr782r9ntg+bhSFS06FJgCvvB0+8hf8UWtvaiDagKYWXndjfX6kGl74keHJUcpzrQliDXZlF5yg==}
+  /vite/4.1.4_@types+node@18.11.10:
+    resolution: {integrity: sha512-3knk/HsbSTKEin43zHu7jTwYWv81f8kgAL99G5NWBcA1LKvtvcVAC4JjBH1arBunO9kQka+1oGbrMKOjk4ZrBg==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
@@ -3124,7 +3116,7 @@ packages:
       esbuild: 0.16.17
       postcss: 8.4.21
       resolve: 1.22.1
-      rollup: 3.10.0
+      rollup: 3.17.1
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
@@ -3172,7 +3164,7 @@ packages:
       tinybench: 2.3.1
       tinypool: 0.3.1
       tinyspy: 1.0.2
-      vite: 4.1.1_@types+node@18.11.10
+      vite: 4.1.4_@types+node@18.11.10
       vite-node: 0.28.5_@types+node@18.11.10
       why-is-node-running: 2.2.2
     transitivePeerDependencies:
