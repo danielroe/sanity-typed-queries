@@ -12,7 +12,7 @@ specifiers:
   eslint-config-prettier: 8.6.0
   eslint-plugin-prettier: 4.2.1
   expect-type: 0.15.0
-  groq: 3.4.0
+  groq: 3.5.0
   husky: 8.0.3
   lint-staged: 13.1.2
   pinst: 3.0.0
@@ -36,7 +36,7 @@ devDependencies:
   eslint-config-prettier: 8.6.0_eslint@8.34.0
   eslint-plugin-prettier: 4.2.1_u5wnrdwibbfomslmnramz52buy
   expect-type: 0.15.0
-  groq: 3.4.0
+  groq: 3.5.0
   husky: 8.0.3
   lint-staged: 13.1.2
   pinst: 3.0.0
@@ -1939,8 +1939,8 @@ packages:
     resolution: {integrity: sha512-bzh50DW9kTPM00T8y4o8vQg89Di9oLJVLW/KaOGIXJWP/iqCN6WKYkbNOF04vFLJhwcpYUh9ydh/+5vpOqV4YQ==}
     dev: true
 
-  /groq/3.4.0:
-    resolution: {integrity: sha512-x1ba7zNLHOcuj83JkXMge9H0uD7W3ZVNSDuLgympoOdVDYCOafS3gwmd/z4rVH7sOCxO7DtbUmyrbCW+aA5N+A==}
+  /groq/3.5.0:
+    resolution: {integrity: sha512-ewaCMW9Vj9nuVgt7ymwK+WfIQ+wmN4dDbczESo6A+hv1k05DdPc37zmTRqojiu5uYeI2GK03d64XGaN1xybSzg==}
     engines: {node: '>=14'}
     dev: true
 
