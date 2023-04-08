@@ -14,7 +14,7 @@ specifiers:
   expect-type: 0.15.0
   groq: 3.8.3
   husky: 8.0.3
-  lint-staged: 13.2.0
+  lint-staged: 13.2.1
   pinst: 3.0.0
   prettier: 2.8.7
   resolve: 1.22.2
@@ -38,7 +38,7 @@ devDependencies:
   expect-type: 0.15.0
   groq: 3.8.3
   husky: 8.0.3
-  lint-staged: 13.2.0
+  lint-staged: 13.2.1
   pinst: 3.0.0
   prettier: 2.8.7
   resolve: 1.22.2
@@ -2011,8 +2011,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /lint-staged/13.2.0:
-    resolution: {integrity: sha512-GbyK5iWinax5Dfw5obm2g2ccUiZXNGtAS4mCbJ0Lv4rq6iEtfBSjOYdcbOtAIFtM114t0vdpViDDetjVTSd8Vw==}
+  /lint-staged/13.2.1:
+    resolution: {integrity: sha512-8gfzinVXoPfga5Dz/ZOn8I2GOhf81Wvs+KwbEXQn/oWZAvCVS2PivrXfVbFJc93zD16uC0neS47RXHIjXKYZQw==}
     engines: {node: ^14.13.1 || >=16.0.0}
     hasBin: true
     dependencies:
