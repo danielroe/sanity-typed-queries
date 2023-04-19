@@ -53,8 +53,8 @@ devDependencies:
     specifier: 1.22.3
     version: 1.22.3
   semver:
-    specifier: 7.4.0
-    version: 7.4.0
+    specifier: 7.5.0
+    version: 7.5.0
   typescript:
     specifier: 5.0.4
     version: 5.0.4
@@ -758,7 +758,7 @@ packages:
       grapheme-splitter: 1.0.4
       ignore: 5.2.1
       natural-compare-lite: 1.4.0
-      semver: 7.4.0
+      semver: 7.5.0
       tsutils: 3.21.0(typescript@5.0.4)
       typescript: 5.0.4
     transitivePeerDependencies:
@@ -832,7 +832,7 @@ packages:
       debug: 4.3.4
       globby: 11.1.0
       is-glob: 4.0.3
-      semver: 7.4.0
+      semver: 7.5.0
       tsutils: 3.21.0(typescript@5.0.4)
       typescript: 5.0.4
     transitivePeerDependencies:
@@ -853,7 +853,7 @@ packages:
       '@typescript-eslint/typescript-estree': 5.59.0(typescript@5.0.4)
       eslint: 8.38.0
       eslint-scope: 5.1.1
-      semver: 7.4.0
+      semver: 7.5.0
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -1079,7 +1079,7 @@ packages:
       cac: 6.7.14
       fast-glob: 3.2.12
       prompts: 2.4.2
-      semver: 7.4.0
+      semver: 7.5.0
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -1271,7 +1271,7 @@ packages:
       js-string-escape: 1.0.1
       lodash: 4.17.21
       md5-hex: 3.0.1
-      semver: 7.4.0
+      semver: 7.5.0
       well-known-symbols: 2.0.0
     dev: true
 
@@ -2622,8 +2622,8 @@ packages:
     hasBin: true
     dev: true
 
-  /semver@7.4.0:
-    resolution: {integrity: sha512-RgOxM8Mw+7Zus0+zcLEUn8+JfoLpj/huFTItQy2hsM4khuC1HYRDp0cU482Ewn/Fcy6bCjufD8vAj7voC66KQw==}
+  /semver@7.5.0:
+    resolution: {integrity: sha512-+XC0AD/R7Q2mPSRuy2Id0+CGTZ98+8f+KvwirxOKIEyid+XSx6HbC63p+O4IndTHuX5Z+JxQ0TghCkO5Cg/2HA==}
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
