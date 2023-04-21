@@ -62,8 +62,8 @@ devDependencies:
     specifier: 1.2.1
     version: 1.2.1
   vite:
-    specifier: 4.2.1
-    version: 4.2.1(@types/node@18.11.10)
+    specifier: 4.3.1
+    version: 4.3.1(@types/node@18.11.10)
   vitest:
     specifier: 0.30.1
     version: 0.30.1
@@ -2980,7 +2980,7 @@ packages:
       mlly: 1.2.0
       pathe: 1.1.0
       picocolors: 1.0.0
-      vite: 4.2.1(@types/node@18.11.10)
+      vite: 4.3.1(@types/node@18.11.10)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -2991,8 +2991,8 @@ packages:
       - terser
     dev: true
 
-  /vite@4.2.1(@types/node@18.11.10):
-    resolution: {integrity: sha512-7MKhqdy0ISo4wnvwtqZkjke6XN4taqQ2TBaTccLIpOKv7Vp2h4Y+NpmWCnGDeSvvn45KxvWgGyb0MkHvY1vgbg==}
+  /vite@4.3.1(@types/node@18.11.10):
+    resolution: {integrity: sha512-EPmfPLAI79Z/RofuMvkIS0Yr091T2ReUoXQqc5ppBX/sjFRhHKiPPF/R46cTdoci/XgeQpB23diiJxq5w30vdg==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
@@ -3019,7 +3019,6 @@ packages:
       '@types/node': 18.11.10
       esbuild: 0.17.17
       postcss: 8.4.21
-      resolve: 1.22.3
       rollup: 3.20.2
     optionalDependencies:
       fsevents: 2.3.2
@@ -3079,7 +3078,7 @@ packages:
       strip-literal: 1.0.1
       tinybench: 2.4.0
       tinypool: 0.4.0
-      vite: 4.2.1(@types/node@18.11.10)
+      vite: 4.3.1(@types/node@18.11.10)
       vite-node: 0.30.1(@types/node@18.11.10)
       why-is-node-running: 2.2.2
     transitivePeerDependencies:
