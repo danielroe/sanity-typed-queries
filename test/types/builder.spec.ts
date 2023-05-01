@@ -40,7 +40,7 @@ describe('builder types', () => {
     expectTypeOf(type).toEqualTypeOf<Array<string | number> | undefined>()
 
     const d = builder.use()[1]
-    expectTypeOf<typeof d[number]['tags']>().toEqualTypeOf<
+    expectTypeOf<(typeof d)[number]['tags']>().toEqualTypeOf<
       Array<string | number> | undefined
     >()
 
@@ -122,7 +122,7 @@ describe('builder types', () => {
       .first()
       .use()[1]
 
-    expectTypeOf<typeof m['bagel']>().toEqualTypeOf<
+    expectTypeOf<(typeof m)['bagel']>().toEqualTypeOf<
       | {
           subfield?: string | undefined
         }
@@ -205,13 +205,13 @@ describe('builder types', () => {
       .map(h => ({ count: h.more.count() }))
       .first()
       .use()[1]
-    expectTypeOf<typeof inter3['count']>().toEqualTypeOf<number>()
+    expectTypeOf<(typeof inter3)['count']>().toEqualTypeOf<number>()
 
     const inter4 = objectBuilder
       .map(h => ({ count: h.tagArray.pick(['_type', 'title']).use() }))
       .first()
       .use()[1]
-    expectTypeOf<typeof inter4['_type']>().toEqualTypeOf<'author'>()
+    expectTypeOf<(typeof inter4)['_type']>().toEqualTypeOf<'author'>()
 
     const referenceBuilder = defineDocument(
       'novel',
