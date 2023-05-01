@@ -43,9 +43,6 @@ devDependencies:
   lint-staged:
     specifier: 13.2.2
     version: 13.2.2
-  pinst:
-    specifier: 3.0.0
-    version: 3.0.0
   prettier:
     specifier: 2.8.8
     version: 2.8.8
@@ -2444,12 +2441,6 @@ packages:
   /pidtree@0.6.0:
     resolution: {integrity: sha512-eG2dWTVw5bzqGRztnHExczNxt5VGsE6OwTeCG3fdUf9KBsZzO3R5OIIIzWR+iZA0NtZ+RDVdaoE2dK1cn6jH4g==}
     engines: {node: '>=0.10'}
-    hasBin: true
-    dev: true
-
-  /pinst@3.0.0:
-    resolution: {integrity: sha512-cengSmBxtCyaJqtRSvJorIIZXMXg+lJ3sIljGmtBGUVonMnMsVJbnzl6jGN1HkOWwxNuJynCJ2hXxxqCQrFDdw==}
-    engines: {node: '>=12.0.0'}
     hasBin: true
     dev: true
 
