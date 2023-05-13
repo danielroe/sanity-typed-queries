@@ -32,7 +32,6 @@
   ],
   "scripts": {
     "build": "unbuild",
-    "postinstall": "husky install",
     "lint": "pnpm lint:all:eslint && pnpm lint:all:prettier",
     "lint:all:eslint": "pnpm lint:eslint --ext .js,.ts .",
     "lint:all:prettier": "pnpm lint:prettier \"{src,test,docs}/*.{js,json,ts}\"",
