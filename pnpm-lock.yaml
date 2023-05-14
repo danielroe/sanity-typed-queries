@@ -35,8 +35,8 @@ devDependencies:
     specifier: 0.15.0
     version: 0.15.0
   groq:
-    specifier: 3.10.1
-    version: 3.10.1
+    specifier: 3.10.3
+    version: 3.10.3
   husky:
     specifier: 8.0.3
     version: 8.0.3
@@ -1812,8 +1812,8 @@ packages:
     resolution: {integrity: sha512-bzh50DW9kTPM00T8y4o8vQg89Di9oLJVLW/KaOGIXJWP/iqCN6WKYkbNOF04vFLJhwcpYUh9ydh/+5vpOqV4YQ==}
     dev: true
 
-  /groq@3.10.1:
-    resolution: {integrity: sha512-HR9I4qjPiyRwbSgEOhJXjsmIwqoOCPO2viYM1H7JwqsZxuiSqbpb6jDVXSdkerBvSyv2xVwsl3EIwrGzEseiaQ==}
+  /groq@3.10.3:
+    resolution: {integrity: sha512-1+bhtNpbkHXh2hvz7LLtuIJlhMzhNMdaikVgin2xCu5SsHpXcdvZoPg0kTONi6COBaT2IOiDMbOmIWmGdRwplQ==}
     engines: {node: '>=14'}
     dev: true
 
