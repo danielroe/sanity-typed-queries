@@ -65,7 +65,7 @@
     "semver": "7.5.4",
     "typescript": "5.1.6",
     "unbuild": "1.2.1",
-    "vite": "4.4.7",
+    "vite": "4.4.8",
     "vitest": "0.33.0"
   },
   "packageManager": "pnpm@8.6.11"
