@@ -354,7 +354,10 @@ interface SlugField extends BaseField {
     /**
      * Supply a custom function which checks whether or not the slug is unique. Receives the proposed slug as the first argument and an options object.
      */
-    isUnique?: (slug: string, options: SlugField['options']) => boolean
+    isUnique?: (
+      slug: string,
+      options: SlugField['options']
+    ) => boolean | Promise<boolean>
   }
   validation?: Validator
 }
