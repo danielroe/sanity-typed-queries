@@ -19,7 +19,7 @@ type ObjectTypes<T extends { _type: string }> = Exclude<T, { _rev: string }>
 
 interface SchemaCreator<
   O extends { type: string } = { type: never },
-  D extends { type: string } = { type: never }
+  D extends { type: string } = { type: never },
 > {
   [key: string]: UnnamedField<O, D>
 }
@@ -29,7 +29,7 @@ type OptionalField<T> = T | undefined
 
 type SchemaTyper<
   T extends Record<string, any>,
-  CustomTypes extends CustomType<string>
+  CustomTypes extends CustomType<string>,
 > = {
   [P in keyof T]: 'validation' extends keyof T[P]
     ? ReturnType<NonNullable<T[P]['validation']>> extends RuleForRequired
@@ -46,7 +46,7 @@ export function defineFields<
     Nameless<CustomField<ObjectTypes<CustomTypes>['_type']>>,
     Nameless<CustomField<DocumentTypes<CustomTypes>['_type']>>
   >,
-  CustomTypes extends CustomType<string>
+  CustomTypes extends CustomType<string>,
 >(fields: Schema) {
   return Object.entries(fields).map(([key, value]) => ({
     title: splitStringByCase(key),
@@ -61,7 +61,7 @@ type ExtractDocumentType<
     Nameless<CustomField<DocumentTypes<CustomTypes>['_type']>>
   >,
   SchemaName extends string,
-  CustomTypes extends CustomType<string>
+  CustomTypes extends CustomType<string>,
 > = {
   [P in keyof Schema]?: FieldType<Schema[P], CustomTypes>
 } & {
@@ -78,7 +78,7 @@ type DocumentDefinition<
     Nameless<CustomField<DocumentTypes<CustomTypes>['_type']>>
   >,
   SchemaName extends string,
-  CustomTypes extends CustomType<string>
+  CustomTypes extends CustomType<string>,
 > = {
   [P in SchemaName]: ExtractDocumentType<Schema, SchemaName, CustomTypes>
 } & {
@@ -105,7 +105,7 @@ export function defineDocument<
     Nameless<CustomField<DocumentTypes<CustomTypes>['_type']>>
   >,
   SchemaName extends string,
-  CustomTypes extends CustomType<string> = { _type: never }
+  CustomTypes extends CustomType<string> = { _type: never },
 >(
   documentTitle: SchemaName,
   schema: Schema,
@@ -115,8 +115,8 @@ export function defineDocument<
 export function defineDocument<
   Schema extends SchemaCreator<never>,
   SchemaName extends string,
-  CustomTypes extends CustomType<string>
-  // eslint-disable-next-line no-unused-vars
+  CustomTypes extends CustomType<string>,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
 >(documentTitle: SchemaName, schema: Schema, _types?: CustomTypes[]) {
   return {
     /**
@@ -153,7 +153,7 @@ type ObjectDefinition<
     Nameless<CustomField<DocumentTypes<CustomTypes>['_type']>>
   >,
   SchemaName extends string,
-  CustomTypes extends CustomType<string>
+  CustomTypes extends CustomType<string>,
 > = {
   [P in SchemaName]: ExtractObjectType<Schema, SchemaName, CustomTypes>
 } & {
@@ -172,7 +172,7 @@ type ExtractObjectType<
     Nameless<CustomField<DocumentTypes<CustomTypes>['_type']>>
   >,
   SchemaName extends string,
-  CustomTypes extends CustomType<string>
+  CustomTypes extends CustomType<string>,
 > = {
   [P in keyof Schema]?: FieldType<Schema[P], CustomTypes>
 } & { _type: SchemaName }
@@ -183,7 +183,7 @@ export function defineObject<
     Nameless<CustomField<DocumentTypes<CustomTypes>['_type']>>
   >,
   SchemaName extends string,
-  CustomTypes extends CustomType<string> = { _type: never }
+  CustomTypes extends CustomType<string> = { _type: never },
 >(
   documentTitle: SchemaName,
   schema: Schema,
@@ -196,11 +196,11 @@ export function defineObject<
     Nameless<CustomField<DocumentTypes<CustomTypes>['_type']>>
   >,
   SchemaName extends string,
-  CustomTypes extends CustomType<string> = { _type: never }
+  CustomTypes extends CustomType<string> = { _type: never },
 >(
   objectTitle: SchemaName,
   schema: Schema,
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   _types?: CustomTypes[]
 ): ObjectDefinition<Schema, SchemaName, CustomTypes> {
   return {

@@ -12,14 +12,16 @@ type ResolveFieldType<T> = NonNullable<T> extends Record<string, any>
   : ResolverAction<NonNullable<T>>
 
 interface ResolverFunction<T, Arr = false> {
-  <P extends keyof T>(props: P[]): Arr extends true
+  <P extends keyof T>(
+    props: P[]
+  ): Arr extends true
     ? ResolveFieldType<Array<Pick<T, P>>>
     : ResolverAction<Pick<T, P>>
 }
 interface ResolverFunction<T, Arr = false> {
-  <P extends keyof T>(prop: P): Arr extends true
-    ? ResolveFieldType<Array<T[P]>>
-    : ResolveFieldType<T[P]>
+  <P extends keyof T>(
+    prop: P
+  ): Arr extends true ? ResolveFieldType<Array<T[P]>> : ResolveFieldType<T[P]>
 }
 
 type BaseResolverAction<T> = {
@@ -58,7 +60,7 @@ type MapResolver<T extends Record<string, any>> =
 
 type Combine<
   Original extends Record<string, any>,
-  New extends Record<string, any>
+  New extends Record<string, any>,
 > = Omit<Original, keyof New> & New
 
 export class QueryBuilder<
@@ -67,7 +69,7 @@ export class QueryBuilder<
   Subqueries extends Record<string, QueryReturnType<any>>,
   Type = Multiple<any>,
   Project extends boolean = true,
-  Exclude extends string = ''
+  Exclude extends string = '',
 > {
   private schema: Schema
   private ordering: [keyof Schema, 'asc' | 'desc'][]
@@ -186,10 +188,13 @@ export class QueryBuilder<
   // eslint-disable-next-line no-dupe-class-members
   pick(props: any) {
     const project = Array.isArray(props)
-    const projections = inArray(props).reduce((obj, key) => {
-      obj[key as string] = key as string
-      return obj
-    }, {} as Record<string, string>)
+    const projections = inArray(props).reduce(
+      (obj, key) => {
+        obj[key as string] = key as string
+        return obj
+      },
+      {} as Record<string, string>
+    )
 
     return new QueryBuilder(
       this.schema,

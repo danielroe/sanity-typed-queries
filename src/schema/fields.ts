@@ -58,7 +58,7 @@ export interface BaseField {
 
 export interface ArrayField<
   CustomObjectName extends string = never,
-  CustomDocuments extends { type: string } = never
+  CustomDocuments extends { type: string } = never,
 > extends BaseField {
   type: 'array'
   /**
@@ -406,7 +406,7 @@ export type Nameless<T> = Omit<T, 'name'>
 
 export type UnnamedField<
   CustomObjects extends { type: string } = { type: never },
-  CustomDocuments extends { type: string } = { type: never }
+  CustomDocuments extends { type: string } = { type: never },
 > =
   | Nameless<ArrayField<CustomObjects['type'], CustomDocuments>>
   | Nameless<BlockField>
@@ -439,7 +439,7 @@ type CustomTypeName<T extends { _type: string }> = { type: T['_type'] }
 
 export type FieldType<
   T extends UnnamedField<any>,
-  CustomObjects extends { _type: string }
+  CustomObjects extends { _type: string },
 > =
   //
   T extends PureType<'array'> & { of: Array<infer B> }
