@@ -51,7 +51,7 @@
     "@vitest/coverage-v8": "0.34.6",
     "bumpp": "9.2.0",
     "conventional-changelog-conventionalcommits": "6.1.0",
-    "esbuild": "0.19.5",
+    "esbuild": "0.19.9",
     "eslint": "8.54.0",
     "eslint-config-prettier": "9.0.0",
     "eslint-plugin-prettier": "5.0.1",
