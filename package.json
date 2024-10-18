@@ -46,13 +46,13 @@
     "test:unit": "vitest run"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "6.21.0",
-    "@typescript-eslint/parser": "6.21.0",
+    "@typescript-eslint/eslint-plugin": "8.10.0",
+    "@typescript-eslint/parser": "8.10.0",
     "@vitest/coverage-v8": "2.1.2",
     "bumpp": "9.4.0",
     "conventional-changelog-conventionalcommits": "8.0.0",
     "esbuild": "0.20.2",
-    "eslint": "8.57.1",
+    "eslint": "9.13.0",
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-prettier": "5.2.1",
     "expect-type": "0.15.0",
