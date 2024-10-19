@@ -1,10 +1,4 @@
-import { describe, it, expect } from 'vitest'
-import { expectTypeOf } from 'expect-type'
-
-import {
-  defineDocument,
-  defineFields,
-  defineObject,
+import type {
   Block,
   File,
   Geopoint,
@@ -12,6 +6,14 @@ import {
   Slug,
   to,
 } from 'sanity-typed-queries'
+import { expectTypeOf } from 'expect-type'
+import {
+  defineDocument,
+  defineFields,
+  defineObject,
+} from 'sanity-typed-queries'
+
+import { describe, expect, it } from 'vitest'
 
 describe('field types', () => {
   it('are defined', () => {
@@ -21,7 +23,8 @@ describe('field types', () => {
     const array = defineDocument('arrayExample', {
       test: { type: 'array', of: [{ type: 'string' }] },
     })
-      .builder.pick('test')
+      .builder
+      .pick('test')
       .first()
       .use()[1]
     expectTypeOf(array).toEqualTypeOf<string[] | undefined>()
@@ -33,7 +36,8 @@ describe('field types', () => {
     const keyedArray = defineDocument('arrayExample', {
       test: { type: 'array', of: [{ type: 'object' }] },
     })
-      .builder.pick('test')
+      .builder
+      .pick('test')
       .first()
       .use()[1]
     expectTypeOf(keyedArray).toEqualTypeOf<KeyedArrayValue | undefined>()
@@ -56,7 +60,8 @@ describe('field types', () => {
         validation: Rule => Rule.required(),
       },
     })
-      .builder.pick('tagline')
+      .builder
+      .pick('tagline')
       .first()
       .use()[1]
 
@@ -68,7 +73,8 @@ describe('field types', () => {
     const block = defineDocument('blockExample', {
       test: { type: 'block' },
     })
-      .builder.pick('test')
+      .builder
+      .pick('test')
       .first()
       .use()[1]
     expectTypeOf(block).toEqualTypeOf<Block | undefined>()
@@ -79,7 +85,8 @@ describe('field types', () => {
     const boolean = defineDocument('booleanExample', {
       test: { type: 'boolean' },
     })
-      .builder.pick('test')
+      .builder
+      .pick('test')
       .first()
       .use()[1]
     expectTypeOf(boolean).toEqualTypeOf<boolean | undefined>()
@@ -90,7 +97,8 @@ describe('field types', () => {
     const date = defineDocument('dateExample', {
       test: { type: 'date' },
     })
-      .builder.pick('test')
+      .builder
+      .pick('test')
       .first()
       .use()[1]
     expectTypeOf(date).toEqualTypeOf<string | undefined>()
@@ -101,7 +109,8 @@ describe('field types', () => {
     const datetime = defineDocument('datetimeExample', {
       test: { type: 'datetime' },
     })
-      .builder.pick('test')
+      .builder
+      .pick('test')
       .first()
       .use()[1]
     expectTypeOf(datetime).toEqualTypeOf<string | undefined>()
@@ -112,7 +121,8 @@ describe('field types', () => {
     const string = defineDocument('stringExample', {
       test: { type: 'string' },
     })
-      .builder.pick('test')
+      .builder
+      .pick('test')
       .first()
       .use()[1]
     expectTypeOf(string).toEqualTypeOf<string | undefined>()
@@ -130,7 +140,8 @@ describe('field types', () => {
         options: { list: [AllowedStringValues.FOO, AllowedStringValues.BAR] },
       },
     })
-      .builder.pick('test')
+      .builder
+      .pick('test')
       .first()
       .use()[1]
     expectTypeOf(enumString).toEqualTypeOf<AllowedStringValues | undefined>()
@@ -141,7 +152,8 @@ describe('field types', () => {
     const text = defineDocument('textExample', {
       test: { type: 'text' },
     })
-      .builder.pick('test')
+      .builder
+      .pick('test')
       .first()
       .use()[1]
     expectTypeOf(text).toEqualTypeOf<string | undefined>()
@@ -150,7 +162,8 @@ describe('field types', () => {
      * 'url'
      */
     const url = defineDocument('urlExample', { test: { type: 'url' } })
-      .builder.pick('test')
+      .builder
+      .pick('test')
       .first()
       .use()[1]
     expectTypeOf(url).toEqualTypeOf<string | undefined>()
@@ -161,7 +174,8 @@ describe('field types', () => {
     const file = defineDocument('fileExample', {
       test: { type: 'file' },
     })
-      .builder.pick('test')
+      .builder
+      .pick('test')
       .first()
       .use()[1]
     expectTypeOf(file).toEqualTypeOf<File | undefined>()
@@ -172,7 +186,8 @@ describe('field types', () => {
     const geopoint = defineDocument('geopointExample', {
       test: { type: 'geopoint' },
     })
-      .builder.pick('test')
+      .builder
+      .pick('test')
       .first()
       .use()[1]
     expectTypeOf(geopoint).toEqualTypeOf<Geopoint | undefined>()
@@ -183,7 +198,8 @@ describe('field types', () => {
     const image = defineDocument('imageExample', {
       test: { type: 'image' },
     })
-      .builder.pick('test')
+      .builder
+      .pick('test')
       .first()
       .use()[1]
     expectTypeOf(image).toEqualTypeOf<
@@ -196,7 +212,8 @@ describe('field types', () => {
         fields: defineFields({ bob: { type: 'string' } }),
       },
     })
-      .builder.pick('test')
+      .builder
+      .pick('test')
       .first()
       .use()[1]
     expectTypeOf(imageWithFields).toEqualTypeOf<
@@ -209,7 +226,8 @@ describe('field types', () => {
     const number = defineDocument('numberExample', {
       test: { type: 'number' },
     })
-      .builder.pick('test')
+      .builder
+      .pick('test')
       .first()
       .use()[1]
     expectTypeOf(number).toEqualTypeOf<number | undefined>()
@@ -237,9 +255,10 @@ describe('field types', () => {
       {
         test: { type: 'reference', to: [{ type: 'anotherDoc' }] },
       },
-      [anotherDoc, anotherObject]
+      [anotherDoc, anotherObject],
     )
-      .builder.pick('test')
+      .builder
+      .pick('test')
       .first()
       .use()[1]
 
@@ -253,7 +272,8 @@ describe('field types', () => {
     const slug = defineDocument('slugExample', {
       test: { type: 'slug' },
     })
-      .builder.pick('test')
+      .builder
+      .pick('test')
       .first()
       .use()[1]
     expectTypeOf(slug).toEqualTypeOf<Slug | undefined>()

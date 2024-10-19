@@ -3,11 +3,11 @@ import type { UndefinedAsOptional } from '../types/util'
 
 import type {
   ArrayRule,
-  Validator,
   DatetimeRule,
   NumberRule,
   StringRule,
   URLRule,
+  Validator,
 } from './validation'
 
 type Component = () => any
@@ -76,14 +76,14 @@ export interface ArrayField<
     sortable?: boolean
     /**
      * If set to tags, renders the array as a single, tokenized input field. This option only works if the array contains strings.
-
-      If set to grid it will display in a grid
+     *
+     * If set to grid it will display in a grid
      */
     layout?: 'grid' | 'tags'
     /**
      * [ {value: <value>, title: <title>}, { … } ] renders check boxes for titles and populates a string array with selected values
      */
-    list?: Array<{ value: string; title: string }>
+    list?: Array<{ value: string, title: string }>
     /**
      * Controls how the modal (for array content editing) is rendered. You can choose between dialog, fullscreen or popover. Default is dialog.
      */
@@ -138,8 +138,8 @@ interface BooleanField extends BaseField {
   options?: {
     /**
      * Either switch (default) or checkbox
-
-      This lets you control the visual appearance of the input. By default the input for boolean fields will display as a switch, but you can also make it appear as a checkbox
+     *
+     * This lets you control the visual appearance of the input. By default the input for boolean fields will display as a switch, but you can also make it appear as a checkbox
      */
     layout: 'switch' | 'checkbox'
   }
@@ -245,8 +245,8 @@ interface ImageField<T extends Record<string, any>> extends BaseField {
     metadata?: Array<'exif' | 'location' | 'lqip' | 'palette'>
     /**
      * Enables the user interface for selecting what areas of an image should always be cropped, what areas should never be cropped and the center of the area to crop around when resizing. The hotspot data is stored in the image field itself, not in the image asset, so images can have different crop and center for each place they are used.
-
-     Hotspot makes it possible to responsively adapt the images to different aspect ratios at display time. The default is value for hotspot is false.
+     *
+     * Hotspot makes it possible to responsively adapt the images to different aspect ratios at display time. The default is value for hotspot is false.
      */
     hotspot?: boolean
     /**
@@ -311,18 +311,18 @@ interface ReferenceField<CustomType extends { type: string } = never>
   options?: {
     /**
      * Additional GROQ-filter to use when searching for target documents. The filter will be added to the already existing type name clause.
-
-      If a function is provided, it is called with an object containing document, parent and parentPath properties, and should return an object containing filter and params.
-
-      Note: The filter only constrains the list of documents returned at the time you search. It does not guarantee that the referenced document will always match the filter provided.
+     *
+     * If a function is provided, it is called with an object containing document, parent and parentPath properties, and should return an object containing filter and params.
+     *
+     * Note: The filter only constrains the list of documents returned at the time you search. It does not guarantee that the referenced document will always match the filter provided.
      */
     filter?:
       | string
       | ((context: {
-          document: DocumentField<Record<string, unknown>>
-          parent: Field
-          parentPath: string
-        }) => { filter: string; params: Record<string, any> })
+        document: DocumentField<Record<string, unknown>>
+        parent: Field
+        parentPath: string
+      }) => { filter: string, params: Record<string, any> })
     /**
      * Object of parameters for the GROQ-filter specified in filter.
      */
@@ -340,9 +340,9 @@ interface SlugField extends BaseField {
     source?:
       | string
       | ((
-          doc: DocumentField<Record<string, unknown>>,
-          options: { parent: Field; parentPath: string }
-        ) => string)
+        doc: DocumentField<Record<string, unknown>>,
+        options: { parent: Field, parentPath: string }
+      ) => string)
     /**
      * Maximum number of characters the slug may contain. Defaults to 200.
      */
@@ -373,7 +373,7 @@ interface StringField<S extends string = string> extends BaseField {
     /**
      * A list of predefined values that the user can choose from. The array can either include string values ['sci-fi', 'western'] or objects [{title: 'Sci-Fi', value: 'sci-fi'}, ...]
      */
-    list?: Array<S | { title: string; value: S }>
+    list?: Array<S | { title: string, value: S }>
     /**
      * Controls how the items defined in the list option are presented. If set to 'radio' the list will render radio buttons. If set to 'dropdown' you'll get a dropdown menu instead. Default is dropdown.
      */
@@ -427,7 +427,7 @@ export type UnnamedField<
   | Nameless<URLField>
   | CustomObjects
 
-type PureType<T extends string> = { type: T }
+interface PureType<T extends string> { type: T }
 
 export const type = Symbol('the type of the property')
 
@@ -435,7 +435,7 @@ export type Field = UnnamedField & { name: string }
 
 export type DefinedFields<T> = Array<Field & { [type]: T }>
 
-type CustomTypeName<T extends { _type: string }> = { type: T['_type'] }
+interface CustomTypeName<T extends { _type: string }> { type: T['_type'] }
 
 export type FieldType<
   T extends UnnamedField<any>,
@@ -444,51 +444,51 @@ export type FieldType<
   //
   T extends PureType<'array'> & { of: Array<infer B> }
     ? Array<
-        B extends
-          | PureType<'date'>
-          | PureType<'datetime'>
-          | PureType<'string'>
-          | PureType<'text'>
-          | PureType<'url'>
-          | PureType<'boolean'>
-          | PureType<'number'>
-          ? FieldType<B, CustomObjects>
-          : FieldType<B, CustomObjects> & { _key: string }
-      >
+      B extends
+      | PureType<'date'>
+      | PureType<'datetime'>
+      | PureType<'string'>
+      | PureType<'text'>
+      | PureType<'url'>
+      | PureType<'boolean'>
+      | PureType<'number'>
+        ? FieldType<B, CustomObjects>
+        : FieldType<B, CustomObjects> & { _key: string }
+    >
     : T extends PureType<'block'>
-    ? Block
-    : T extends PureType<'boolean'>
-    ? boolean
-    : T extends
+      ? Block
+      : T extends PureType<'boolean'>
+        ? boolean
+        : T extends
         | PureType<'date'>
         | PureType<'datetime'>
         | PureType<'text'>
         | PureType<'url'>
-    ? string
-    : T extends PureType<'string'>
-    ? T extends {
-        options: { list: Array<infer S | { title: string; value: infer S }> }
-      }
-      ? S
-      : string
-    : T extends PureType<'file'>
-    ? File
-    : T extends PureType<'geopoint'>
-    ? Geopoint
-    : T extends Nameless<ImageField<infer A>>
-    ? Image & A
-    : T extends PureType<'image'>
-    ? Image
-    : T extends PureType<'number'>
-    ? number
-    : T extends Nameless<ObjectField<infer A>>
-    ? UndefinedAsOptional<A>
-    : T extends PureType<'reference'> & { to: Array<infer B> }
-    ? Reference<FieldType<B, CustomObjects>>
-    : T extends PureType<'slug'>
-    ? Slug
-    : T extends { [type]: infer B }
-    ? B
-    : T extends CustomTypeName<CustomObjects>
-    ? Extract<CustomObjects, { _type: T['type'] }>
-    : Record<string, any>
+          ? string
+          : T extends PureType<'string'>
+            ? T extends {
+              options: { list: Array<infer S | { title: string, value: infer S }> }
+            }
+              ? S
+              : string
+            : T extends PureType<'file'>
+              ? File
+              : T extends PureType<'geopoint'>
+                ? Geopoint
+                : T extends Nameless<ImageField<infer A>>
+                  ? Image & A
+                  : T extends PureType<'image'>
+                    ? Image
+                    : T extends PureType<'number'>
+                      ? number
+                      : T extends Nameless<ObjectField<infer A>>
+                        ? UndefinedAsOptional<A>
+                        : T extends PureType<'reference'> & { to: Array<infer B> }
+                          ? Reference<FieldType<B, CustomObjects>>
+                          : T extends PureType<'slug'>
+                            ? Slug
+                            : T extends { [type]: infer B }
+                              ? B
+                              : T extends CustomTypeName<CustomObjects>
+                                ? Extract<CustomObjects, { _type: T['type'] }>
+                                : Record<string, any>

@@ -1,19 +1,19 @@
 {
   "compilerOptions": {
-    "strict": true,
-    "sourceMap": true,
     "target": "esnext",
-    "module": "esnext",
-    "allowSyntheticDefaultImports": true,
     "lib": ["esnext", "dom"],
-    "moduleResolution": "node",
     "rootDir": ".",
-    "outDir": "lib",
-    "declaration": true,
-    "skipLibCheck": true,
+    "module": "esnext",
+    "moduleResolution": "node",
     "paths": {
       "sanity-typed-queries": ["."]
-    }
+    },
+    "strict": true,
+    "declaration": true,
+    "outDir": "lib",
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true
   },
   "include": ["src", "test"]
 }

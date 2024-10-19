@@ -6,9 +6,9 @@ export type UndefinedAsOptional<T> = Partial<
     }[keyof T]
   >
 > &
-  Pick<
-    T,
-    {
-      [K in keyof T]: Extract<T[K], undefined> extends never ? K : never
-    }[keyof T]
-  >
+Pick<
+  T,
+  {
+    [K in keyof T]: Extract<T[K], undefined> extends never ? K : never
+  }[keyof T]
+>

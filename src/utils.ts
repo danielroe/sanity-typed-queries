@@ -10,8 +10,8 @@ export function splitStringByCase(text: string) {
     const lastChar = index ? text[index - 1] : ''
     const nextChar = text[index + 1]
     if (
-      UC_RE.test(char) &&
-      (!UC_RE.test(lastChar) || (nextChar && !UC_RE.test(nextChar)))
+      UC_RE.test(char)
+      && (!UC_RE.test(lastChar) || (nextChar && !UC_RE.test(nextChar)))
     ) {
       output += ' '
     }
@@ -41,7 +41,8 @@ export const createProxy: (path: string[]) => any = (path: string[]) =>
               .join('.')
               .replace(/\.->/g, '->')
               .replace(/\.\[\]/g, '[]')
-            if (defaultValue === undefined) return path
+            if (defaultValue === undefined)
+              return path
 
             return `coalesce(${path},${quoteIfString(defaultValue)})`
           }

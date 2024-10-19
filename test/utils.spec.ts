@@ -1,41 +1,41 @@
-import { describe, test, expect } from 'vitest'
+import { describe, expect } from 'vitest'
 import {
-  splitStringByCase,
   capitalise,
-  inArray,
   createProxy,
+  inArray,
   quoteIfString,
+  splitStringByCase,
 } from '../src/utils'
 
 describe('utils', () => {
-  test('splits schema names correctly', () => {
+  it('splits schema names correctly', () => {
     expect(splitStringByCase('testCMS')).toEqual('Test CMS')
     expect(splitStringByCase('testCMSToday')).toEqual('Test CMS Today')
   })
 
-  test('capitalises names correctly', () => {
+  it('capitalises names correctly', () => {
     expect(capitalise('johnson')).toEqual('Johnson')
   })
 
-  test('wraps array correctly', () => {
+  it('wraps array correctly', () => {
     expect(inArray('a')).toEqual(['a'])
     expect(inArray(['a'])).toEqual(['a'])
   })
 
-  test('creates proxy accessor', () => {
+  it('creates proxy accessor', () => {
     expect(createProxy([]).a.thing.use()).toBe('a.thing')
     expect(createProxy([]).a.thing.resolve('another').thing.use()).toBe(
-      'a.thing->another.thing'
+      'a.thing->another.thing',
     )
 
     expect(
-      createProxy([]).a.thing.resolve('another').thing.use('default')
+      createProxy([]).a.thing.resolve('another').thing.use('default'),
     ).toBe('coalesce(a.thing->another.thing,"default")')
     expect(createProxy([]).a.thing.resolve('another').thing.use(true)).toBe(
-      'coalesce(a.thing->another.thing,true)'
+      'coalesce(a.thing->another.thing,true)',
     )
   })
-  test('wraps strings correctly', () => {
+  it('wraps strings correctly', () => {
     expect(quoteIfString(true)).toEqual('true')
     expect(quoteIfString(21)).toEqual('21')
     expect(quoteIfString('true')).toEqual('"true"')

@@ -14,7 +14,7 @@ const { person } = defineDocument('person', {
   }
 })
 
-const { builder: movie } = defineDocument('movie, {
+const { builder: movie } = defineDocument('movie', {
   title: {
     type: 'string'
   },
@@ -26,12 +26,11 @@ const { builder: movie } = defineDocument('movie, {
     of: [
       {
         type: 'reference',
-        to: [{ type:'person' }],
+        to: [{ type: 'person' }],
       }
     ]
   },
 }, [person])
-
 ```
 
 ## Constraints
@@ -401,7 +400,6 @@ Coming soon.
   }),
 }
 
-
 // Specify sets of projections for different content types in an array
 content[]{
   _type == 'type1' => {
@@ -457,7 +455,6 @@ round(3.14, 1) // 3.1
 Coming soon.
 
 <!--
-
 
 ```groq
 // Standard arithmetic operations are supported

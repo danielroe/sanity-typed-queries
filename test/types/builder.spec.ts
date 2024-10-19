@@ -1,10 +1,10 @@
-import { describe, it, expect } from 'vitest'
 import { expectTypeOf } from 'expect-type'
 import {
   defineDocument,
   defineFields,
   defineObject,
 } from 'sanity-typed-queries'
+import { describe, expect, it } from 'vitest'
 
 describe('builder types', () => {
   it('are defined', () => {
@@ -48,10 +48,11 @@ describe('builder types', () => {
     expectTypeOf(e).toEqualTypeOf<string>()
 
     const f = builder.pick(['_type', 'name']).first().use()[1]
-    expectTypeOf(f).toEqualTypeOf<{ _type: 'author'; name?: string }>()
+    expectTypeOf(f).toEqualTypeOf<{ _type: 'author', name?: string }>()
 
     const filterType = defineDocument('test', { title: { type: 'string' } })
-      .builder.filter('')
+      .builder
+      .filter('')
       .use()[1][0]
     expectTypeOf(filterType).toMatchTypeOf<{ title?: string }>()
 
@@ -85,21 +86,21 @@ describe('builder types', () => {
 
     const h = mapper.pick(['test', 'testObject']).use()[1]
     expectTypeOf(h).toEqualTypeOf<
-      { test?: string; testObject?: { subfield?: string } }[]
+      { test?: string, testObject?: { subfield?: string } }[]
     >()
 
     const i = mapper
       .map(r => ({ test: r.num.use(), bagel: r.testObject.use() }))
       .pick(['test', 'num'])
       .use()[1]
-    expectTypeOf(i).toEqualTypeOf<{ test?: number; num?: number }[]>()
+    expectTypeOf(i).toEqualTypeOf<{ test?: number, num?: number }[]>()
 
     const j = mapper
       .map(r => ({ test: r.num.use(), bagel: r.testObject.use() }))
       .pick(['test', 'bagel'])
       .use()[1]
     expectTypeOf(j).toEqualTypeOf<
-      { test?: number; bagel?: { subfield?: string } }[]
+      { test?: number, bagel?: { subfield?: string } }[]
     >()
 
     const k = mapper
@@ -124,8 +125,8 @@ describe('builder types', () => {
 
     expectTypeOf<(typeof m)['bagel']>().toEqualTypeOf<
       | {
-          subfield?: string | undefined
-        }
+        subfield?: string | undefined
+      }
       | undefined
     >()
 
@@ -173,21 +174,21 @@ describe('builder types', () => {
           of: [{ type: 'smile' }],
         },
       },
-      [smile, tag]
+      [smile, tag],
     )
 
     defineDocument(
       'test',
       // @ts-expect-error
       { false: { type: 'reference', to: [{ type: 'smile' }] } },
-      [tag, smile]
+      [tag, smile],
     )
 
     defineDocument(
       'test',
       // @ts-expect-error
       { false: { type: 'array', of: [{ type: 'tag' }] } },
-      [tag, smile]
+      [tag, smile],
     )
 
     const inter = objectBuilder.pick('num').first().use()[1]
@@ -221,7 +222,7 @@ describe('builder types', () => {
           of: [{ type: 'reference', to: [{ type: 'author' }] }],
         },
       },
-      [author]
+      [author],
     ).builder
 
     expectTypeOf(
@@ -229,23 +230,25 @@ describe('builder types', () => {
         .map(r => ({ fields: r.authors.resolveIn('more').use() }))
         .pick('fields')
         .first()
-        .use()[1]
+        .use()[1],
     ).toEqualTypeOf<(string[] | undefined)[] | undefined>()
     expectTypeOf(
       referenceBuilder
         .map(r => ({ fields: r.authors.resolveIn(['_id', 'more']).use() }))
         .pick('fields')
         .first()
-        .use()[1]
-    ).toEqualTypeOf<Array<{ _id: string; more?: string[] }> | undefined>()
+        .use()[1],
+    ).toEqualTypeOf<Array<{ _id: string, more?: string[] }> | undefined>()
 
     const subqueryType = defineDocument('test', { title: { type: 'string' } })
-      .builder.subquery({
+      .builder
+      .subquery({
         children: defineDocument('child', {
           title: { type: 'string' },
         }).builder.use(),
       })
-      .use()[1][0]?.children
+      .use()[1][0]
+      ?.children
 
     expectTypeOf(subqueryType).toEqualTypeOf<
       {
