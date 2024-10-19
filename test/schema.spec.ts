@@ -3,7 +3,7 @@ import {
   defineFields,
   defineObject,
 } from 'sanity-typed-queries'
-import { describe, expect } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
 describe('schema creator', () => {
   it('generates correct schema fields for document', () => {

@@ -1,6 +1,6 @@
 import groq from 'groq'
 import { defineDocument, defineFields } from 'sanity-typed-queries'
-import { describe, expect } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
 const { author } = defineDocument('author', {
   name: {
