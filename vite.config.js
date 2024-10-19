@@ -1,6 +1,6 @@
+import { fileURLToPath } from 'node:url'
 /// <reference types="vitest" />
 import { defineConfig } from 'vite'
-import { fileURLToPath } from 'url'
 
 export default defineConfig({
   resolve: {

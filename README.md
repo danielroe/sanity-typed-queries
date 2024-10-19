@@ -124,7 +124,7 @@ You can also export a query builder from the same file.
 import { defineDocument } from 'sanity-typed-queries'
 
 const { document, builder } = defineDocument('author', {
-  ...
+  // ...
 })
 
 // Export your query builder for use elsewhere
@@ -169,7 +169,7 @@ You can export utility objects or documents for reference within other schemas.
 import { defineObject } from 'sanity-typed-queries'
 
 const { tag, object } = defineObject('tag', {
-  ...
+  // ...
 })
 
 export { tag }

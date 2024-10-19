@@ -1,12 +1,12 @@
-import { describe, test, expect } from 'vitest'
 import {
-  defineFields,
   defineDocument,
+  defineFields,
   defineObject,
 } from 'sanity-typed-queries'
+import { describe, expect, it } from 'vitest'
 
 describe('schema creator', () => {
-  test('generates correct schema fields for document', () => {
+  it('generates correct schema fields for document', () => {
     const { document } = defineDocument('typeOfDocument', {
       name: {
         type: 'string',
@@ -32,7 +32,7 @@ describe('schema creator', () => {
     expect(document).toMatchSnapshot()
   })
 
-  test('generates correct schema fields for object', () => {
+  it('generates correct schema fields for object', () => {
     const { object } = defineObject('myObject', {
       name: {
         type: 'string',
@@ -43,7 +43,7 @@ describe('schema creator', () => {
     expect(object).toMatchSnapshot()
   })
 
-  test('generates correct schema fields when fields are defined', () => {
+  it('generates correct schema fields when fields are defined', () => {
     expect(defineFields({ field1: { type: 'string' } })).toMatchSnapshot()
   })
 })

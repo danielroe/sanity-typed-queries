@@ -1,16 +1,16 @@
-import { QueryBuilder } from './query/builder'
 import type {
-  UnnamedField,
-  FieldType,
-  DefinedFields,
-  Nameless,
   CustomField,
+  DefinedFields,
   DocumentField,
+  FieldType,
+  Nameless,
+  UnnamedField,
 } from './schema/fields'
 import type { RuleForRequired } from './schema/validation'
+import { QueryBuilder } from './query/builder'
 import { splitStringByCase } from './utils'
 
-type CustomType<A extends string> = {
+interface CustomType<A extends string> {
   _type: A
 }
 
@@ -116,7 +116,6 @@ export function defineDocument<
   Schema extends SchemaCreator<never>,
   SchemaName extends string,
   CustomTypes extends CustomType<string>,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
 >(documentTitle: SchemaName, schema: Schema, _types?: CustomTypes[]) {
   return {
     /**
@@ -200,8 +199,7 @@ export function defineObject<
 >(
   objectTitle: SchemaName,
   schema: Schema,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  _types?: CustomTypes[]
+  _types?: CustomTypes[],
 ): ObjectDefinition<Schema, SchemaName, CustomTypes> {
   return {
     /**

@@ -135,10 +135,9 @@ export interface URLRule extends BaseRule {
   }) => this
 }
 
-// eslint-disable-next-line
 const required = Symbol('designates a required field')
 
-export type RuleForRequired = {
+export interface RuleForRequired {
   /**
    * This property does not exist and is only used for typing.
    */
