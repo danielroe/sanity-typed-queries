@@ -57,8 +57,8 @@ importers:
         specifier: 2.0.0
         version: 2.0.0(typescript@5.3.3)
       vite:
-        specifier: 6.0.2
-        version: 6.0.2(jiti@2.4.1)(yaml@2.6.1)
+        specifier: 6.0.3
+        version: 6.0.3(jiti@2.4.1)(yaml@2.6.1)
       vitest:
         specifier: 2.1.8
         version: 2.1.8
@@ -3194,8 +3194,8 @@ packages:
       terser:
         optional: true
 
-  vite@6.0.2:
-    resolution: {integrity: sha512-XdQ+VsY2tJpBsKGs0wf3U/+azx8BBpYRHFAyKm5VeEZNOJZRB63q7Sc8Iup3k0TrN3KO6QgyzFf+opSbfY1y0g==}
+  vite@6.0.3:
+    resolution: {integrity: sha512-Cmuo5P0ENTN6HxLSo6IHsjCLn/81Vgrp81oaiFFMRa8gGDj5xEjIcEpf2ZymZtZR8oU0P2JX5WuUp/rlXcHkAw==}
     engines: {node: ^18.0.0 || ^20.0.0 || >=22.0.0}
     hasBin: true
     peerDependencies:
@@ -6552,7 +6552,7 @@ snapshots:
     optionalDependencies:
       fsevents: 2.3.3
 
-  vite@6.0.2(jiti@2.4.1)(yaml@2.6.1):
+  vite@6.0.3(jiti@2.4.1)(yaml@2.6.1):
     dependencies:
       esbuild: 0.24.0
       postcss: 8.4.49
