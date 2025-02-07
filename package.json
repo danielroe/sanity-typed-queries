@@ -1,7 +1,7 @@
 {
   "name": "sanity-typed-queries",
   "version": "0.9.5",
-  "packageManager": "pnpm@9.11.0",
+  "packageManager": "pnpm@10.2.1",
   "description": "A collection of helper functions to improve the typing of Sanity resources.",
   "author": {
     "name": "Daniel Roe <daniel@roe.dev>",
