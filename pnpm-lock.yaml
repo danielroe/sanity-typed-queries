@@ -36,8 +36,8 @@ importers:
         specifier: 0.15.0
         version: 0.15.0
       groq:
-        specifier: 3.36.2
-        version: 3.36.2
+        specifier: 4.0.1
+        version: 4.0.1
       lint-staged:
         specifier: 16.0.0
         version: 16.0.0
@@ -1984,9 +1984,9 @@ packages:
   graphemer@1.4.0:
     resolution: {integrity: sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==}
 
-  groq@3.36.2:
-    resolution: {integrity: sha512-tSOM50aJa53agZux7s8Kp2B/+VPHczlFD8BYUdCroRRzjTOgx3/4n3PDNTXubr7+GouHt94l+KSqRMho3d9aOA==}
-    engines: {node: '>=18'}
+  groq@4.0.1:
+    resolution: {integrity: sha512-75p6dbo6AqxvaugxAPMSLTiYgVumQ6xfZolIKOd2zmBZIHf8deOnCZyY7aRfrbGwV87dgWegklJqET3pconMXQ==}
+    engines: {node: '>=20.19'}
 
   has-flag@4.0.0:
     resolution: {integrity: sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ==}
@@ -5182,7 +5182,7 @@ snapshots:
 
   graphemer@1.4.0: {}
 
-  groq@3.36.2: {}
+  groq@4.0.1: {}
 
   has-flag@4.0.0: {}
 
