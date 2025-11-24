@@ -33,8 +33,8 @@ importers:
         specifier: 9.39.1
         version: 9.39.1(jiti@2.6.1)
       expect-type:
-        specifier: 0.15.0
-        version: 0.15.0
+        specifier: 1.2.2
+        version: 1.2.2
       groq:
         specifier: 4.0.1
         version: 4.0.1
@@ -1857,9 +1857,6 @@ packages:
 
   eventemitter3@5.0.1:
     resolution: {integrity: sha512-GWkBvjiSZK87ELrYOSESUYeVIc9mvLLf/nXalMOS5dYrgZq9o5OVkbZAVM06CVxYsCwH9BDZFPlQTlPA1j4ahA==}
-
-  expect-type@0.15.0:
-    resolution: {integrity: sha512-yWnriYB4e8G54M5/fAFj7rCIBiKs1HAACaY13kCz6Ku0dezjS9aMcfcdVK2X8Tv2tEV1BPz/wKfQ7WA4S/d8aA==}
 
   expect-type@1.2.2:
     resolution: {integrity: sha512-JhFGDVJ7tmDJItKhYgJCGLOWjuK9vPxiXoUFLwLDc99NlmklilbiQJwoctZtt13+xMw91MCk/REan6MWHqDjyA==}
@@ -5028,8 +5025,6 @@ snapshots:
   esutils@2.0.3: {}
 
   eventemitter3@5.0.1: {}
-
-  expect-type@0.15.0: {}
 
   expect-type@1.2.2: {}
 
