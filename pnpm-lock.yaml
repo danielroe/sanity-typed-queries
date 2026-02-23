@@ -39,7 +39,7 @@ importers:
         specifier: 5.1.0
         version: 5.1.0
       nano-staged:
-        specifier: ^0.9.0
+        specifier: 0.9.0
         version: 0.9.0
       resolve:
         specifier: 1.22.8
