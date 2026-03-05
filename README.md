@@ -2,14 +2,14 @@
 <p align="center">A typed query generator for Sanity</p>
 
 <p align="center">
-<a href="https://npmjs.com/package/sanity-typed-queries">
-    <img alt="" src="https://img.shields.io/npm/v/sanity-typed-queries/latest.svg?style=flat-square">
+<a href="https://npmx.dev/package/sanity-typed-queries">
+    <img alt="" src="https://npmx.dev/api/registry/badge/version/sanity-typed-queries">
 </a>
 <a href="https://bundlephobia.com/result?p=sanity-typed-queries">
     <img alt="" src="https://img.shields.io/bundlephobia/minzip/sanity-typed-queries?style=flat-square">
 </a>
-<a href="https://npmjs.com/package/sanity-typed-queries">
-    <img alt="" src="https://img.shields.io/npm/dt/sanity-typed-queries.svg?style=flat-square">
+<a href="https://npmx.dev/package/sanity-typed-queries">
+    <img alt="" src="https://npmx.dev/api/registry/badge/downloads/sanity-typed-queries">
 </a>
 <a href="https://lgtm.com/projects/g/danielroe/sanity-typed-queries">
     <img alt="" src="https://img.shields.io/lgtm/alerts/github/danielroe/sanity-typed-queries?style=flat-square">
