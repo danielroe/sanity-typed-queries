@@ -50,7 +50,7 @@
     "bumpp": "11.0.1",
     "conventional-changelog-conventionalcommits": "9.0.0",
     "esbuild": "0.25.0",
-    "eslint": "9.39.4",
+    "eslint": "10.2.1",
     "expect-type": "0.15.0",
     "groq": "5.1.0",
     "nano-staged": "1.0.2",
