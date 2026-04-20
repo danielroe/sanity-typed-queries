@@ -44,8 +44,8 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "4.1.0",
-    "@typescript-eslint/eslint-plugin": "8.58.2",
-    "@typescript-eslint/parser": "8.58.2",
+    "@typescript-eslint/eslint-plugin": "8.59.0",
+    "@typescript-eslint/parser": "8.59.0",
     "@vitest/coverage-v8": "4.1.4",
     "bumpp": "11.0.1",
     "conventional-changelog-conventionalcommits": "9.0.0",
