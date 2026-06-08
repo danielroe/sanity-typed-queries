@@ -429,7 +429,7 @@ export type UnnamedField<
 
 interface PureType<T extends string> { type: T }
 
-export const type = Symbol('the type of the property')
+export const type: unique symbol = Symbol('the type of the property')
 
 export type Field = UnnamedField & { name: string }
 

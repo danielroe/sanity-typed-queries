@@ -135,7 +135,7 @@ export interface URLRule extends BaseRule {
   }) => this
 }
 
-const required = Symbol('designates a required field')
+const required: unique symbol = Symbol('designates a required field')
 
 export interface RuleForRequired {
   /**

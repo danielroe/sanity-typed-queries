@@ -103,7 +103,7 @@ export class QueryBuilder<
     this.filters = filters
   }
 
-  orderBy<Key extends keyof Schema>(key: Key, order: 'asc' | 'desc' = 'asc') {
+  orderBy<Key extends keyof Schema>(key: Key, order: 'asc' | 'desc' = 'asc'): QueryBuilder<Schema, Mappings, Subqueries, Type, Project, Exclude> {
     return new QueryBuilder(
       this.schema,
       [...this.ordering, [key, order]],
@@ -183,7 +183,7 @@ export class QueryBuilder<
     Exclude | 'pick'
   >
 
-  pick(props: any) {
+  pick(props: any): any {
     const project = Array.isArray(props)
     const projections = inArray(props).reduce(
       (obj, key) => {
@@ -353,7 +353,7 @@ export class QueryBuilder<
     )
   }
 
-  get option() {
+  get option(): string {
     return [
       `_type == '${this.schema._type}'`,
       ...this.filters.map(filter =>
@@ -362,7 +362,7 @@ export class QueryBuilder<
     ].join(' && ')
   }
 
-  get order() {
+  get order(): string {
     if (!this.ordering.length)
       return ''
 
@@ -371,7 +371,7 @@ export class QueryBuilder<
       .join(', ')})`
   }
 
-  get projection() {
+  get projection(): string {
     const entries = Object.entries({
       ...this.projections,
       ...this.mappings,
@@ -399,11 +399,17 @@ export class QueryBuilder<
     return ` { ${innerProjection} }`
   }
 
-  get query() {
+  get query(): string {
     return `*[${this.option}]${this.order}${this.selector}${this.projection}`
   }
 
-  use() {
+  use(): Type extends Array<any>
+    ? Project extends true
+      ? QueryReturnType<Array<Mappings>>
+      : QueryReturnType<Array<Mappings[keyof Mappings]>>
+    : Project extends true
+      ? QueryReturnType<Mappings>
+      : QueryReturnType<Mappings[keyof Mappings]> {
     return [
       this.query,
       this.selector === ' [0]' ? null : [],

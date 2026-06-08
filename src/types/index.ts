@@ -1,7 +1,7 @@
 export type { Block } from './block'
 export type { Image } from './image'
 
-export const to = Symbol('type of object referred to by the reference')
+export const to: unique symbol = Symbol('type of object referred to by the reference')
 
 interface FileAsset {
   url: string
