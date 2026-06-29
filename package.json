@@ -44,7 +44,7 @@
     "@typescript-eslint/parser": "8.62.0",
     "@vitest/coverage-v8": "4.1.9",
     "bumpp": "11.0.1",
-    "conventional-changelog-conventionalcommits": "9.0.0",
+    "conventional-changelog-conventionalcommits": "10.2.0",
     "esbuild": "0.28.1",
     "eslint": "9.39.4",
     "expect-type": "0.15.0",
