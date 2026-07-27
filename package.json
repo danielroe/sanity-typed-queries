@@ -43,7 +43,7 @@
     "@typescript-eslint/eslint-plugin": "8.64.0",
     "@typescript-eslint/parser": "8.64.0",
     "@vitest/coverage-v8": "4.1.10",
-    "bumpp": "11.0.1",
+    "bumpp": "12.0.0",
     "conventional-changelog-conventionalcommits": "10.2.0",
     "esbuild": "0.28.1",
     "eslint": "9.39.5",
