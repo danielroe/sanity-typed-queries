@@ -33,8 +33,8 @@ importers:
         specifier: 9.39.5
         version: 9.39.5(jiti@2.7.0)
       expect-type:
-        specifier: 0.15.0
-        version: 0.15.0
+        specifier: 1.4.0
+        version: 1.4.0
       groq:
         specifier: 6.0.0
         version: 6.0.0
@@ -1326,9 +1326,6 @@ packages:
   esutils@2.0.3:
     resolution: {integrity: sha512-kVscqXk4OCp68SZ0dkgEKVi6/8ij300KBWTJq32P/dYeWTSwK41WyTxalN1eRmA5Z9UU/LX9D7FWSmV9SAYx6g==}
     engines: {node: '>=0.10.0'}
-
-  expect-type@0.15.0:
-    resolution: {integrity: sha512-yWnriYB4e8G54M5/fAFj7rCIBiKs1HAACaY13kCz6Ku0dezjS9aMcfcdVK2X8Tv2tEV1BPz/wKfQ7WA4S/d8aA==}
 
   expect-type@1.4.0:
     resolution: {integrity: sha512-KfYbmpRm0VbLjEvVa9yGwCi9GI34xvi7A/HXYWQO65CSD2u3MczUJSuwXKFIxlGsgBQizV9q5J9NHj4VG0n+pA==}
@@ -3628,8 +3625,6 @@ snapshots:
       '@types/estree': 1.0.9
 
   esutils@2.0.3: {}
-
-  expect-type@0.15.0: {}
 
   expect-type@1.4.0: {}
 
