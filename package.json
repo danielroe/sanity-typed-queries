@@ -39,7 +39,7 @@
     "test:unit": "vitest run"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "4.1.0",
+    "@antfu/eslint-config": "9.5.1",
     "@typescript-eslint/eslint-plugin": "8.68.0",
     "@typescript-eslint/parser": "8.68.0",
     "@vitest/coverage-v8": "4.1.11",
