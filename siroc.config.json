@@ -1,7 +1,0 @@
-{
-  "rollup": {
-    "esbuildOptions": {
-      "target": "es2015"
-    }
-  }
-}
